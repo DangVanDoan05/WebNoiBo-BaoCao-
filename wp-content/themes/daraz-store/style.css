@@ -1,0 +1,72 @@
+/*
+ Theme Name: Daraz Store
+ Theme URI: https://themehunk.com/product/open-shop-ecommerce-theme/
+ Author: ThemeHunk
+ Author URI: https://www.themehunk.com
+ Template: open-shop
+ Description: The Daraz Store theme is a powerful and versatile eCommerce WordPress theme that is expertly crafted for eStore websites, with deep integration with the WooCommerce plugin for seamless online product sales. It is ideally suited for a wide range of website types, including electronics, food, home appliances, gadgets, jewelry, fashion, furniture, grocery, clothing, and decorative stores. Packed with various widgets, header and footer layout options, color and background choices, and sidebar options for both the FrontPage and inner pages, this theme offers extensive customization. Highlighted features include advanced product search, multiple layout options for sliders and carousels, as well as sections for brands, testimonials, and blog posts. Special features such as Quick View, Compare Products, Wishlist, and AJAX Search enhance the user experience, while seamless integration with Lead Form Builder and WP Popup Builder Plugin add extra functionality. Importing the full demo with a single click and a user-friendly Customize panel further contribute to the theme's confidence-inspiring design. Check Out Demo – https://themehunk.com/product/open-shop-ecommerce-theme/
+ Version: 1.0.0
+ Requires at least: 5.0
+ Tested up to: 6.6
+ Requires PHP: 5.6
+ License: GNU General Public License v3 or later
+ License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
+ Text Domain: daraz-store
+ Tags: e-commerce, blog, grid-layout, one-column, two-columns, three-columns, four-columns, left-sidebar, right-sidebar, custom-background, custom-colors, custom-logo, custom-menu, featured-image-header, featured-images, custom-header, footer-widgets, full-width-template, sticky-post, theme-options, threaded-comments, translation-ready
+
+ This theme, like WordPress, is licensed under the GPL.
+ Use it to make something cool, have fun, and share what you've learned with others.
+*/
+article .entry-content a,article .comment-content a,
+.woocommerce-Tabs-panel--description a,
+.woocommerce-product-details__short-description a,
+.product_meta a{
+text-decoration:underline!important;
+}
+article .entry-content .thunk-post-info a, article .entry-content .thunk-readmore.button {
+text-decoration:none!important;
+}
+article.thunk-post-article.post{
+float:left;
+width:49%;
+clear:none;
+margin-right:2%;
+}
+article.thunk-post-article.post:nth-child(2n+2){
+margin-right:0;
+}
+.cat-toggle{
+    height: 100%;
+    padding: 0;
+}
+.thunk-icon .taiowc-icon .th-icon{
+    color: #FFF;
+}
+.thunk-icon .taiowc-cart-item{
+    height: 49px;
+    line-height: 49px;
+}
+.menu-category-list ul[data-menu-style="accordion"] > li > a > .arrow:before{
+    float: initial;
+}
+h2.thunk-post-title, h1.thunk-post-title {
+    margin-bottom: 5px;
+    font-size: 18px;
+}
+.open-shop-widget-content .wp-block-search__button{
+    padding: 5px 16px;
+}
+.below-header-col3 .thunk-icon .cart-icon .taiowc-icon .th-icon{
+    color: #FFF;
+}
+@media screen and (max-width: 767px){
+    .cat-toggle{
+        margin: 0;
+    }
+    .thunk-icon .taiowc-cart-item{
+        width: 35px;
+        height: 35px;
+        line-height: 35px;
+    }
+}
+

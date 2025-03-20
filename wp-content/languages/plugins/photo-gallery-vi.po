@@ -1,0 +1,254 @@
+# Translation of Plugins - Photo Gallery by 10Web &#8211; Mobile-Friendly Image Gallery - Stable (latest release) in Vietnamese
+# This file is distributed under the same license as the Plugins - Photo Gallery by 10Web &#8211; Mobile-Friendly Image Gallery - Stable (latest release) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2016-12-05 01:58:21+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: GlotPress/4.0.1\n"
+"Language: vi_VN\n"
+"Project-Id-Version: Plugins - Photo Gallery by 10Web &#8211; Mobile-Friendly Image Gallery - Stable (latest release)\n"
+
+#: addons/addons.php:13
+msgid "Photo Gallery Export / Import"
+msgstr "Nhập / Xuất Photo Gallery"
+
+#: addons/addons.php:32
+msgid "Photo Gallery Add-ons"
+msgstr "Các bổ sung của Photo Gallery"
+
+#: addons/addons.php:8
+msgid "This addon integrates NextGen with Photo Gallery allowing to import images and related data from NextGen to use with Photo Gallery"
+msgstr "Bổ sung này tích hợp NextGen với Photo Gallery, cho phép nhập ảnh và các dữ liệu liên quan từ NextGen sang để sử dụng với Photo Gallery"
+
+#: addons/addons.php:6
+msgid "NextGen Gallery Import to Photo Gallery"
+msgstr "Nhập NextGen Gallery vào Photo Gallery"
+
+#: addons/addons.php:65
+msgid "GET THIS ADD ON"
+msgstr "DÙNG BỔ SUNG NÀY"
+
+#: frontend/views/view.php:821
+msgid " item(s)"
+msgstr "mục"
+
+#: admin/views/Widget.php:155 frontend/views/view.php:826
+msgid "First"
+msgstr "Đầu tiên"
+
+#: frontend/views/view.php:827
+msgid "Previous"
+msgstr "Trước"
+
+#: frontend/views/view.php:828
+msgid "Next"
+msgstr "Tiếp theo"
+
+#: admin/views/Widget.php:156 frontend/views/view.php:829
+msgid "Last"
+msgstr "Cuối cùng"
+
+#: frontend/views/view.php:852
+msgid "Go to the first page"
+msgstr "Tới trang đầu tiên"
+
+#: frontend/views/view.php:853
+msgid "Go to the previous page"
+msgstr "Tới trang trước đó"
+
+#: admin/views/AdminView.php:288 framework/WDWLibrary.php:516
+#: framework/WDWLibrary.php:663 frontend/views/view.php:857
+msgid "of"
+msgstr "của"
+
+#: frontend/views/view.php:863
+msgid "Go to the next page"
+msgstr " Đi đến trang tiếp theo"
+
+#: frontend/views/view.php:864
+msgid "Go to the last page"
+msgstr "Đi đến trang cuối cùng"
+
+#: admin/views/Galleries.php:754 admin/views/Options.php:51
+#: admin/views/Themes.php:226 framework/WDWLibrary.php:411
+#: framework/WDWLibrary.php:563 framework/WDWLibrary.php:2726
+#: frontend/views/view.php:470
+msgid "Reset"
+msgstr "Thiết lập lại"
+
+#: admin/views/AdminView.php:218 framework/WDWLibrary.php:410
+#: framework/WDWLibrary.php:562 photo-gallery.php:1413
+msgid "Search"
+msgstr "Tìm kiếm"
+
+#: admin/views/Galleries.php:625 admin/views/Galleries.php:694
+#: admin/views/Options.php:1253 admin/views/Options.php:1464
+#: admin/views/Options.php:1693 admin/views/Options.php:1886
+#: admin/views/Options.php:2131 admin/views/Options.php:2284
+#: admin/views/Options.php:2489 admin/views/Options.php:2720
+#: admin/views/Options.php:3011 admin/views/Options.php:3249
+#: frontend/views/view.php:523
+msgid "Filename"
+msgstr "Tên file"
+
+#: photo-gallery.php:1410
+msgid "There are no images matching your search."
+msgstr "Không có hình ảnh phù hợp với tìm kiếm của bạn."
+
+#: frontend/views/BWGViewGalleryBox.php:785
+#: frontend/views/BWGViewThumbnails.php:42
+#: frontend/views/BWGViewThumbnails_masonry.php:51
+#: frontend/views/BWGViewThumbnails_mosaic.php:87 photo-gallery.php:1426
+#: photo-gallery.php:1429
+msgid "Play"
+msgstr "Chơi"
+
+#: frontend/views/BWGViewAlbum_extended_preview.php:173
+msgid "Hide"
+msgstr "Ẩn"
+
+#: frontend/views/BWGViewGalleryBox.php:793 photo-gallery.php:1420
+msgid "Fullscreen"
+msgstr "Toàn màn hình"
+
+#: frontend/views/BWGViewGalleryBox.php:795 photo-gallery.php:1432
+msgid "Show info"
+msgstr "Hiển thị thông tin"
+
+#: photo-gallery.php:1427 photo-gallery.php:1430
+msgid "Pause"
+msgstr "Tạm dừng"
+
+#: frontend/views/view.php:877
+msgid "Load More..."
+msgstr "Tải Thêm..."
+
+#: admin/views/Galleries.php:737 admin/views/Options.php:1254
+#: admin/views/Options.php:1465 admin/views/Options.php:1694
+#: admin/views/Options.php:1887 admin/views/Options.php:2132
+#: admin/views/Options.php:2285 admin/views/Options.php:2492
+#: admin/views/Options.php:2721 admin/views/Options.php:3012
+#: admin/views/Options.php:3250 filemanager/view.php:154
+#: frontend/views/view.php:526
+msgid "Size"
+msgstr "Kích thước"
+
+#: admin/controllers/WidgetSlideshow.php:59 admin/views/Options.php:1181
+#: admin/views/Options.php:1255 admin/views/Options.php:1466
+#: admin/views/Options.php:1695 admin/views/Options.php:1888
+#: admin/views/Options.php:2133 admin/views/Options.php:2286
+#: admin/views/Options.php:2495 admin/views/Options.php:2702
+#: admin/views/Options.php:2722 admin/views/Options.php:2993
+#: admin/views/Options.php:3013 admin/views/Options.php:3231
+#: admin/views/Options.php:3251 admin/views/Widget.php:154
+#: frontend/views/view.php:529
+msgid "Random"
+msgstr "Ngẫu nhiên"
+
+#: frontend/views/BWGViewAlbum_extended_preview.php:172
+#: frontend/views/BWGViewAlbum_extended_preview.php:175
+msgid "More"
+msgstr "Thêm"
+
+#: frontend/views/BWGViewGalleryBox.php:635
+msgid "The image has been deleted."
+msgstr "Hình ảnh đã bị xóa."
+
+#: frontend/views/BWGViewGalleryBox.php:789 photo-gallery.php:1419
+msgid "Maximize"
+msgstr "Phóng to"
+
+#: frontend/views/BWGViewGalleryBox.php:839
+msgid "Open image in original size."
+msgstr "Mở ảnh theo kích thước gốc."
+
+#: frontend/views/BWGViewGalleryBox.php:1032 photo-gallery.php:1417
+msgid "Hide Comments"
+msgstr "Ẩn Bình luận"
+
+#: photo-gallery.php:1418
+msgid "Restore"
+msgstr "Khôi phục"
+
+#: photo-gallery.php:1421
+msgid "Exit Fullscreen"
+msgstr "Thoát Toàn màn hình"
+
+#: frontend/controllers/controller.php:286
+#: frontend/controllers/controller.php:325
+msgid "There is no gallery selected or the gallery was deleted."
+msgstr "Không có gallery được chọn hoặc gallery đã bị xóa."
+
+#: wd/includes/notices.php:213
+msgid "Never show again"
+msgstr "Không hiện nữa"
+
+#: wd/includes/notices.php:208
+msgid "Leave A Review?"
+msgstr "Viết Đánh giá"
+
+#: wd/includes/notices.php:211
+msgid "I've already left a review"
+msgstr "Tôi đã để lại một đánh giá"
+
+#: wd/includes/notices.php:212
+msgid "Maybe Later"
+msgstr "Có thể để sau"
+
+#: photo-gallery.php:649 photo-gallery.php:1408
+msgid "field is required."
+msgstr "trường bắt buộc."
+
+#: wd/includes/notices.php:210
+msgid "Sure! I'd love to!"
+msgstr "Chắc hẳn là tôi muốn!"
+
+#: wd/includes/notices.php:209
+msgid "We hope you've enjoyed using WordPress %s! Would you consider leaving us a review on WordPress.org?"
+msgstr "Chúng tôi hy vọng bạn thích Wordpress %s! Bạn có muốn viết một đánh giá trên WordPress.org?"
+
+#: photo-gallery.php:1409
+msgid "This is not a valid email address."
+msgstr "Địa chỉ email này không hợp lệ."
+
+#. Plugin Name of the plugin
+#: photo-gallery.php admin/controllers/elementorWidget.php:36
+#: admin/views/Widget.php:96 photo-gallery.php:114
+msgid "Photo Gallery"
+msgstr "Photo Gallery"
+
+#. Description of the plugin
+#: photo-gallery.php
+msgid "This plugin is a fully responsive gallery plugin with advanced functionality.  It allows having different image galleries for your posts and pages. You can create unlimited number of galleries, combine them into albums, and provide descriptions and tags."
+msgstr "Ứng dụng này là một ứng dụng chuyên thể hiện hình ảnh với đầy đủ tính năng tùy biến và cao cấp. Nó cho phép đưa các gallery ảnh khác nhau vào các Trang và Bài viết. Bạn có thể tạo ra không giới hạn các gallery, gộp chúng vào các album và bổ sung thêm các nội dung mô tả và các từ khóa."
+
+#: admin/views/Options.php:862 admin/views/Options.php:1250
+#: admin/views/Options.php:1461 admin/views/Options.php:1690
+#: admin/views/Options.php:1883 admin/views/Options.php:2128
+#: admin/views/Options.php:2281 admin/views/Options.php:2480
+#: admin/views/Options.php:2699 admin/views/Options.php:2717
+#: admin/views/Options.php:2990 admin/views/Options.php:3008
+#: admin/views/Options.php:3228 admin/views/Options.php:3246
+#: admin/views/Shortcode.php:416 admin/views/Themes.php:71
+#: admin/views/Themes.php:102 admin/views/Themes.php:173
+msgid "Default"
+msgstr "Mặc định"
+
+#: filemanager/view.php:231 frontend/views/view.php:334
+msgid "Back"
+msgstr "Quay về"
+
+#: photo-gallery.php:1431
+msgid "Hide info"
+msgstr "Ẩn thông tin"
+
+#: frontend/views/BWGViewGalleryBox.php:854
+msgid "Download original image"
+msgstr "Tải ảnh gốc"
+
+#: photo-gallery.php:1416
+msgid "Show Comments"
+msgstr "Hiện Bình luận"
