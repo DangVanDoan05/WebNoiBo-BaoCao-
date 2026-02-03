@@ -1,0 +1,12 @@
+[2026-01-14 04:58:10] order 4664 address: Số 12, Ngõ 45, Thôn Phú Lương, Xã Nghĩa Trụ, Huyện Văn Giang, Hưng Yên, Việt Nam, 12031, HUNGYEN
+[2026-01-14 04:58:11] geocode attempt 0 HTTP 200 body_snippet: []
+[2026-01-14 04:58:13] geocode attempt 1 HTTP 200 body_snippet: []
+[2026-01-14 04:58:15] geocode attempt 2 HTTP 200 body_snippet: []
+[2026-01-14 04:58:17] order 4664 geocode failed for address: Số 12, Ngõ 45, Thôn Phú Lương, Xã Nghĩa Trụ, Huyện Văn Giang, Hưng Yên, Việt Nam, 12031, HUNGYEN
+[2026-01-14 04:58:17] order 4664 no fallback match; left unassigned
+[2026-01-14 07:11:46] order 4666 address: Số 12, Ngõ 45, Thôn Phú Lương, Xã Nghĩa Trụ, Huyện Văn Giang, Hưng Yên, Việt Nam, 12031, HUNGYEN
+[2026-01-14 07:11:47] geocode attempt 0 HTTP 200 body_snippet: []
+[2026-01-14 07:11:49] geocode attempt 1 HTTP 200 body_snippet: []
+[2026-01-14 07:11:51] geocode attempt 2 HTTP 200 body_snippet: []
+[2026-01-14 07:11:52] order 4666 geocode failed for address: Số 12, Ngõ 45, Thôn Phú Lương, Xã Nghĩa Trụ, Huyện Văn Giang, Hưng Yên, Việt Nam, 12031, HUNGYEN
+[2026-01-14 07:11:52] order 4666 no fallback match; left unassigned

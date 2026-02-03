@@ -3342,7 +3342,6 @@ function updateFormats({
 }
 
 ;// CONCATENATED MODULE: ./node_modules/@wordpress/rich-text/build-module/component/event-listeners/input-and-selection.js
-/* wp:polyfill */
 /**
  * Internal dependencies
  */

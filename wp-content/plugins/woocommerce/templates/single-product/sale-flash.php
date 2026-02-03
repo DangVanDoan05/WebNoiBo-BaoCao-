@@ -19,7 +19,32 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+global $product;
+if ( $product->is_on_sale() ) {
+    $regular_price = (float) $product->get_regular_price();
+    $sale_price = (float) $product->get_sale_price();
+
+    if ( $regular_price > 0 && $sale_price > 0 ) {
+        $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+        echo '<span class="onsale">-' . $percentage . '%</span>';
+    }
+}
 global $post, $product;
+
+?>
+<?php if ( $product->is_on_sale() ) {
+    $regular_price = (float) $product->get_regular_price();
+    $sale_price = (float) $product->get_sale_price();
+
+    if ( $regular_price > 0 && $sale_price > 0 ) {
+        $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+        echo '<span class="onsale">-' . $percentage . '%</span>';
+    }
+}
+
+	
+
+/*global $post, $product;
 
 ?>
 <?php if ( $product->is_on_sale() ) : ?>
@@ -27,6 +52,6 @@ global $post, $product;
 	<?php echo apply_filters( 'woocommerce_sale_flash', '<span class="onsale">' . esc_html__( 'Sale!', 'woocommerce' ) . '</span>', $post, $product ); ?>
 
 	<?php
-endif;
+endif; */
 
 /* Omit closing PHP tag at the end of PHP files to avoid "headers already sent" issues. */

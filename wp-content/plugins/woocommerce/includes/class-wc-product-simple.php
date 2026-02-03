@@ -12,6 +12,8 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Simple product class.
  */
+
+
 class WC_Product_Simple extends WC_Product {
 
 	/**

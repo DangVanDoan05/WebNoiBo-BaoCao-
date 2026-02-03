@@ -33,5 +33,19 @@
             </div>
         <?php } ?>
 
+        <?php
+global $product;
+if ( $product->is_on_sale() ) {
+    $regular_price = (float) $product->get_regular_price();
+    $sale_price = (float) $product->get_sale_price();
+
+    if ( $regular_price > 0 && $sale_price > 0 ) {
+        $percentage = round((($regular_price - $sale_price) / $regular_price) * 100);
+        echo '<span class="onsale">-' . $percentage . '%</span>';
+    }
+}
+?>
+
+
     </div>
 <?php get_footer(); ?>

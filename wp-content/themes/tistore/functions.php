@@ -134,3 +134,130 @@
         ) ) );        
     }
     add_action( 'widgets_init', 'wpdevart_tistore_widgets_init' );
+
+
+// hienr thị % sale
+// 
+function get_discount_percentage_shortcode() {
+    global $product;
+
+    if ( ! is_a( $product, 'WC_Product' ) ) {
+        $product = wc_get_product( get_the_ID() );
+    }
+
+    if ( $product->is_on_sale() ) {
+        $regular_price = (float) $product->get_regular_price();
+        $sale_price = (float) $product->get_sale_price();
+
+        if ( $regular_price > 0 && $sale_price > 0 ) {
+            $percentage = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+            return '-' . $percentage . '%';
+        }
+    }
+
+    return ''; // Không hiển thị gì nếu không giảm giá
+}
+add_shortcode( 'discount_percent', 'get_discount_percentage_shortcode' );
+// Đổi text nút Thêm vào giỏ hàng trên trang chi tiết sản phẩm
+add_filter( 'woocommerce_product_single_add_to_cart_text', function() {
+    return 'Thêm vào giỏ hàng';
+});
+
+// Đổi text Buy Now thành Mua ngay
+add_filter( 'gettext', function( $translated_text, $text, $domain ) {
+    if ( $text === 'Buy Now' ) {
+        $translated_text = 'Mua ngay';
+    }
+    return $translated_text;
+}, 20, 3 );
+// Đổi text nút Thêm vào giỏ hàng trên trang chi tiết sản phẩm
+add_filter( 'woocommerce_product_single_add_to_cart_text', function() {
+    return 'Thêm vào giỏ hàng';
+});
+
+// Đổi text Buy Now thành Mua ngay
+add_filter( 'gettext', function( $translated_text, $text, $domain ) {
+    if ( $text === 'Buy Now' ) {
+        $translated_text = 'Mua ngay';
+    }
+    return $translated_text;
+}, 20, 3 );
+// Đổi text Buy Now thành Mua ngay
+add_filter( 'gettext', function( $translated_text, $text, $domain ) {
+    if ( $text === 'Buy Now' ) {
+        $translated_text = 'Mua ngay';
+    }
+    if ( $text === 'Add to cart' ) {
+        $translated_text = 'Thêm vào giỏ hàng';
+    }
+    return $translated_text;
+}, 20, 3 );
+
+// Sắp xếp thuộc tính
+
+add_filter('woocommerce_attribute_orderby', function($orderby, $attribute){
+    // Thay 'pa_chieu-dai-day-voi' bằng slug thuộc tính bạn muốn ép sắp xếp
+    if ($attribute === 'pa_chieu-dai-day-voi') {
+        return 'name_num'; // ép sắp xếp theo tên dạng số
+    }
+    return $orderby;
+}, 10, 2);
+
+
+add_filter('woocommerce_attribute_orderby', function($orderby, $attribute){
+    // Slug của thuộc tính là 'duong-kinh-trong' → thêm tiền tố 'pa_'
+    if ($attribute === 'pa_duong-kinh-trong') {
+        return 'name_num'; // ép sắp xếp theo tên dạng số
+    }
+    return $orderby;
+}, 10, 2);
+
+// Hiển thị tổng tiền hàng
+function show_cart_subtotal() {
+    ob_start();
+    wc_cart_totals_subtotal_html();
+    return ob_get_clean();
+}
+add_shortcode('cart_subtotal', 'show_cart_subtotal');
+
+// Hiển thị phí vận chuyển
+// Hiển thị phí vận chuyển động
+function show_cart_shipping() {
+    ob_start();
+    wc_cart_totals_shipping_html();
+    return ob_get_clean();
+}
+add_shortcode('cart_shipping', 'show_cart_shipping');
+
+
+// Hiển thị tổng thanh toán
+function show_cart_total() {
+    ob_start();
+    wc_cart_totals_order_total_html();
+    return ob_get_clean();
+}
+add_shortcode('cart_total', 'show_cart_total');
+
+function cart_shipping_amount_only() {
+    $packages = WC()->shipping->get_packages();
+    $total_shipping = 0;
+
+    foreach ( $packages as $i => $package ) {
+        $chosen_method = isset( WC()->session ) ? WC()->session->get( "chosen_shipping_methods" )[ $i ] : '';
+        if ( isset( $package['rates'][ $chosen_method ] ) ) {
+            $total_shipping += $package['rates'][ $chosen_method ]->cost;
+        }
+    }
+
+    // Format số tiền theo kiểu WooCommerce
+    return wc_price( $total_shipping );
+}
+add_shortcode( 'shipping_amount_only', 'cart_shipping_amount_only' );
+
+
+
+
+?>
+
+
+

@@ -1,0 +1,332 @@
+.xshop-about-wrap .xshop-section .dashicons{margin-top:-4px;vertical-align:middle}.xshop-about-wrap .nav-tab{font-size:16px}.xshop-about-wrap h1{font-size:2em}.xshop-about-wrap h3{font-size:1.2em}.xshop-about-wrap .wp-badge{background-size:180px auto;background-position:center;height:160px;padding:0;width:190px;border-radius: 10%}.xshop-about-wrap .quick-links a{margin-right:5px}.xshop-about-notice .btn-dismiss{margin-left:20px}.xshop-about-wrap .plugin-list{list-style-position:inside;list-style-type:disc}.about-wrap .feature-section{padding:40px 0 0;overflow:hidden}.about-page-action-required-box{background:#fff;border-left:4px solid #f8800c;display:block;margin-bottom:0;padding:10px 30px;position:relative;-webkit-box-shadow:0 1px 1px 0 rgba(0,0,0,.1);-moz-box-shadow:0 1px 1px 0 rgba(0,0,0,.1);box-shadow:0 1px 1px 0 rgba(0,0,0,.1)}.about-wrap .about-page-required-action-button{position:absolute;top:10px;right:10px;text-decoration:none;color:#b4b9be;border-radius:50%;cursor:pointer}.about-wrap .about-page-required-action-button:hover:before{color:#F44336}.about-wrap .about-page-action-required-box p{display:block;margin-top:0;width:100%;max-width:100%}.about-wrap .feature-section.recommended-plugins .col{background:#fff;padding:20px;margin-top:0}#free_pro .free-pro-table{border-spacing:0;width:100%}#free_pro .free-pro-table th{padding-bottom:20px}#free_pro .free-pro-table td{border-top:1px solid #ccc;padding:20px 0 25px}#free_pro .free-pro-table h3,#free_pro .free-pro-table td p{margin:0}#free_pro .free-pro-table .only-lite,#free_pro .free-pro-table .only-pro{text-align:center;width:15%}#free_pro .free-pro-table .only-lite .dashicons-before:before{color:#00A878}#free_pro .free-pro-table .only-pro .dashicons-before:before{color:#ff3439}#free_pro .free-pro-table .only-lite .dashicons-before:before,#free_pro .free-pro-table .only-pro .dashicons-before:before{font-size:35px;height:35px;width:35px}#free_pro .ti-about-page-text-center{text-align:center}.badge-action-count{padding:0 6px;display:inline-block;background-color:#d54e21;color:#fff;font-size:9px;line-height:17px;font-weight:600;margin:1px 0 0 5px;vertical-align:top;-webkit-border-radius:10px;border-radius:10px;z-index:26}.xshop-about-wrap .badge-action-count{margin-top:5px}
+.about-wrap .three-col .col.plugin_box {
+    min-width: 150px;
+    max-width: 150px;
+    float: left;
+    text-align: center;
+    margin-right: 20px;
+}
+.about-wrap .three-col .col.plugin_box img {
+    margin-bottom: 10px;
+}
+.col.plugin_box .action_bar {
+    margin: 10px 0;
+}
+a.button.button-danger {
+    background: #C82333;
+    border-color: #C82333;
+    color: #fff;
+}
+a.button.button-danger:hover {
+    background: green;
+    border-color: green;
+    color: #fff;
+}
+.about-wrap .feature-section {
+    padding: 40px 0 0;
+    overflow: hidden;
+    display: flex;
+    flex-flow: row wrap;
+}
+.cupon-code{
+    text-transform: lowercase;
+}
+.col {
+    width: 30%;
+    float: left;
+    margin-right: 3%;
+    margin-bottom: 20px;
+    min-height: 230px;
+}
+@media only screen and (max-width: 780px) {
+    .col {
+        width: 100%;
+        float: left;
+        margin-right: 0;
+        margin-bottom: 20px;
+        min-height: 230px;
+    }
+}
+
+
+
+   .xshop-pro-notice {
+        margin: 20px 0;
+        position: relative;
+    }
+
+    .xshop-notice-container {
+        background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        border-radius: 16px;
+        padding: 24px;
+        color: #1e293b;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        border: 1px solid #e2e8f0;
+    }
+
+    .xshop-notice-container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 20"><defs><pattern id="stars" x="0" y="0" width="100" height="20" patternUnits="userSpaceOnUse"><circle cx="10" cy="5" r="0.5" fill="rgba(100,116,139,0.1)"/><circle cx="40" cy="15" r="0.3" fill="rgba(100,116,139,0.15)"/><circle cx="70" cy="8" r="0.4" fill="rgba(100,116,139,0.1)"/><circle cx="90" cy="12" r="0.2" fill="rgba(100,116,139,0.2)"/></pattern></defs><rect width="100" height="20" fill="url(%23stars)"/></svg>');
+        pointer-events: none;
+    }
+
+    .xshop-notice-icon {
+        position: absolute;
+        top: -10px;
+        right: 20px;
+        opacity: 0.2;
+        z-index: 1;
+    }
+
+    .xshop-notice-content {
+        position: relative;
+        z-index: 2;
+        max-width: calc(100% - 80px);
+    }
+
+    .xshop-notice-header {
+        margin-bottom: 20px;
+    }
+
+    .xshop-notice-title {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 0 0 8px 0;
+        color: #1e293b;
+        line-height: 1.3;
+    }
+
+    .xshop-notice-greeting {
+        font-size: 16px;
+        opacity: 0.8;
+        font-weight: 500;
+        color: #475569;
+    }
+
+    .xshop-wave {
+        display: inline-block;
+        animation: wave 2s ease-in-out infinite;
+    }
+
+    @keyframes wave {
+        0%, 100% { transform: rotate(0deg); }
+        25% { transform: rotate(20deg); }
+        75% { transform: rotate(-10deg); }
+    }
+
+    .xshop-notice-description {
+        font-size: 16px;
+        line-height: 1.6;
+        margin: 0 0 20px 0;
+        opacity: 0.9;
+        color: #475569;
+    }
+
+    .xshop-features-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 12px;
+        margin: 20px 0;
+    }
+
+    .xshop-feature-item {
+        display: flex;
+        align-items: center;
+        background: rgba(100, 116, 139, 0.1);
+        padding: 12px 16px;
+        border-radius: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(100, 116, 139, 0.15);
+        color: #334155;
+    }
+
+    .xshop-feature-icon {
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .xshop-offer-box {
+        background: rgba(59, 130, 246, 0.1);
+        border-radius: 12px;
+        padding: 20px;
+        margin: 20px 0;
+        position: relative;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        color: #1e293b;
+    }
+
+    .xshop-offer-badge {
+        position: absolute;
+        top: -8px;
+        left: 20px;
+        background: #ff6b6b;
+        color: white;
+        padding: 4px 12px;
+        border-radius: 12px;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.5px;
+    }
+
+    .xshop-offer-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .xshop-discount {
+        font-size: 28px;
+        font-weight: 800;
+        color: #dc2626;
+        text-shadow: 0 2px 4px rgba(220,38,38,0.2);
+    }
+
+    .xshop-coupon {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 14px;
+        font-weight: 500;
+        color: #475569;
+    }
+
+    .xshop-coupon-code {
+        background: #3b82f6;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 6px;
+        font-family: 'Courier New', monospace;
+        font-weight: 700;
+        font-size: 16px;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .xshop-coupon-code:hover {
+        background: #2563eb;
+        transform: scale(1.05);
+    }
+
+    .xshop-notice-actions {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px;
+        flex-wrap: wrap;
+    }
+
+    .xshop-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 14px 24px;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        white-space: nowrap;
+    }
+
+    .xshop-btn-primary {
+        background: #3b82f6;
+        color: white;
+        box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    }
+
+    .xshop-btn-primary:hover {
+        background: #2563eb;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+
+    .xshop-btn-secondary {
+        background: rgba(100, 116, 139, 0.1);
+        color: #475569;
+        border: 2px solid rgba(100, 116, 139, 0.2);
+    }
+
+    .xshop-btn-secondary:hover {
+        background: rgba(100, 116, 139, 0.15);
+        border-color: rgba(100, 116, 139, 0.3);
+        color: #334155;
+        text-decoration: none;
+    }
+
+    .xshop-notice-dismiss {
+        position: absolute;
+        top: 16px;
+        right: 16px;
+        background: rgba(100, 116, 139, 0.1);
+        border: none;
+        border-radius: 50%;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #64748b;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 3;
+    }
+
+    .xshop-notice-dismiss:hover {
+        background: rgba(100, 116, 139, 0.2);
+        transform: scale(1.1);
+        color: #475569;
+    }
+    button.button.button-info.btnend {
+        border: none;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .xshop-notice-container {
+            padding: 20px 16px;
+        }
+        
+        .xshop-notice-content {
+            max-width: calc(100% - 60px);
+        }
+        
+        .xshop-notice-title {
+            font-size: 20px;
+        }
+        
+        .xshop-features-grid {
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+        
+        .xshop-offer-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        .xshop-notice-actions {
+            flex-direction: column;
+        }
+        
+        .xshop-btn {
+            width: 100%;
+            justify-content: center;
+        }
+    }

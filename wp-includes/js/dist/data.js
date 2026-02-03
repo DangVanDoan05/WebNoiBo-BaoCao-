@@ -2536,7 +2536,6 @@ function invalidateResolutionForStoreSelector(selectorName) {
 }
 
 ;// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/redux-store/index.js
-/* wp:polyfill */
 /**
  * External dependencies
  */
@@ -3098,7 +3097,6 @@ const coreDataStore = {
 /* harmony default export */ const store = (coreDataStore);
 
 ;// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/utils/emitter.js
-/* wp:polyfill */
 /**
  * Create an event emitter.
  *
@@ -3142,7 +3140,6 @@ function createEmitter() {
 }
 
 ;// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/registry.js
-/* wp:polyfill */
 /**
  * WordPress dependencies
  */
@@ -3978,7 +3975,6 @@ function useAsyncMode() {
 }
 
 ;// CONCATENATED MODULE: ./node_modules/@wordpress/data/build-module/components/use-select/index.js
-/* wp:polyfill */
 /**
  * WordPress dependencies
  */

@@ -1,0 +1,184 @@
+2025-09-09T02:49:25+00:00 CRITICAL Unmatched '}' in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 320
+
+2025-09-09T02:49:25+00:00 CRITICAL Unmatched '}' in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 320
+
+2025-11-12T08:54:33+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2025-11-12T08:54:33+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2025-11-14T01:20:32+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2025-11-14T01:20:32+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2025-11-20T05:08:40+00:00 CRITICAL Uncaught Error: Call to a member function get() on null in C:\xampp\htdocs\kamashop\wp-content\plugins\woocommerce\src\Internal\ProductDownloads\ApprovedDirectories\Register.php:44
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Register->Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\{closure}('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(45): do_action('admin_init')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\woocommerce\src\Internal\ProductDownloads\ApprovedDirectories\Register.php on line 44
+
+2025-11-20T05:08:40+00:00 CRITICAL Uncaught Error: Call to a member function get() on null in C:\xampp\htdocs\kamashop\wp-content\plugins\woocommerce\src\Internal\ProductDownloads\ApprovedDirectories\Register.php:44
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\Register->Automattic\WooCommerce\Internal\ProductDownloads\ApprovedDirectories\{closure}('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(45): do_action('admin_init')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\woocommerce\src\Internal\ProductDownloads\ApprovedDirectories\Register.php on line 44
+
+2025-11-26T08:23:32+00:00 CRITICAL Cannot redeclare show_cart_shipping() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php:225) in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 242
+
+2025-11-26T08:23:32+00:00 CRITICAL Cannot redeclare show_cart_shipping() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php:225) in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 242
+
+2025-11-26T08:23:34+00:00 CRITICAL Cannot redeclare show_cart_shipping() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php:225) in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 242
+
+2025-11-26T08:23:34+00:00 CRITICAL Cannot redeclare show_cart_shipping() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php:225) in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 242
+
+2025-11-26T08:33:11+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function add_shortcode(), 1 passed in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 229 and exactly 2 expected in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php:63
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php(229): add_shortcode('show_cart_shipp...')
+#1 C:\xampp\htdocs\kamashop\wp-settings.php(672): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\kamashop\wp-admin\admin.php(34): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\kamashop\wp-admin\theme-editor.php(10): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php on line 63
+
+2025-11-26T08:33:11+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function add_shortcode(), 1 passed in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 229 and exactly 2 expected in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php:63
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php(229): add_shortcode('show_cart_shipp...')
+#1 C:\xampp\htdocs\kamashop\wp-settings.php(672): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php on line 63
+
+2025-11-26T08:33:11+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function add_shortcode(), 1 passed in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 229 and exactly 2 expected in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php:63
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php(229): add_shortcode('show_cart_shipp...')
+#1 C:\xampp\htdocs\kamashop\wp-settings.php(672): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\kamashop\wp-admin\admin.php(34): require_once('C:\\xampp\\htdocs...')
+#5 C:\xampp\htdocs\kamashop\wp-admin\theme-editor.php(10): require_once('C:\\xampp\\htdocs...')
+#6 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php on line 63
+
+2025-11-26T08:33:11+00:00 CRITICAL Uncaught ArgumentCountError: Too few arguments to function add_shortcode(), 1 passed in C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php on line 229 and exactly 2 expected in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php:63
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-content\themes\tistore\functions.php(229): add_shortcode('show_cart_shipp...')
+#1 C:\xampp\htdocs\kamashop\wp-settings.php(672): include('C:\\xampp\\htdocs...')
+#2 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#3 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#4 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#5 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php on line 63
+
+2025-11-28T05:04:03+00:00 CRITICAL Cannot redeclare check_user_email_exists() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php:390) in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 405
+
+2025-11-28T05:04:03+00:00 CRITICAL Cannot redeclare check_user_email_exists() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php:390) in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 405
+
+2025-11-28T06:59:22+00:00 CRITICAL Cannot redeclare check_user_email_exists() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php:390) in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 481
+
+2025-11-28T06:59:22+00:00 CRITICAL Cannot redeclare check_user_email_exists() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php:390) in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 481
+
+2025-11-28T07:22:14+00:00 CRITICAL Cannot redeclare check_user_email_exists() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php:390) in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 422
+
+2025-11-28T07:22:14+00:00 CRITICAL Cannot redeclare check_user_email_exists() (previously declared in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php:390) in C:\xampp\htdocs\kamashop\wp-content\themes\xshop\functions.php on line 422
+
+2026-01-28T02:32:30+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2026-01-28T02:32:30+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2026-01-28T03:38:43+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2026-01-28T03:38:43+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:231
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 231
+
+2026-01-28T09:21:20+00:00 CRITICAL Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, function "render_store_data_box" not found or invalid function name in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php:1456
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-admin\edit-form-advanced.php(722): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#1 C:\xampp\htdocs\kamashop\wp-admin\post-new.php(75): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php on line 1456
+
+2026-01-28T09:21:20+00:00 CRITICAL Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, function "render_store_data_box" not found or invalid function name in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php:1456
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-admin\edit-form-advanced.php(722): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#1 C:\xampp\htdocs\kamashop\wp-admin\post-new.php(75): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php on line 1456
+
+2026-01-28T09:21:57+00:00 CRITICAL Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, function "render_store_data_box" not found or invalid function name in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php:1456
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-admin\edit-form-advanced.php(722): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#1 C:\xampp\htdocs\kamashop\wp-admin\post-new.php(75): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php on line 1456
+
+2026-01-28T09:21:57+00:00 CRITICAL Uncaught TypeError: call_user_func(): Argument #1 ($callback) must be a valid callback, function "render_store_data_box" not found or invalid function name in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php:1456
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-admin\edit-form-advanced.php(722): do_meta_boxes(Object(WP_Screen), 'normal', Object(WP_Post))
+#1 C:\xampp\htdocs\kamashop\wp-admin\post-new.php(75): require('C:\\xampp\\htdocs...')
+#2 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-admin\includes\template.php on line 1456
+

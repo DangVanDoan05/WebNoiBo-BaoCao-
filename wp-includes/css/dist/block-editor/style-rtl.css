@@ -1867,7 +1867,8 @@ iframe[name=editor-canvas]{
 
 .block-editor-block-types-list__item-title{
   font-size:12px;
-  hyphens:auto;
+  -webkit-hyphens:auto;
+          hyphens:auto;
   padding:4px 2px 8px;
 }
 
