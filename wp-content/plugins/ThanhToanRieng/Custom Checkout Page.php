@@ -428,7 +428,7 @@ add_shortcode( 'custom_checkout_wc', function() {
                     <option value="">Chọn Xã/Phường</option>
                     </select>
                 </label>
-                </div>
+              </div>
 
                 <!-- Địa chỉ cụ thể -->
                 <div class="cc-row">
@@ -445,20 +445,47 @@ add_shortcode( 'custom_checkout_wc', function() {
 
             </form>
                 
-        <!-- Đoạn script chạy -->
+                <!-- Đoạn script chạy -->
+                <script>
+                jQuery(document).ready(function($) {
+                    const provinceSelect = document.getElementById("province");
+                    const wardSelect = document.getElementById("ward");
 
-       
- 
+                    // Load JSON
+                    fetch("<?php echo plugin_dir_url(__FILE__); ?>vn_locations.json?v=" + Date.now())
+                        .then(res => res.json())
+                        .then(data => {
+                        window.vnLocations = data;
+
+                        // Render provinces
+                        provinceSelect.innerHTML = '<option value="">Chọn Tỉnh/TP</option>';
+                        Object.keys(data).forEach(provinceName => {
+                            provinceSelect.appendChild(new Option(provinceName, provinceName));
+                        });
+
+                        // Init Select2 cho province
+                        const $p = $('#province');
+                        $p.select2({ placeholder: 'Chọn Tỉnh/TP', allowClear: true, width: '100%' });
+                        });
+
+                    // Khi chọn tỉnh
+                    $('#province').on('change', function() {
+                        wardSelect.innerHTML = '<option value="">Chọn Xã/Phường</option>';
+                        const selectedProvince = this.value;
+                        const wards = window.vnLocations[selectedProvince] || [];
+                        wards.forEach(w => wardSelect.appendChild(new Option(w, w)));
+
+                        // Init Select2 cho ward
+                        const $w = $('#ward');
+                        $w.select2({ placeholder: 'Chọn Xã/Phường', allowClear: true, width: '100%' });
+                    });
+                    });
+
+                </script>
 
 
-           
 
-
-
-
-
-
-
+                
                        
                         <!-- Thêm thanh tìm kiếm -->
                       
