@@ -1216,3 +1216,260 @@
 2026-02-05T06:39:24+00:00 current_user_id=10
 2026-02-05T06:39:24+00:00 assigned_meta='19'
 2026-02-05T06:39:24+00:00 not_assigned current=10 assigned='19'
+2026-02-06T02:17:32+00:00 wp_footer fired
+2026-02-06T02:17:32+00:00 no user logged in
+2026-02-06T02:19:34+00:00 wp_footer fired
+2026-02-06T02:19:34+00:00 no user logged in
+2026-02-06T02:19:38+00:00 wp_footer fired
+2026-02-06T02:19:38+00:00 no user logged in
+2026-02-06T02:19:53+00:00 wp_footer fired
+2026-02-06T02:19:53+00:00 current_user_id=10
+2026-02-06T02:19:53+00:00 assigned_meta='19'
+2026-02-06T02:19:53+00:00 not_assigned current=10 assigned='19'
+2026-02-06T02:19:57+00:00 wp_footer fired
+2026-02-06T02:19:57+00:00 current_user_id=10
+2026-02-06T02:19:57+00:00 assigned_meta='19'
+2026-02-06T02:19:57+00:00 not_assigned current=10 assigned='19'
+2026-02-06T02:50:17+00:00 wp_footer fired
+2026-02-06T02:50:17+00:00 current_user_id=10
+2026-02-06T02:50:17+00:00 assigned_meta='19'
+2026-02-06T02:50:17+00:00 not_assigned current=10 assigned='19'
+2026-02-06T02:51:00+00:00 wp_footer fired
+2026-02-06T02:51:00+00:00 current_user_id=10
+2026-02-06T02:51:00+00:00 assigned_meta='19'
+2026-02-06T02:51:00+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:00:00+00:00 wp_footer fired
+2026-02-06T03:00:00+00:00 current_user_id=10
+2026-02-06T03:00:00+00:00 assigned_meta='19'
+2026-02-06T03:00:00+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:00:22+00:00 wp_footer fired
+2026-02-06T03:00:22+00:00 current_user_id=10
+2026-02-06T03:00:22+00:00 wp_footer fired
+2026-02-06T03:00:22+00:00 current_user_id=10
+2026-02-06T03:00:22+00:00 assigned_meta='19'
+2026-02-06T03:00:22+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:00:22+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:22:28+00:00 wp_footer fired
+2026-02-06T03:22:28+00:00 no user logged in
+2026-02-06T03:24:31+00:00 wp_footer fired
+2026-02-06T03:24:31+00:00 no user logged in
+2026-02-06T03:24:37+00:00 wp_footer fired
+2026-02-06T03:24:37+00:00 no user logged in
+2026-02-06T03:24:42+00:00 wp_footer fired
+2026-02-06T03:24:42+00:00 no user logged in
+2026-02-06T03:24:52+00:00 wp_footer fired
+2026-02-06T03:24:52+00:00 current_user_id=10
+2026-02-06T03:24:52+00:00 assigned_meta='19'
+2026-02-06T03:24:52+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:25:33+00:00 wp_footer fired
+2026-02-06T03:25:33+00:00 current_user_id=10
+2026-02-06T03:25:33+00:00 assigned_meta='19'
+2026-02-06T03:25:33+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:35:02+00:00 wp_footer fired
+2026-02-06T03:35:02+00:00 current_user_id=10
+2026-02-06T03:35:02+00:00 assigned_meta='19'
+2026-02-06T03:35:02+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:35:27+00:00 wp_footer fired
+2026-02-06T03:35:27+00:00 current_user_id=10
+2026-02-06T03:35:27+00:00 assigned_meta='19'
+2026-02-06T03:35:27+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:42:15+00:00 wp_footer fired
+2026-02-06T03:42:15+00:00 wp_footer fired
+2026-02-06T03:42:15+00:00 current_user_id=10
+2026-02-06T03:42:15+00:00 current_user_id=10
+2026-02-06T03:42:15+00:00 assigned_meta='19'
+2026-02-06T03:42:15+00:00 assigned_meta='19'
+2026-02-06T03:42:15+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:42:15+00:00 not_assigned current=10 assigned='19'
+2026-02-06T03:42:21+00:00 wp_footer fired
+2026-02-06T03:42:21+00:00 current_user_id=10
+2026-02-06T03:42:21+00:00 assigned_meta='19'
+2026-02-06T03:42:21+00:00 not_assigned current=10 assigned='19'
+2026-02-06T04:53:32+00:00 wp_footer fired
+2026-02-06T04:53:32+00:00 current_user_id=10
+2026-02-06T04:53:32+00:00 assigned_meta='19'
+2026-02-06T04:53:32+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:09:29+00:00 wp_footer fired
+2026-02-06T05:09:29+00:00 current_user_id=10
+2026-02-06T05:09:29+00:00 assigned_meta='19'
+2026-02-06T05:09:29+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:09:29+00:00 wp_footer fired
+2026-02-06T05:09:29+00:00 current_user_id=10
+2026-02-06T05:09:29+00:00 assigned_meta='19'
+2026-02-06T05:09:29+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:17:59+00:00 wp_footer fired
+2026-02-06T05:17:59+00:00 current_user_id=10
+2026-02-06T05:17:59+00:00 assigned_meta='19'
+2026-02-06T05:17:59+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:18:02+00:00 wp_footer fired
+2026-02-06T05:18:02+00:00 current_user_id=10
+2026-02-06T05:18:02+00:00 assigned_meta='19'
+2026-02-06T05:18:02+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:18:02+00:00 wp_footer fired
+2026-02-06T05:18:02+00:00 current_user_id=10
+2026-02-06T05:18:02+00:00 assigned_meta='19'
+2026-02-06T05:18:02+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:31:52+00:00 wp_footer fired
+2026-02-06T05:31:52+00:00 current_user_id=10
+2026-02-06T05:31:52+00:00 assigned_meta='19'
+2026-02-06T05:31:52+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:31:55+00:00 wp_footer fired
+2026-02-06T05:31:55+00:00 current_user_id=10
+2026-02-06T05:31:55+00:00 assigned_meta='19'
+2026-02-06T05:31:55+00:00 not_assigned current=10 assigned='19'
+2026-02-06T05:31:56+00:00 wp_footer fired
+2026-02-06T05:31:56+00:00 current_user_id=10
+2026-02-06T05:31:56+00:00 assigned_meta='19'
+2026-02-06T05:31:56+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:32:18+00:00 wp_footer fired
+2026-02-06T06:32:18+00:00 current_user_id=10
+2026-02-06T06:32:18+00:00 assigned_meta='19'
+2026-02-06T06:32:18+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:32:18+00:00 wp_footer fired
+2026-02-06T06:32:18+00:00 current_user_id=10
+2026-02-06T06:32:18+00:00 assigned_meta='19'
+2026-02-06T06:32:18+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:32:26+00:00 wp_footer fired
+2026-02-06T06:32:26+00:00 current_user_id=10
+2026-02-06T06:32:26+00:00 assigned_meta='19'
+2026-02-06T06:32:26+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:32:29+00:00 wp_footer fired
+2026-02-06T06:32:29+00:00 current_user_id=10
+2026-02-06T06:32:29+00:00 assigned_meta='19'
+2026-02-06T06:32:29+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:32:29+00:00 wp_footer fired
+2026-02-06T06:32:29+00:00 current_user_id=10
+2026-02-06T06:32:29+00:00 assigned_meta='19'
+2026-02-06T06:32:29+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:34:20+00:00 wp_footer fired
+2026-02-06T06:34:20+00:00 current_user_id=10
+2026-02-06T06:34:20+00:00 assigned_meta='19'
+2026-02-06T06:34:20+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:34:23+00:00 wp_footer fired
+2026-02-06T06:34:23+00:00 current_user_id=10
+2026-02-06T06:34:23+00:00 assigned_meta='19'
+2026-02-06T06:34:23+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:34:23+00:00 wp_footer fired
+2026-02-06T06:34:23+00:00 current_user_id=10
+2026-02-06T06:34:23+00:00 assigned_meta='19'
+2026-02-06T06:34:23+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:39:05+00:00 wp_footer fired
+2026-02-06T06:39:05+00:00 current_user_id=10
+2026-02-06T06:39:05+00:00 assigned_meta='19'
+2026-02-06T06:39:05+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:39:08+00:00 wp_footer fired
+2026-02-06T06:39:08+00:00 current_user_id=10
+2026-02-06T06:39:08+00:00 assigned_meta='19'
+2026-02-06T06:39:08+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:39:08+00:00 wp_footer fired
+2026-02-06T06:39:08+00:00 current_user_id=10
+2026-02-06T06:39:08+00:00 assigned_meta='19'
+2026-02-06T06:39:08+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:39:13+00:00 wp_footer fired
+2026-02-06T06:39:13+00:00 current_user_id=10
+2026-02-06T06:39:13+00:00 assigned_meta='19'
+2026-02-06T06:39:13+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:39:17+00:00 wp_footer fired
+2026-02-06T06:39:17+00:00 current_user_id=10
+2026-02-06T06:39:17+00:00 assigned_meta='19'
+2026-02-06T06:39:17+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:39:17+00:00 wp_footer fired
+2026-02-06T06:39:17+00:00 current_user_id=10
+2026-02-06T06:39:17+00:00 assigned_meta='19'
+2026-02-06T06:39:17+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:45:15+00:00 wp_footer fired
+2026-02-06T06:45:15+00:00 current_user_id=10
+2026-02-06T06:45:15+00:00 assigned_meta='19'
+2026-02-06T06:45:15+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:45:19+00:00 wp_footer fired
+2026-02-06T06:45:19+00:00 current_user_id=10
+2026-02-06T06:45:19+00:00 current_user_id=10
+2026-02-06T06:45:19+00:00 assigned_meta='19'
+2026-02-06T06:45:19+00:00 not_assigned current=10 assigned='19'
+2026-02-06T06:45:19+00:00 not_assigned current=10 assigned='19'
+2026-02-06T07:00:54+00:00 wp_footer fired
+2026-02-06T07:00:54+00:00 current_user_id=10
+2026-02-06T07:00:54+00:00 assigned_meta='19'
+2026-02-06T07:00:54+00:00 not_assigned current=10 assigned='19'
+2026-02-06T07:00:57+00:00 wp_footer fired
+2026-02-06T07:00:57+00:00 current_user_id=10
+2026-02-06T07:00:57+00:00 assigned_meta='19'
+2026-02-06T07:00:57+00:00 not_assigned current=10 assigned='19'
+2026-02-06T07:00:57+00:00 wp_footer fired
+2026-02-06T07:00:57+00:00 current_user_id=10
+2026-02-06T07:00:57+00:00 assigned_meta='19'
+2026-02-06T07:00:57+00:00 not_assigned current=10 assigned='19'
+2026-02-06T07:38:38+00:00 wp_footer fired
+2026-02-06T07:38:38+00:00 current_user_id=10
+2026-02-06T07:38:38+00:00 assigned_meta='19'
+2026-02-06T07:38:38+00:00 not_assigned current=10 assigned='19'
+2026-02-06T07:48:57+00:00 wp_footer fired
+2026-02-06T07:48:57+00:00 no user logged in
+2026-02-06T08:34:08+00:00 wp_footer fired
+2026-02-06T08:34:08+00:00 current_user_id=10
+2026-02-06T08:34:08+00:00 assigned_meta='19'
+2026-02-06T08:34:08+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:35:14+00:00 wp_footer fired
+2026-02-06T08:35:14+00:00 current_user_id=10
+2026-02-06T08:35:14+00:00 assigned_meta='19'
+2026-02-06T08:35:14+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:36:00+00:00 wp_footer fired
+2026-02-06T08:36:00+00:00 current_user_id=10
+2026-02-06T08:36:00+00:00 assigned_meta='19'
+2026-02-06T08:36:00+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:36:04+00:00 wp_footer fired
+2026-02-06T08:36:04+00:00 current_user_id=10
+2026-02-06T08:36:04+00:00 assigned_meta='19'
+2026-02-06T08:36:04+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:36:08+00:00 wp_footer fired
+2026-02-06T08:36:08+00:00 current_user_id=10
+2026-02-06T08:36:08+00:00 assigned_meta='19'
+2026-02-06T08:36:08+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:36:17+00:00 wp_footer fired
+2026-02-06T08:36:17+00:00 current_user_id=10
+2026-02-06T08:36:17+00:00 assigned_meta='19'
+2026-02-06T08:36:17+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:36:58+00:00 wp_footer fired
+2026-02-06T08:36:58+00:00 current_user_id=10
+2026-02-06T08:36:58+00:00 assigned_meta='19'
+2026-02-06T08:36:58+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:38:05+00:00 wp_footer fired
+2026-02-06T08:38:05+00:00 current_user_id=10
+2026-02-06T08:38:06+00:00 wp_footer fired
+2026-02-06T08:38:06+00:00 current_user_id=10
+2026-02-06T08:38:06+00:00 assigned_meta='19'
+2026-02-06T08:38:06+00:00 not_assigned current=10 assigned='19'
+2026-02-06T08:38:06+00:00 assigned_meta='19'
+2026-02-06T08:38:06+00:00 not_assigned current=10 assigned='19'
+2026-02-06T09:25:05+00:00 wp_footer fired
+2026-02-06T09:25:05+00:00 current_user_id=10
+2026-02-06T09:25:05+00:00 assigned_meta='19'
+2026-02-06T09:25:05+00:00 not_assigned current=10 assigned='19'
+2026-02-06T09:25:08+00:00 wp_footer fired
+2026-02-06T09:25:08+00:00 current_user_id=10
+2026-02-06T09:25:08+00:00 assigned_meta='19'
+2026-02-06T09:25:08+00:00 not_assigned current=10 assigned='19'
+2026-02-06T09:25:08+00:00 wp_footer fired
+2026-02-06T09:25:08+00:00 current_user_id=10
+2026-02-06T09:25:08+00:00 assigned_meta='19'
+2026-02-06T09:25:08+00:00 not_assigned current=10 assigned='19'
+2026-02-06T09:25:31+00:00 wp_footer fired
+2026-02-06T09:25:31+00:00 current_user_id=10
+2026-02-06T09:25:31+00:00 assigned_meta='19'
+2026-02-06T09:25:31+00:00 not_assigned current=10 assigned='19'
+2026-02-06T09:30:23+00:00 wp_footer fired
+2026-02-06T09:30:23+00:00 current_user_id=10
+2026-02-06T09:30:23+00:00 assigned_meta='19'
+2026-02-06T09:30:23+00:00 not_assigned current=10 assigned='19'
+2026-02-06T09:31:10+00:00 wp_footer fired
+2026-02-06T09:31:10+00:00 current_user_id=10
+2026-02-06T09:31:10+00:00 assigned_meta='19'
+2026-02-06T09:31:10+00:00 not_assigned current=10 assigned='19'
+2026-02-06T10:10:11+00:00 wp_footer fired
+2026-02-06T10:10:11+00:00 current_user_id=10
+2026-02-06T10:10:11+00:00 assigned_meta='19'
+2026-02-06T10:10:11+00:00 not_assigned current=10 assigned='19'
+2026-02-06T10:10:34+00:00 wp_footer fired
+2026-02-06T10:10:34+00:00 current_user_id=10
+2026-02-06T10:10:34+00:00 assigned_meta='19'
+2026-02-06T10:10:34+00:00 not_assigned current=10 assigned='19'

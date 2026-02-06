@@ -7,6 +7,153 @@ Version: 1.0
 Author: Dang Van Doan
 */
 
+/*Lưu thông tin quản lý cửa hàng vào trong đơn hàng để phân quyền quản lý đơn hàng.*/
+
+add_action('woocommerce_checkout_create_order', function ($order, $data) {
+
+    if (!isset($_POST['nearest_store_manager'])) return;
+
+    $store_manager = sanitize_text_field($_POST['nearest_store_manager']);
+
+    // Lưu manager vào đơn hàng
+    $order->update_meta_data('_store_manager', $store_manager);
+});
+
+/*Đoạn Code PHP để khởi tạo đơn hàng.*/
+
+
+add_action('init', function(){
+
+    if ( isset($_POST['cc_fullname']) && isset($_POST['cc_phone']) ) {
+
+        // Lấy dữ liệu từ form
+        $name    = sanitize_text_field($_POST['cc_fullname']);
+        $phone   = sanitize_text_field($_POST['cc_phone']);
+        $email   = sanitize_email($_POST['cc_email'] ?? '');
+        $address = sanitize_text_field($_POST['cc_address']);
+        $city    = sanitize_text_field($_POST['cc_province']);
+        $ward    = sanitize_text_field($_POST['cc_ward']);
+
+        // ID sản phẩm (bạn thay ID này)
+        $product_id = 123; // <-- ID sản phẩm cần bán
+        $product = wc_get_product($product_id);
+
+        if(!$product) return;
+
+        // Tạo đơn hàng
+        $order = wc_create_order();
+
+        $order->add_product($product, 1);
+
+        // Gán thông tin khách
+        $order->set_billing_first_name($name);
+        $order->set_billing_phone($phone);
+        $order->set_billing_email($email);
+        $order->set_billing_address_1($address);
+        $order->set_billing_city($city);
+        $order->set_billing_state($ward);
+        $order->set_billing_country('VN');
+
+        // Tổng tiền
+        $order->calculate_totals();
+
+        // Trạng thái đơn
+        $order->update_status('processing');
+
+        // Chuyển trang sau khi đặt
+        wp_redirect(home_url('/thank-you'));
+        exit;
+    }
+
+});
+
+
+
+/*Đoạn PHP giới hạn đơn hàng theo User.*/
+
+add_action('pre_get_posts', function ($query) {
+    if (!is_admin() || !$query->is_main_query()) return;
+
+    global $pagenow;
+    if ($pagenow !== 'edit.php') return;
+    if ($query->get('post_type') !== 'shop_order') return;
+
+    if (current_user_can('administrator')) return;
+
+    $user = wp_get_current_user();
+
+    $query->set('meta_query', [
+        [
+            'key'   => '_store_manager',
+            'value' => $user->user_login,
+            'compare' => '='
+        ]
+    ]);
+});
+
+
+
+
+add_action('wp_ajax_find_nearest_store', 'find_nearest_store_handler');
+add_action('wp_ajax_nopriv_find_nearest_store', 'find_nearest_store_handler');
+
+function find_nearest_store_handler() {
+    $lat = floatval($_POST['lat']);
+    $lng = floatval($_POST['lng']);
+
+    $args = array(
+        'post_type' => 'store',
+        'posts_per_page' => -1,
+        'post_status' => 'publish',
+    );
+
+    $stores = get_posts($args);
+
+    if (!$stores) {
+        wp_send_json_error();
+    }
+
+    $nearest_store = null;
+    $min_distance = null;
+
+    foreach ($stores as $store) {
+        $store_lat = get_post_meta($store->ID, '_store_latitude', true);
+        $store_lng = get_post_meta($store->ID, '_store_longitude', true);
+
+        if (!$store_lat || !$store_lng) continue;
+
+        $distance = haversine_distance($lat, $lng, $store_lat, $store_lng);
+
+        if ($min_distance === null || $distance < $min_distance) {
+            $min_distance = $distance;
+            $nearest_store = $store;
+        }
+    }
+
+    if ($nearest_store) {
+        wp_send_json_success(array(
+            'store_name' => $nearest_store->post_title,
+            'distance_km' => round($min_distance, 2)
+        ));
+    } else {
+        wp_send_json_error();
+    }
+}
+
+function haversine_distance($lat1, $lon1, $lat2, $lon2) {
+    $earth_radius = 6371; // km
+
+    $dLat = deg2rad($lat2 - $lat1);
+    $dLon = deg2rad($lon2 - $lon1);
+
+    $a = sin($dLat/2) * sin($dLat/2) +
+         cos(deg2rad($lat1)) * cos(deg2rad($lat2)) *
+         sin($dLon/2) * sin($dLon/2);
+
+    $c = 2 * atan2(sqrt($a), sqrt(1-$a));
+    return $earth_radius * $c;
+}
+
 
 function cc_enqueue_select2() {
     wp_enqueue_style('select2', 'https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css');
@@ -389,64 +536,89 @@ add_shortcode( 'custom_checkout_wc', function() {
         <!-- Khối 2 cột -->
         <div class="cc-checkout-wrap"> <!-- Đây là khối bao ngoài cùng 2 khối thanh toán. -->
 
-         <!-- Đây là thẻ Form này. -->
-        <form class="cc-form" method="post" novalidate> 
+         <!-- Đây là khối thẻ Form này. -->
+
+         <form class="cc-form" method="post">
 
             <!-- Hàng họ tên + số điện thoại -->
             <div class="cc-row cc-row--two">
                 <label class="cc-field">
-                <span class="cc-label">Họ và tên</span>
-                <input type="text" name="cc_fullname" required placeholder="Nhập họ tên">
+                    <span class="cc-label">Họ và tên *</span>
+                    <input type="text" name="cc_fullname" required placeholder="Nhập họ tên">
                 </label>
 
                 <label class="cc-field">
-                <span class="cc-label">Số điện thoại</span>
-                <input type="tel" name="cc_phone" required placeholder="Nhập số điện thoại">
+                    <span class="cc-label">Số điện thoại *</span>
+                    <input type="tel" name="cc_phone" required placeholder="Nhập số điện thoại"
+                        pattern="[0-9]{9,11}">
                 </label>
             </div>
 
-            <!-- Hàng điền cột Email. -->
-            <div class="cc-row">
-                <label class="cc-field">
-                <span class="cc-label">Email <small class="cc-optional">(Tùy chọn)</small></span>
-                <input type="email" name="cc_email" placeholder="example@gmail.com">
-                </label>
-            </div>
-             
-            <!-- Load tỉnh và thành phố -->
-              <div class="cc-row cc-row--two">
-                <label class="cc-field">
-                    <span class="cc-label">Tỉnh/Thành phố</span>
-                    <select id="province" name="cc_province" required>
-                    <option value="">Chọn Tỉnh/TP</option>
-                    </select>
-                </label>
+                <!-- Email -->
+                <div class="cc-row">
+                    <label class="cc-field">
+                        <span class="cc-label">Email <small class="cc-optional">(Tùy chọn)</small></span>
+                        <input type="email" name="cc_email" placeholder="example@gmail.com">
+                    </label>
+                </div>
 
-                <label class="cc-field">
-                    <span class="cc-label">Xã/Phường</span>
-                    <select id="ward" name="cc_ward" required>
-                    <option value="">Chọn Xã/Phường</option>
-                    </select>
-                </label>
-              </div>
+                <!-- Load tỉnh và thành phố -->
+                <div class="cc-row cc-row--two">
+                    <label class="cc-field">
+                        <span class="cc-label">Tỉnh/Thành phố *</span>
+                        <select id="province" name="cc_province" required>
+                            <option value="">Chọn Tỉnh/TP</option>
+                        </select>
+                    </label>
+
+                    <label class="cc-field">
+                        <span class="cc-label">Xã/Phường *</span>
+                        <select id="ward" name="cc_ward" required>
+                            <option value="">Chọn Xã/Phường</option>
+                        </select>
+                    </label>
+                </div>
 
                 <!-- Địa chỉ cụ thể -->
                 <div class="cc-row">
                     <label class="cc-field">
-                    <span class="cc-label">Địa chỉ cụ thể</span>
-                    <input type="text" name="cc_address" required placeholder="Số nhà, đường, phường, quận...">
+                        <span class="cc-label">Địa chỉ cụ thể *</span>
+                        <input type="text" name="cc_address" required placeholder="Số nhà, đường, phường, quận...">
                     </label>
                 </div>
 
-                <!-- submit hoặc các trường khác -->
-                <div class="cc-row">
-                        <button type="submit" class="cc-btn">Tiếp tục</button>
+                <!-- Vĩ độ và Kinh độ --> 
+                <div class="cc-row cc-row--two"> 
+                    <label class="cc-field">
+                        <span class="cc-label">Vĩ độ (Latitude)</span>
+                        <input type="text" id="lat" name="cc_lat" readonly>
+                    </label>
+
+                    <label class="cc-field">
+                        <span class="cc-label">Kinh độ (Longitude)</span>
+                        <input type="text" id="lng" name="cc_lng" readonly> 
+                    </label>
                 </div>
 
+                <!-- Nút lấy tọa độ -->
+                <button type="button" id="getCoords">Lấy tọa độ</button>
+
+                <button type="button" id="findNearestStore">Tìm cửa hàng gần nhất</button>
+
+                <!-- Submit -->
+
+                <div class="cc-row">
+                    <button type="submit" class="cc-btn">Đặt hàng</button>
+                </div>
+
+                <input type="hidden" name="nearest_store_manager" id="nearest_store_manager">
+              
             </form>
-                
-                <!-- Đoạn script chạy -->
+
+                <!-- Đoạn script chạy tổng thể -->
+
                 <script>
+
                 jQuery(document).ready(function($) {
                     const provinceSelect = document.getElementById("province");
                     const wardSelect = document.getElementById("ward");
@@ -483,11 +655,137 @@ add_shortcode( 'custom_checkout_wc', function() {
 
                 </script>
 
+                <!-- Đoạn script gán user quản lý.-->
+
+                <script>
+
+                    document.getElementById("nearest_store_manager").value = nearestStore.manager;
+
+                </script>
+
+                 <!-- Đoạn script lấy ra được tọa độ của nơi khách hàng nhập -->
+
+                 <script>
+                    document.addEventListener("DOMContentLoaded", function () {
+                        const btn = document.getElementById("getCoords");
+
+                        if (!btn) {
+                            console.log("❌ Không tìm thấy nút getCoords");
+                            return;
+                        }
+
+                        function geocodeAddress(address) {
+                            const url = "https://nominatim.openstreetmap.org/search?format=json&limit=1&countrycodes=vn&q=" 
+                                    + encodeURIComponent(address);
+
+                            return fetch(url, {
+                                headers: {
+                                    "User-Agent": "KamaShop/1.0 (contact@yourdomain.com)"
+                                }
+                            }).then(res => res.json());
+                        }
+
+                        btn.addEventListener("click", function () {
+                            const citySelect = document.getElementById("province");
+                            const wardSelect = document.getElementById("ward");
+                            const addressInput = document.querySelector('input[name="cc_address"]');
+                            const latInput = document.getElementById("lat");
+                            const lngInput = document.getElementById("lng");
+
+                            if (!citySelect || !wardSelect || !addressInput || !latInput || !lngInput) {
+                                console.log("❌ Thiếu field địa chỉ hoặc lat/lng");
+                                return;
+                            }
+
+                            const city = citySelect.options[citySelect.selectedIndex].text;
+                            const ward = wardSelect.options[wardSelect.selectedIndex].text;
+                            const address = addressInput.value.trim();
+
+                            if (!address) {
+                                alert("Vui lòng nhập địa chỉ cụ thể");
+                                return;
+                            }
+
+                            const fullAddress = address + ", " + ward + ", " + city + ", Việt Nam";
+                            console.log("🔎 Try full:", fullAddress);
+
+                            // clear tọa độ cũ
+                            latInput.value = "";
+                            lngInput.value = "";
+
+                            geocodeAddress(fullAddress).then(data => {
+                                console.log("📦 API result:", data);
+
+                                if (data.length > 0) {
+                                    latInput.value = data[0].lat;
+                                    lngInput.value = data[0].lon;
+                                } else {
+                                    // fallback: bỏ số nhà
+                                    const shortAddress = ward + ", " + city + ", Việt Nam";
+                                    console.log("🔁 Fallback:", shortAddress);
+
+                                    geocodeAddress(shortAddress).then(data2 => {
+                                        console.log("📦 Fallback result:", data2);
+
+                                        if (data2.length > 0) {
+                                            latInput.value = data2[0].lat;
+                                            lngInput.value = data2[0].lon;
+                                        } else {
+                                            alert("Không tìm được tọa độ cho khu vực này");
+                                        }
+                                    });
+                                }
+                            }).catch(err => {
+                                console.error("❌ Lỗi fetch:", err);
+                                alert("Lỗi khi gọi API lấy tọa độ");
+                            });
+                        });
+                    });
+                    </script>
+
+
+
+                    <!-- Đoạn script lấy ra được cửa hàng gần nhất. -->
+
+                    <!--
+                    <script>
+
+                    document.getElementById("findNearestStore").addEventListener("click", function() {
+                        const lat = document.getElementById("lat").value;
+                        const lng = document.getElementById("lng").value;
+
+                        fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                            body: new URLSearchParams({
+                                action: "find_nearest_store",
+                                lat: lat,
+                                lng: lng
+                            })
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            console.log("AJAX response:", data);
+
+                            if (data.success) {
+                                alert("Cửa hàng gần nhất là: " + data.data.store_name);
+                            } else {
+                                alert("Không tìm thấy cửa hàng");
+                            }
+                        });
+                    });
+
+                    </script>
+
+                -->
+
+
+
 
 
                 
                        
-                        <!-- Thêm thanh tìm kiếm -->
+                    <!-- Thêm thanh tìm kiếm -->
                       
                         <script>
                             $(document).ready(function() {
@@ -519,7 +817,7 @@ add_shortcode( 'custom_checkout_wc', function() {
                                 dropdownPosition: 'below',
                                 allowClear: true
                             });
-                            });
+                         });
 
                         </script>
 
