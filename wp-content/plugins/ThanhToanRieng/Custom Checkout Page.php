@@ -19,53 +19,51 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
     $order->update_meta_data('_store_manager', $store_manager);
 });
 
-/*Đoạn Code PHP để khởi tạo đơn hàng.*/
+/*Đoạn Code PHP để khởi tạo đơn hàng, do là một Form đang tự tạo, không phải form sẵn của woocommerce*/
 
 
-add_action('init', function(){
+add_action('init', function () {
 
-    if ( isset($_POST['cc_fullname']) && isset($_POST['cc_phone']) ) {
+    if (!isset($_POST['cc_fullname'])) return;
 
-        // Lấy dữ liệu từ form
-        $name    = sanitize_text_field($_POST['cc_fullname']);
-        $phone   = sanitize_text_field($_POST['cc_phone']);
-        $email   = sanitize_email($_POST['cc_email'] ?? '');
-        $address = sanitize_text_field($_POST['cc_address']);
-        $city    = sanitize_text_field($_POST['cc_province']);
-        $ward    = sanitize_text_field($_POST['cc_ward']);
+    if (!class_exists('WooCommerce')) return;
 
-        // ID sản phẩm (bạn thay ID này)
-        $product_id = 123; // <-- ID sản phẩm cần bán
-        $product = wc_get_product($product_id);
+    $name    = sanitize_text_field($_POST['cc_fullname']);
+    $phone   = sanitize_text_field($_POST['cc_phone']);
+    $email   = sanitize_email($_POST['cc_email'] ?? '');
+    $address = sanitize_text_field($_POST['cc_address']);
+    $city    = sanitize_text_field($_POST['cc_province']);
+    $ward    = sanitize_text_field($_POST['cc_ward']);
 
-        if(!$product) return;
+    // ⚠️ ID sản phẩm cố định (bạn sửa cho đúng), đây đây, chỗ ID sản phẩm đây rồi, sau phải Tùy biến để lấy động được. 
+    $product_id = 4216; // <-- ID sản phẩm của bạn, giờ hãy gán tĩnh tạm đã.
+    $product = wc_get_product($product_id);
 
-        // Tạo đơn hàng
-        $order = wc_create_order();
-
-        $order->add_product($product, 1);
-
-        // Gán thông tin khách
-        $order->set_billing_first_name($name);
-        $order->set_billing_phone($phone);
-        $order->set_billing_email($email);
-        $order->set_billing_address_1($address);
-        $order->set_billing_city($city);
-        $order->set_billing_state($ward);
-        $order->set_billing_country('VN');
-
-        // Tổng tiền
-        $order->calculate_totals();
-
-        // Trạng thái đơn
-        $order->update_status('processing');
-
-        // Chuyển trang sau khi đặt
-        wp_redirect(home_url('/thank-you'));
-        exit;
+    if (!$product) {
+        wp_die('Không tìm thấy sản phẩm');
     }
 
+    // ✅ Tạo đơn
+    $order = wc_create_order();
+    $order->add_product($product, 1);
+
+    // Gán thông tin khách
+    $order->set_billing_first_name($name);
+    $order->set_billing_phone($phone);
+    $order->set_billing_email($email);
+    $order->set_billing_address_1($address);
+    $order->set_billing_city($city);
+    $order->set_billing_state($ward);
+    $order->set_billing_country('VN');
+
+    $order->calculate_totals();
+    $order->update_status('processing');
+
+    // Đây là chỗ chuyển trang khi đơn đặt thành công rồi.
+    wp_redirect(home_url('/thank-you'));
+    exit;
 });
+
 
 
 
