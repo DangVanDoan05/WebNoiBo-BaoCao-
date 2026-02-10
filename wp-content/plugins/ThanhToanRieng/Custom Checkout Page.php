@@ -19,7 +19,7 @@ add_action('woocommerce_checkout_create_order', function ($order, $data) {
     $order->update_meta_data('_store_manager', $store_manager);
 });
 
-/*Đoạn Code PHP để khởi tạo đơn hàng, do là một Form đang tự tạo, không phải form sẵn của woocommerce*/
+/*Đoạn Code PHP để khởi tạo đơn hàng, do là một Form tự tạo, không phải form sẵn của woocommerce*/
 
 
 add_action('init', function () {
