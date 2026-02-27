@@ -960,3 +960,187 @@ Stack trace:
 #8 {main}
   thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
 
+2026-02-27T06:26:25+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:26:25+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:29:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:29:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:32:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:32:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:32:32+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin.php(34): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\kamashop\wp-admin\index.php(10): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:32:32+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin.php(34): require_once('C:\\xampp\\htdocs...')
+#8 C:\xampp\htdocs\kamashop\wp-admin\index.php(10): require_once('C:\\xampp\\htdocs...')
+#9 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:35:23+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:35:23+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:38:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:38:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:41:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
+2026-02-27T06:41:24+00:00 CRITICAL Uncaught Error: Class "WP_Block_Metadata_Registry" not found in C:\xampp\htdocs\kamashop\wp-includes\blocks.php:391
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\blocks\index.php(172): wp_register_block_metadata_collection('C:\\xampp\\htdocs...', 'C:\\xampp\\htdocs...')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): wp_register_core_block_metadata_collection('')
+#2 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters(NULL, Array)
+#3 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#4 C:\xampp\htdocs\kamashop\wp-settings.php(698): do_action('init')
+#5 C:\xampp\htdocs\kamashop\wp-config.php(96): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\kamashop\wp-load.php(50): require_once('C:\\xampp\\htdocs...')
+#7 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(22): require_once('C:\\xampp\\htdocs...')
+#8 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-includes\blocks.php on line 391
+
