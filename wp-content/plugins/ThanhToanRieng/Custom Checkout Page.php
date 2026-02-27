@@ -12,7 +12,7 @@ Author: Dang Van Doan
 
 
 add_action('template_redirect', function () {
-
+    
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
     if (!isset($_POST['cc_fullname'])) return;
     if (!class_exists('WooCommerce')) return;
@@ -109,10 +109,108 @@ add_action('template_redirect', function () {
 /*Đoạn PHP giới hạn đơn hàng theo User.*/ 
 /*Phần lọc đơn hàng theo User.*/ 
 /*Đoạn code để lọc đơn hàng theo User quản lý đơn hàng gần nhất*/ 
+add_filter('woocommerce_order_query_args', function ($args) {
+
+    if ( ! is_admin() ) {
+        return $args;
+    }
+
+    if ( ! function_exists('get_current_screen') ) {
+        return $args;
+    }
+
+    $screen = get_current_screen();
+
+    // Chỉ áp dụng ở trang danh sách đơn hàng (HPOS)
+    if ( ! $screen || $screen->id !== 'woocommerce_page_wc-orders' ) {
+        return $args;
+    }
+
+    $current_user_id = get_current_user_id();
+
+    // Admin thấy tất cả đơn
+    if ( user_can($current_user_id, 'administrator') ) {
+        return $args;
+    }
+
+    // Đảm bảo meta_query là mảng
+    if ( empty($args['meta_query']) || ! is_array($args['meta_query']) ) {
+        $args['meta_query'] = [];
+    }
+
+    // Chỉ lấy đơn được gán cho user hiện tại
+    $args['meta_query'][] = [
+        'key'     => '_nearest_storemanager_user_id',
+        'value'   => (string) $current_user_id,
+        'compare' => '='
+    ];
+
+    return $args;
+});
 
 
 
 // HIỂN THỊ THÊM THÔNG TIN CỘT  TRONG BẢNG QUẢN LÝ ĐƠN HÀNG CỦA WOOCOMERCE
+
+// Thêm cột mới vào bảng đơn hàng (Woo mới / HPOS)
+add_filter('woocommerce_shop_order_list_table_columns', function($columns) {
+
+    $new_columns = [];
+
+    foreach ($columns as $key => $label) {
+        $new_columns[$key] = $label;
+
+        if ($key === 'order_number') {
+            $new_columns['order_city']    = 'Tỉnh/Thành phố';
+            $new_columns['order_ward']    = 'Xã / Phường';
+            $new_columns['order_address'] = 'Địa chỉ chi tiết';
+        }
+    }
+
+    return $new_columns;
+}, 20);
+
+
+// Hiển thị dữ liệu cho cột mới
+add_action('woocommerce_shop_order_list_table_custom_column', function($column, $order) {
+    global $wpdb;
+
+    if (!in_array($column, ['order_city', 'order_ward', 'order_address'])) return;
+
+    $table = $wpdb->prefix . 'wc_order_addresses';
+
+    $row = $wpdb->get_row(
+        $wpdb->prepare(
+            "SELECT city, state, address_1, address_2
+             FROM {$table}
+             WHERE order_id = %d
+               AND address_type = 'billing'
+             LIMIT 1",
+            $order->get_id()
+        )
+    );
+
+    if (!$row) {
+        echo '—';
+        return;
+    }
+
+    if ($column === 'order_city') {
+        echo esc_html($row->city ?: '—');
+    }
+
+    if ($column === 'order_ward') {
+        echo esc_html($row->state ?: '—');
+    }
+
+    if ($column === 'order_address') {
+        $address = trim($row->address_1 . ' ' . $row->address_2);
+        echo esc_html($address ?: '—');
+    }
+
+}, 10, 2);
+
+
 
 
 add_action('wp_ajax_find_nearest_store', 'find_nearest_store_handler');
