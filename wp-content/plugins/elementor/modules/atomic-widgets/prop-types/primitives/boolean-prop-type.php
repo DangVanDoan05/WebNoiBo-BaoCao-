@@ -9,7 +9,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Boolean_Prop_Type extends Plain_Prop_Type {
-	use Supports_Shorthanded_Value;
+	// Backward compatibility, do not change to "const". Keep name in uppercase.
+	// phpcs:ignore
+	static $KIND = 'boolean';
 
 	public static function get_key(): string {
 		return 'boolean';
@@ -17,5 +19,9 @@ class Boolean_Prop_Type extends Plain_Prop_Type {
 
 	protected function validate_value( $value ): bool {
 		return is_bool( $value );
+	}
+
+	protected function sanitize_value( $value ) {
+		return (bool) $value;
 	}
 }

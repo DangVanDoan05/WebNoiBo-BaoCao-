@@ -7,27 +7,19 @@ Version: 1.0
 Author: Dang Van Doan
 */
 
-/*Lưu thông tin quản lý cửa hàng vào trong đơn hàng để phân quyền quản lý đơn hàng.*/
 
-add_action('woocommerce_checkout_create_order', function ($order, $data) {
-
-    if (!isset($_POST['nearest_store_manager'])) return;
-
-    $store_manager = sanitize_text_field($_POST['nearest_store_manager']);
-
-    // Lưu manager vào đơn hàng
-    $order->update_meta_data('_store_manager', $store_manager);
-});
-
-/*Đoạn Code PHP để khởi tạo đơn hàng, do là một Form tự tạo, không phải form sẵn của woocommerce*/
+/*Đoạn Code PHP để khởi tạo đơn hàng và gán User gần nhất, do là một Form tự tạo, không phải form sẵn của woocommerce*/
 
 
-add_action('init', function () {
+add_action('template_redirect', function () {
 
+    if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
     if (!isset($_POST['cc_fullname'])) return;
-
     if (!class_exists('WooCommerce')) return;
 
+    global $wpdb;
+
+    // ==== LẤY DỮ LIỆU FORM ====
     $name    = sanitize_text_field($_POST['cc_fullname']);
     $phone   = sanitize_text_field($_POST['cc_phone']);
     $email   = sanitize_email($_POST['cc_email'] ?? '');
@@ -35,19 +27,54 @@ add_action('init', function () {
     $city    = sanitize_text_field($_POST['cc_province']);
     $ward    = sanitize_text_field($_POST['cc_ward']);
 
-    // ⚠️ ID sản phẩm cố định (bạn sửa cho đúng), đây đây, chỗ ID sản phẩm đây rồi, sau phải Tùy biến để lấy động được. 
-    $product_id = 4216; // <-- ID sản phẩm của bạn, giờ hãy gán tĩnh tạm đã.
-    $product = wc_get_product($product_id);
+    $lat  = floatval($_POST['cc_lat'] ?? 0);
+    $lng  = floatval($_POST['cc_lng'] ?? 0);
 
-    if (!$product) {
-        wp_die('Không tìm thấy sản phẩm');
+    // ==== ID SẢN PHẨM TẠM ====
+    $product_id = 4216;
+    $product = wc_get_product($product_id);
+    if (!$product) wp_die('Không tìm thấy sản phẩm');
+
+    // ==== TÌM STORE GẦN NHẤT ====
+    $nearest_manager_id = 0;
+    $nearest_distance   = 999999;
+
+    if ($lat && $lng) {
+
+        $stores = get_posts([
+            'post_type'      => 'store',
+            'post_status'    => 'publish',
+            'posts_per_page' => -1
+        ]);
+
+        foreach ($stores as $store) {
+
+            $store_lat = get_post_meta($store->ID, '_store_latitude', true);
+            $store_lng = get_post_meta($store->ID, '_store_longitude', true);
+            $manager   = get_post_meta($store->ID, '_store_manager_user_id', true);
+
+            if (!$store_lat || !$store_lng || !$manager) continue;
+
+            // ==== CÔNG THỨC HAVERSINE ====
+            $theta = deg2rad($lng - $store_lng);
+            $dist = sin(deg2rad($lat)) * sin(deg2rad($store_lat)) +
+                    cos(deg2rad($lat)) * cos(deg2rad($store_lat)) * cos($theta);
+            $dist = acos($dist);
+            $dist = rad2deg($dist);
+            $km = $dist * 111.13384;
+
+            if ($km < $nearest_distance) {
+                $nearest_distance   = $km;
+                $nearest_manager_id = intval($manager);
+            }
+        }
     }
 
-    // ✅ Tạo đơn
+    // ==== TẠO ĐƠN ====
     $order = wc_create_order();
     $order->add_product($product, 1);
 
-    // Gán thông tin khách
+    // ==== GÁN THÔNG TIN KHÁCH ====
     $order->set_billing_first_name($name);
     $order->set_billing_phone($phone);
     $order->set_billing_email($email);
@@ -56,40 +83,36 @@ add_action('init', function () {
     $order->set_billing_state($ward);
     $order->set_billing_country('VN');
 
+    // ==== LƯU META TỌA ĐỘ KHÁCH ====
+    if ($lat && $lng) {
+        $order->update_meta_data('_billing_latitude', $lat);
+        $order->update_meta_data('_billing_longitude', $lng);
+    }
+
+    // ==== LƯU USER STORE GẦN NHẤT ====
+    if ($nearest_manager_id > 0) {
+        $order->update_meta_data('_nearest_storemanager_user_id', $nearest_manager_id);
+    }
+
+    // ==== HOÀN TẤT ====
     $order->calculate_totals();
     $order->update_status('processing');
+    $order->save();
 
-    // Đây là chỗ chuyển trang khi đơn đặt thành công rồi.
-    wp_redirect(home_url('/thank-you'));
+    wp_redirect(home_url('/trang-chu'));
     exit;
 });
 
 
 
 
-/*Đoạn PHP giới hạn đơn hàng theo User.*/
-
-add_action('pre_get_posts', function ($query) {
-    if (!is_admin() || !$query->is_main_query()) return;
-
-    global $pagenow;
-    if ($pagenow !== 'edit.php') return;
-    if ($query->get('post_type') !== 'shop_order') return;
-
-    if (current_user_can('administrator')) return;
-
-    $user = wp_get_current_user();
-
-    $query->set('meta_query', [
-        [
-            'key'   => '_store_manager',
-            'value' => $user->user_login,
-            'compare' => '='
-        ]
-    ]);
-});
+/*Đoạn PHP giới hạn đơn hàng theo User.*/ 
+/*Phần lọc đơn hàng theo User.*/ 
+/*Đoạn code để lọc đơn hàng theo User quản lý đơn hàng gần nhất*/ 
 
 
+
+// HIỂN THỊ THÊM THÔNG TIN CỘT  TRONG BẢNG QUẢN LÝ ĐƠN HÀNG CỦA WOOCOMERCE
 
 
 add_action('wp_ajax_find_nearest_store', 'find_nearest_store_handler');
@@ -534,7 +557,7 @@ add_shortcode( 'custom_checkout_wc', function() {
         <!-- Khối 2 cột -->
         <div class="cc-checkout-wrap"> <!-- Đây là khối bao ngoài cùng 2 khối thanh toán. -->
 
-         <!-- Đây là khối thẻ Form này. -->
+         <!-- Đây là Form khách hàng nhập để thanh toán và lên đơn hàng -->
 
          <form class="cc-form" method="post">
 
