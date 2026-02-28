@@ -210,7 +210,13 @@ add_action('woocommerce_shop_order_list_table_custom_column', function($column, 
 
 }, 10, 2);
 
+// Đổi định dạng cột Ngày trong danh sách đơn hàng (Woo HPOS)
 
+// Ghi đè cột Ngày trong danh sách đơn hàng (HPOS)
+// Đổi định dạng ngày trong admin WooCommerce (kể cả HPOS)
+add_filter('woocommerce_admin_order_date_format', function($format) {
+    return 'd/m/Y'; // 26/02/2026
+});
 
 
 add_action('wp_ajax_find_nearest_store', 'find_nearest_store_handler');
