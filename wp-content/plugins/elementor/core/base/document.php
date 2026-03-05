@@ -1600,30 +1600,34 @@ abstract class Document extends Controls_Stack {
 	 * @throws \Exception If the post does not exist.
 	 */
 	public function __construct( array $data = [] ) {
+
 		if ( $data ) {
 			if ( empty( $data['post_id'] ) ) {
 				$this->post = new \WP_Post( (object) [] );
 			} else {
 				$this->post = get_post( $data['post_id'] );
-
+	
 				if ( ! $this->post ) {
-					throw new \Exception( sprintf( 'Post ID #%s does not exist.', esc_html( $data['post_id'] ) ), Exceptions::NOT_FOUND ); // phpcs:ignore WordPress.Security.EscapeOutput.ExceptionNotEscaped
+					throw new \Exception(
+						sprintf( 'Post ID #%s does not exist.', esc_html( $data['post_id'] ) ),
+						Exceptions::NOT_FOUND
+					);
 				}
 			}
-
+	
 			// Each Control_Stack is based on a unique ID.
 			$data['id'] = $data['post_id'];
-
+	
 			if ( ! isset( $data['settings'] ) ) {
 				$data['settings'] = [];
 			}
-
+	
 			$saved_settings = get_post_meta( $this->post->ID, '_elementor_page_settings', true );
 			if ( ! empty( $saved_settings ) && is_array( $saved_settings ) ) {
 				$data['settings'] += $saved_settings;
 			}
 		}
-
+	
 		parent::__construct( $data );
 	}
 

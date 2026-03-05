@@ -10,22 +10,19 @@ Author: Dang Van Doan
 
 /*Đoạn Code PHP để khởi tạo đơn hàng và gán User gần nhất, do là một Form tự tạo, không phải form sẵn của woocommerce*/
 
-
 add_action('template_redirect', function () {
     
     if ($_SERVER['REQUEST_METHOD'] !== 'POST') return;
     if (!isset($_POST['cc_fullname'])) return;
     if (!class_exists('WooCommerce')) return;
 
-    global $wpdb;
-
     // ==== LẤY DỮ LIỆU FORM ====
     $name    = sanitize_text_field($_POST['cc_fullname']);
     $phone   = sanitize_text_field($_POST['cc_phone']);
     $email   = sanitize_email($_POST['cc_email'] ?? '');
     $address = sanitize_text_field($_POST['cc_address']);
-    $city    = sanitize_text_field($_POST['cc_province']);
-    $ward    = sanitize_text_field($_POST['cc_ward']);
+    $city    = sanitize_text_field($_POST['cc_province']); // Tỉnh/TP
+    $ward    = sanitize_text_field($_POST['cc_ward']);     // Phường/Xã
 
     $lat  = floatval($_POST['cc_lat'] ?? 0);
     $lng  = floatval($_POST['cc_lng'] ?? 0);
@@ -40,7 +37,6 @@ add_action('template_redirect', function () {
     $nearest_distance   = 999999;
 
     if ($lat && $lng) {
-
         $stores = get_posts([
             'post_type'      => 'store',
             'post_status'    => 'publish',
@@ -48,14 +44,12 @@ add_action('template_redirect', function () {
         ]);
 
         foreach ($stores as $store) {
-
             $store_lat = get_post_meta($store->ID, '_store_latitude', true);
             $store_lng = get_post_meta($store->ID, '_store_longitude', true);
             $manager   = get_post_meta($store->ID, '_store_manager_user_id', true);
 
             if (!$store_lat || !$store_lng || !$manager) continue;
 
-            // ==== CÔNG THỨC HAVERSINE ====
             $theta = deg2rad($lng - $store_lng);
             $dist = sin(deg2rad($lat)) * sin(deg2rad($store_lat)) +
                     cos(deg2rad($lat)) * cos(deg2rad($store_lat)) * cos($theta);
@@ -74,22 +68,30 @@ add_action('template_redirect', function () {
     $order = wc_create_order();
     $order->add_product($product, 1);
 
-    // ==== GÁN THÔNG TIN KHÁCH ====
+    // ==== GÁN BILLING (THANH TOÁN) ====
     $order->set_billing_first_name($name);
     $order->set_billing_phone($phone);
     $order->set_billing_email($email);
     $order->set_billing_address_1($address);
-    $order->set_billing_city($city);
-    $order->set_billing_state($ward);
+    $order->set_billing_city($ward);     // Ward = city
+    $order->set_billing_state($city);    // Province = state
     $order->set_billing_country('VN');
 
-    // ==== LƯU META TỌA ĐỘ KHÁCH ====
+    // ==== GÁN SHIPPING (GIAO HÀNG) ====
+    $order->set_shipping_first_name($name);
+    $order->set_shipping_phone($phone);
+    $order->set_shipping_address_1($address);
+    $order->set_shipping_city($ward);    // Phường/Xã
+    $order->set_shipping_state($city);   // Tỉnh/TP
+    $order->set_shipping_country('VN');
+
+    // ==== LƯU META TỌA ĐỘ ====
     if ($lat && $lng) {
         $order->update_meta_data('_billing_latitude', $lat);
         $order->update_meta_data('_billing_longitude', $lng);
     }
 
-    // ==== LƯU USER STORE GẦN NHẤT ====
+    // ==== LƯU STORE GẦN NHẤT ====
     if ($nearest_manager_id > 0) {
         $order->update_meta_data('_nearest_storemanager_user_id', $nearest_manager_id);
     }
@@ -104,11 +106,8 @@ add_action('template_redirect', function () {
 });
 
 
+/*Đoạn code để lọc đơn hàng theo User quản lý đơn hàng gần nhất*/
 
-
-/*Đoạn PHP giới hạn đơn hàng theo User.*/ 
-/*Phần lọc đơn hàng theo User.*/ 
-/*Đoạn code để lọc đơn hàng theo User quản lý đơn hàng gần nhất*/ 
 add_filter('woocommerce_order_query_args', function ($args) {
 
     if ( ! is_admin() ) {
@@ -148,10 +147,49 @@ add_filter('woocommerce_order_query_args', function ($args) {
     return $args;
 });
 
+// ĐỔI LẠI ĐỊNH DẠNG ĐỊA CHỈ GIAO HÀNG TRONG TRANG QUẢN LÝ ĐƠN HÀNG.
+
+// Hiển thị lại địa chỉ giao hàng theo định dạng:
+// Địa chỉ chi tiết
+// Xã/ Phường: ...
+// Tỉnh/Thành phố: ...
+
+// 1. Địa chỉ chi tiết
+add_filter( 'woocommerce_order_get_shipping_address_1', function( $value, $order ) {
+    if ( empty( $value ) ) {
+        $address = $order->get_meta('address_1');
+        if ( $address ) {
+            return 'Địa chỉ chi tiết:'. $address;
+        }
+    }
+    return $value;
+    
+}, 10, 2 );
+
+// 2. Xã / Phường
+add_filter( 'woocommerce_order_get_shipping_city', function( $value, $order ) {
+    if ( empty( $value ) ) {
+        $city = $order->get_meta('city');
+        if ( $city ) {
+            return 'Xã/ Phường: ' . $city;
+        }
+    }
+    return $value;
+}, 10, 2 );
+
+// 3. Tỉnh / Thành phố
+add_filter( 'woocommerce_order_get_shipping_state', function( $value, $order ) {
+    if ( empty( $value ) ) {
+        $state = $order->get_meta('state');
+        if ( $state ) {
+            return 'Tỉnh/Thành phố: ' . $state;
+        }
+    }
+    return $value;
+}, 10, 2 );
 
 
 // HIỂN THỊ THÊM THÔNG TIN CỘT  TRONG BẢNG QUẢN LÝ ĐƠN HÀNG CỦA WOOCOMERCE
-
 // Thêm cột mới vào bảng đơn hàng (Woo mới / HPOS)
 add_filter('woocommerce_shop_order_list_table_columns', function($columns) {
 
@@ -172,6 +210,7 @@ add_filter('woocommerce_shop_order_list_table_columns', function($columns) {
 
 
 // Hiển thị dữ liệu cho cột mới
+
 add_action('woocommerce_shop_order_list_table_custom_column', function($column, $order) {
     global $wpdb;
 
@@ -213,7 +252,9 @@ add_action('woocommerce_shop_order_list_table_custom_column', function($column, 
 // Đổi định dạng cột Ngày trong danh sách đơn hàng (Woo HPOS)
 
 // Ghi đè cột Ngày trong danh sách đơn hàng (HPOS)
+
 // Đổi định dạng ngày trong admin WooCommerce (kể cả HPOS)
+
 add_filter('woocommerce_admin_order_date_format', function($format) {
     return 'd/m/Y'; // 26/02/2026
 });
@@ -370,7 +411,7 @@ add_shortcode( 'custom_checkout_wc', function() {
 
     ob_start();
 
-    // CSS cho toàn bộ trang.
+    // CSS CHO TOÀN BỘ TRANG.
 
     ?>
     <style>
@@ -650,6 +691,11 @@ add_shortcode( 'custom_checkout_wc', function() {
 
     </style>
 
+
+
+    
+  <!-- Phần HTML CỦA TRANG THANH TOÁN. -->
+
    <div class="cc-checkout-container">
 
         <!-- Tiêu đề chính -->
@@ -910,7 +956,7 @@ add_shortcode( 'custom_checkout_wc', function() {
 
                 
                        
-                    <!-- Thêm thanh tìm kiếm -->
+                    <!-- Thêm thanh tìm kiếm gõ tên tỉnh thành. -->
                       
                         <script>
                             $(document).ready(function() {
@@ -955,7 +1001,7 @@ add_shortcode( 'custom_checkout_wc', function() {
                         </script>
 
 
-            <div class="cc-right"> <!-- Đây là khối bên phải. -->
+            <div class="cc-right"> <!-- KHỐI PHẦN ĐƠN HÀNG.-->
             
                 <h3>Đơn hàng của bạn</h3>
                 <?php
