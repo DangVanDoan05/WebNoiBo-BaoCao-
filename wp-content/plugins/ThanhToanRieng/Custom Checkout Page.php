@@ -414,6 +414,7 @@ add_shortcode( 'custom_checkout_wc', function() {
     // CSS CHO TOÀN BỘ TRANG.
 
     ?>
+    <!-- CSS khối thanh toán. -->
     <style>
 
         /* Xóa gutter ngang của row và padding của cột */
@@ -690,6 +691,31 @@ add_shortcode( 'custom_checkout_wc', function() {
 
 
     </style>
+
+     <!-- CSS khối giỏ hành thanh toán-->
+      <style>
+        .cc-right{
+            font-family: 'Be Vietnam Pro', sans-serif;
+            line-height: 1.6;
+            }
+
+        .cc-right h3{
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cc-cart-item{
+            display:flex;
+            gap:15px;
+            margin-bottom:20px;
+        }
+
+        .cc-cart-item img{
+            width:90px;
+            height:auto;
+        }
+      </style>
 
 
 
@@ -1000,37 +1026,76 @@ add_shortcode( 'custom_checkout_wc', function() {
                             });
                         </script>
 
+             <!-- KHỐI HIỂN THỊ CÁC SẢN PHẨM KHÁCH ĐẶT -->
+            <div class="cc-right">
 
-            <div class="cc-right"> <!-- KHỐI PHẦN ĐƠN HÀNG.-->
-            
-                <h3>Đơn hàng của bạn</h3>
-                <?php
-                $cart = WC()->cart;
-                if ( ! $cart || $cart->is_empty() ) {
-                    echo '<p>Giỏ hàng trống.</p>';
-                } else {
-                    foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
-                        $product = $cart_item['data'];
-                        $qty = intval( $cart_item['quantity'] );
-                        ?>
-                        <div class="cc-cart-item">
-                          
-                            <div>Số lượng: <?php echo $qty; ?></div>
-                            <div>Giá: <?php echo wc_price( $product->get_price() ); ?></div>
-                        </div>
-                        <?php
-                    }
+            <h3>Đơn hàng của bạn</h3>
 
-                    // Tổng tạm, phí ship (nếu có), tổng
-                    $subtotal = $cart->get_subtotal();
-                    $total = $cart->get_total( 'edit' ); // chuỗi formatted
+            <?php
+            $cart = WC()->cart;
+
+            if ( ! $cart || $cart->is_empty() ) {
+
+                echo '<p>Giỏ hàng trống.</p>';
+
+            } else {
+
+                foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+
+                    $product = $cart_item['data'];
+                    $product_id = $cart_item['product_id'];
+
+                    $product_name = $product->get_name();
+                    $product_price = $product->get_price();
+                    $product_image = $product->get_image( 'thumbnail' );
+
+                    $qty = $cart_item['quantity'];
                     ?>
-                    <div class="cc-total">
-                        <div>Tạm tính: <?php echo wc_price( $subtotal ); ?></div>
-                        <div>Phí vận chuyển: <?php echo wc_price( 0 ); ?></div>
-                        <div style="margin-top:8px;">Tổng: <?php echo $cart->get_cart_contents_total() ? wc_price( $cart->get_cart_contents_total() ) : wc_price(0); ?></div>
+
+                    <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
+
+                        <div class="cc-cart-img">
+                            <?php echo $product_image; ?>
+                        </div>
+
+                        <div class="cc-cart-info">
+
+                            <div class="cc-product-name">
+                                <?php echo $product_name; ?>
+                            </div>
+
+                            <div>Số lượng: <?php echo $qty; ?></div>
+
+                            <div>Giá: <?php echo wc_price( $product_price ); ?></div>
+
+                        </div>
+
                     </div>
-                <?php } ?>
+
+                    <?php
+                }
+
+                $subtotal = $cart->get_subtotal();
+                $total = $cart->get_total();
+
+                ?>
+
+                <hr>
+
+                <div class="cc-total">
+
+                    <div>Tạm tính: <?php echo $subtotal; ?></div>
+
+                    <div>Phí vận chuyển: <?php echo wc_price(0); ?></div>
+
+                    <div style="margin-top:10px;font-weight:bold;font-size:18px;">
+                        Tổng: <?php echo $total; ?>
+                    </div>
+
+                </div>
+
+            <?php } ?>
+
             </div>
             
         </div>
