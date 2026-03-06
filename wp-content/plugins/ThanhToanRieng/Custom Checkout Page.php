@@ -732,107 +732,110 @@ add_shortcode( 'custom_checkout_wc', function() {
              <!-- KHỐI HIỂN THỊ CÁC SẢN PHẨM KHÁCH ĐẶT -->
              <div class="cc-right">
 
-                <h3>Đơn hàng của bạn</h3>
+                            <div class="cc-cart-title">Đơn hàng của bạn </div> <!-- CỨ BẢO LÀM SAO.-->
+                                                          
+                                <?php
 
-                <?php
+                                    $cart = WC()->cart;
 
-                    $cart = WC()->cart;
+                                    if ( ! $cart || $cart->is_empty() ) {
 
-                    if ( ! $cart || $cart->is_empty() ) {
+                                        echo '<p>Giỏ hàng trống.</p>';
 
-                        echo '<p>Giỏ hàng trống.</p>';
+                                    } else {
 
-                    } else {
+                                        // Lặp qua các sản phẩm trong giỏ
+                                        foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
 
-                        // Lặp qua các sản phẩm trong giỏ
-                        foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+                                            $product = $cart_item['data'];
+                                            $product_id = $cart_item['product_id'];
 
-                            $product = $cart_item['data'];
-                            $product_id = $cart_item['product_id'];
+                                            $product_name  = $product->get_name();
+                                            $product_price = $product->get_price();
+                                            $product_image = $product->get_image( 'thumbnail' );
 
-                            $product_name  = $product->get_name();
-                            $product_price = $product->get_price();
-                            $product_image = $product->get_image( 'thumbnail' );
+                                            $qty = $cart_item['quantity'];
 
-                            $qty = $cart_item['quantity'];
+                                            // =========================
+                                            // LẤY THUỘC TÍNH SẢN PHẨM
+                                            // =========================
 
-                            // =========================
-                            // LẤY THUỘC TÍNH SẢN PHẨM
-                            // =========================
+                                            $length   = '';
+                                            $diameter = '';
 
-                            $length   = '';
-                            $diameter = '';
+                                    if ( ! empty( $cart_item['variation'] ) ) {
 
-                            if ( ! empty( $cart_item['variation'] ) ) {
+                                        // Thuộc tính chiều dài dây vòi
+                                        if ( isset( $cart_item['variation']['attribute_pa_chieu-dai-day-voi'] ) ) {
 
-                                // Thuộc tính chiều dài dây vòi
-                                if ( isset( $cart_item['variation']['attribute_pa_chieu-dai-day-voi'] ) ) {
+                                            $length_slug = $cart_item['variation']['attribute_pa_chieu-dai-day-voi'];
 
-                                    $length_slug = $cart_item['variation']['attribute_pa_chieu-dai-day-voi'];
+                                            $term = get_term_by(
+                                                'slug',
+                                                $length_slug,
+                                                'pa_chieu-dai-day-voi'
+                                            );
 
-                                    $term = get_term_by(
-                                        'slug',
-                                        $length_slug,
-                                        'pa_chieu-dai-day-voi'
-                                    );
+                                            if ( $term ) {
+                                                $length = $term->name;
+                                            }
 
-                                    if ( $term ) {
-                                        $length = $term->name;
+                                        }
+
+                                        // Thuộc tính đường kính trong
+                                        if ( isset( $cart_item['variation']['attribute_pa_duong-kinh-trong'] ) ) {
+
+                                            $diameter_slug = $cart_item['variation']['attribute_pa_duong-kinh-trong'];
+
+                                            $term = get_term_by(
+                                                'slug',
+                                                $diameter_slug,
+                                                'pa_duong-kinh-trong'
+                                            );
+
+                                            if ( $term ) {
+                                                $diameter = $term->name;
+                                            }
+
+                                        }
+
                                     }
+                                    ?>
+                                
 
-                                }
+                            <div class="cc-cart-item-wrap"> 
+                                <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
 
-                                // Thuộc tính đường kính trong
-                                if ( isset( $cart_item['variation']['attribute_pa_duong-kinh-trong'] ) ) {
-
-                                    $diameter_slug = $cart_item['variation']['attribute_pa_duong-kinh-trong'];
-
-                                    $term = get_term_by(
-                                        'slug',
-                                        $diameter_slug,
-                                        'pa_duong-kinh-trong'
-                                    );
-
-                                    if ( $term ) {
-                                        $diameter = $term->name;
-                                    }
-
-                                }
-
-                            }
-                            ?>
-
-                            <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
-
-                                <div class="cc-cart-img">
-                                    <?php echo $product_image; ?>
-                                </div>
-
-                                <div class="cc-cart-info">
-
-                                    <div class="cc-product-name">
-                                        <?php echo $product_name; ?>
+                                    <div class="cc-cart-img">
+                                        <?php echo $product_image; ?>
                                     </div>
 
-                                    <div class="cc-product-attributes">
+                                    <div class="cc-cart-info">
 
-                                        <?php if ( $length ) { ?>
-                                            <div>Độ dài dây: <?php echo $length; ?> | </div>
-                                        <?php } ?>
+                                        <div class="cc-product-name">
+                                            <?php echo $product_name; ?>
+                                        </div>
 
-                                        <?php if ( $diameter ) { ?>
-                                            <div>Đường kính trong: <?php echo $diameter; ?></div>
-                                        <?php } ?>
+                                        <div class="cc-product-attributes">
+
+                                            <?php if ( $length ) { ?>
+                                                <div>Độ dài dây: <?php echo $length; ?> | </div>
+                                            <?php } ?>
+
+                                            <?php if ( $diameter ) { ?>
+                                                <div>Đường kính trong: <?php echo $diameter; ?></div>
+                                            <?php } ?>
+
+                                        </div>
+                                            <!-- Chỗ này hiển thị ra giá tiền sản phẩm. -->
+                                        <div  class="cc-cart-price"><?php echo wc_price( $product_price ); ?></div>
 
                                     </div>
-                                        <!-- Chỗ này hiển thị ra giá tiền sản phẩm. -->
-                                    <div  class="cc-cart-price"><?php echo wc_price( $product_price ); ?></div>
 
                                 </div>
-
                             </div>
 
-                        <?php
+                            <?php
                         }
 
                         $subtotal = $cart->get_subtotal();
@@ -842,14 +845,19 @@ add_shortcode( 'custom_checkout_wc', function() {
                         <!-- Đây rồi, thẻ HR là thẻ tạo ra đường phân cách.-->
                         <!-- <hr> -->
 
-                            <div class="cc-total">
+                            <div class="cc-total-wrap">
 
-                                <div>Tạm tính: <?php echo $subtotal; ?></div>
+                                <div class="cc-total">
 
-                                <div>Phí vận chuyển: <?php echo wc_price(0); ?></div>
+                                    <div>Tạm tính: <?php echo $subtotal; ?></div>
 
-                                <div style="margin-top:10px;font-weight:bold;font-size:18px;">
-                                    Tổng: <?php echo $total; ?>
+                                    <div>Phí vận chuyển: <?php echo wc_price(0); ?></div>
+
+                                    <hr>
+
+                                    <div style="margin-top:10px;font-weight:bold;font-size:18px;">
+                                        Tổng: <?php echo $total; ?>
+                                    </div>
                                 </div>
 
                             </div>

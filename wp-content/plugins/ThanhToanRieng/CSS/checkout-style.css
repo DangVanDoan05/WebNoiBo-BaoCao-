@@ -229,16 +229,25 @@
 }
 
 /* Responsive: khối bên phải màn hình nhỏ, khối sẽ chiếm 100% */
+
 .cc-right {
   flex: 0 0 480px;
   background-color: fffffff;
   border: 1px solid #e5e5e5;
-  padding: 16px;
+
+  /* Đây rồi, điểm vấn đề đây rồi */
+
+  /*  padding: 16px;  */
+
   box-sizing: border-box;
   width: 480px;
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cc-cart-item-wrap {
+  padding: 0px 16px 0px 16px;
 }
 
 .cc-right table {
@@ -295,6 +304,7 @@ select option {
 .cc-cart-img img {
   width: 90px;
   height: auto;
+  background-color: #f5f5f5;
 }
 
 .cc-product-name {
@@ -332,4 +342,17 @@ select option {
   font-family: "Be Vietnam", sans-serif;
   font-size: 20px;
   font-weight: 500;
+}
+
+/* THUỘC TÍNH BIỂU DIỄN CỦA PHẦN PADDING: padding: trên  phải  dưới  trái; */
+.cc-total-wrap {
+  padding: 16px;
+  background: #f3f3f3;
+}
+
+.cc-cart-title {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  padding: 16px 16px 0px 16px;
 }
