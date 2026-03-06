@@ -105,6 +105,21 @@ add_action('template_redirect', function () {
     exit;
 });
 
+/*NẠP CSS vào plugin*/
+
+function thanhtoanrieng_load_css() {
+
+    wp_enqueue_style(
+        'thanhtoanrieng-style',
+        plugin_dir_url(__FILE__) . 'css/checkout-style.css',
+        array(),
+        '1.0'
+    );
+
+}
+
+add_action('wp_enqueue_scripts', 'thanhtoanrieng_load_css');
+
 
 /*Đoạn code để lọc đơn hàng theo User quản lý đơn hàng gần nhất*/
 
@@ -148,11 +163,6 @@ add_filter('woocommerce_order_query_args', function ($args) {
 });
 
 // ĐỔI LẠI ĐỊNH DẠNG ĐỊA CHỈ GIAO HÀNG TRONG TRANG QUẢN LÝ ĐƠN HÀNG.
-
-// Hiển thị lại địa chỉ giao hàng theo định dạng:
-// Địa chỉ chi tiết
-// Xã/ Phường: ...
-// Tỉnh/Thành phố: ...
 
 // 1. Địa chỉ chi tiết
 add_filter( 'woocommerce_order_get_shipping_address_1', function( $value, $order ) {
@@ -411,315 +421,8 @@ add_shortcode( 'custom_checkout_wc', function() {
 
     ob_start();
 
-    // CSS CHO TOÀN BỘ TRANG.
-
     ?>
-    <!-- CSS khối thanh toán. -->
-    <style>
 
-        /* Xóa gutter ngang của row và padding của cột */
-        .page-id-4734 .row {
-        --bs-gutter-x: 0 !important;
-        }
-
-        /* Xóa padding trái/phải của các cột bootstrap bên trong */
-        .page-id-4734 .row > [class*="col-"] 
-        {
-            padding-left: 0 !important;
-            padding-right: 0 !important;
-        }
-
-        /* Xóa padding trái/phải của container ngoài cùng nếu có */
-        .page-id-4734 .container.mt-5.mb-5.pt-5.pb-5 {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        margin-top: 0 !important;
-        padding-top: 8px !important;
-        }
-
-
-        .page-id-4734 .container.mt-5.mb-5.pt-5.pb-5 {
-        padding-left: 0 !important;
-        padding-right: 0 !important;
-        }
-
-        /* Giảm/mất khoảng trắng do các utility class trên trang Thanh toán riêng */
-            .page-id-4734 .container.mt-5.mb-5.pt-5.pb-5 {
-            margin-top: 0 !important;
-            margin-bottom: 12px !important;
-            padding-top: 8px !important;
-            padding-bottom: 8px !important;
-            }
-
-
-            /* Áp dụng cho container plugin checkout */
-            .cc-checkout-container {
-                margin-top: 0 !important;
-                padding-top: 0px !important; /* Ngay đây còn đi tìm ở đâu */
-            }
-
-            /* Nếu container nằm trong entry-content, giảm khoảng cách giữa header và container */
-            .entry-content > .cc-checkout-container:first-child {
-            margin-top: 0 !important;
-            padding-top: 12px !important;
-            }
-
-
-            /* Nếu theme thêm margin cho tiêu đề mặc định */
-            .page-id-4734 .entry-title {
-            margin-top: 0 !important;
-            margin-bottom: 8px !important;
-            }
-
-            /* Nếu builder (Elementor/Block) thêm padding cho section đầu */
-            .page-id-4734 .elementor-section,
-            .page-id-4734 .wp-block-group,
-            .page-id-4734 .wp-block-cover {
-            padding-top: 8px !important;
-            }
-
-            /* Giảm khoảng cách trên cùng của nội dung checkout */
-                .page-id-4734 .cc-checkout-container {
-                margin-top: 0;   /* bỏ khoảng cách */
-                padding-top: 20px; /* giữ khoảng cách nhỏ cho thoáng */
-                }
-
-            /* Nếu theme thêm margin cho entry-content */
-            .page-id-4734 .entry-content
-                {
-                margin-top: 0 !important;
-                padding-top: 0 !important;
-                }
-
-            .page-id-4734 .entry-title
-                {
-                    display: none;
-                }
-
-        .cc-checkout-container   /* Đây là khối ngoài cùng đây. */
-            { 
-            max-width: 1140px;
-            margin: 0 auto;
-            padding: 0px;
-            box-sizing: border-box; 
-            }
-            /* Tiêu đề chính */
-         .cc-main-title
-                { 
-                    font-family: 'Be VietNam Pro', sans-serif;
-                    font-weight: 600;
-                    font-size: 30px;
-                    margin-bottom: 10px;
-                 } 
-          /* Tiêu đề phụ */
-           .cc-sub-title { 
-            font-family: 'Be VietNam Pro', sans-serif;
-            font-weight: 450;
-            font-size: 16px;
-            margin-bottom: 8px;
-             color: #555; /* màu nhẹ hơn để phân cấp */
-            }
-
-        .cc-checkout-wrap
-             {
-               /* background-color: #c5f5d5;*/
-                display: flex;
-                gap: 20px;
-                flex-wrap: wrap;
-                max-width: 1140px; /* giới hạn chiều rộng */
-                margin: 0 auto; /* căn giữa khối */
-                padding: 0px; /* thêm khoảng cách trong */
-                box-sizing: border-box;
-                display:flex;
-                gap:24px;
-                flex-wrap:wrap; 
-            }
-
-            /* Khối bên trái: kích thước cố định, bo góc, đổ bóng nhẹ */
-          
-            /* Form tổng bên trái. */
-
-            .cc-form
-             {
-                 padding: 15px;
-                 width: 625px;
-                 font-family: 'Be VietNam', sans-serif;
-                 background-color: #fff0f6;
-             }
-
-            /* Hàng chung */
-            .cc-row
-            { 
-                display:block;
-                margin-bottom:14px; 
-            }
-
-            /* Hai cột trên cùng và dropdown cuối */
-            .cc-row--two {
-            display:flex;
-            gap:16px;
-            align-items:flex-start;
-            }
-
-            /* Trường chung */
-            .cc-field { display:flex; flex-direction:column; flex:1; }
-            .cc-label { font-weight:600; margin-bottom:8px; color:#222; font-size:14px; }
-            .cc-optional { font-weight:400; font-size:12px; color:#777; }
-
-                /* Inputs và selects */
-                .cc-field input[type="text"],
-                .cc-field input[type="tel"],
-                .cc-field input[type="email"],
-                .cc-field select {
-                height:44px;
-                padding:10px 12px;
-                border:1px solid #ddd;
-                border-radius:6px;
-                background:#fff;
-                box-sizing:border-box;
-                font-size:14px;
-                }
-
-            /* Nếu bạn muốn giới hạn chiều rộng cố định cho khối trái */
-            /* Ép khối trái cố định 625px trên desktop, responsive trên mobile */
-            .cc-left {
-            box-sizing: border-box !important;
-            flex: 0 0 625px !important;    /* không co, không giãn, basis = 625px */
-            width: 625px !important;        /* đảm bảo width */
-            max-width: 625px !important;    /* ngăn stylesheet khác thu nhỏ */
-            min-width: 320px !important;    /* vẫn cho mobile an toàn */
-            height: 555px;                  /* theo yêu cầu trước */
-            border-radius: 5px;
-            padding: 20px;                  /* chỉnh theo nhu cầu */
-            background: #fff;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-            overflow: auto;
-            }
-
-            /* Nếu parent có display:flex với gap, đảm bảo không bị ảnh hưởng */
-            .cc-checkout-wrap { align-items: flex-start; }
-
-            /* Khi màn hình nhỏ, cho khối chiếm 100% */
-            @media (max-width: 800px) {
-            .cc-left {
-                flex: 1 1 100% !important;
-                width: 100% !important;
-                max-width: 100% !important;
-                height: auto;
-            }
-            }
-
-            /* Nút */
-            .cc-btn {
-            display:inline-block;
-            padding:10px 18px;
-            background:#0b74de;
-            color:#fff;
-            border:none;
-            border-radius:6px;
-            cursor:pointer;
-            font-weight:600;
-            }
-
-                /* Responsive: khi màn hình nhỏ, các cột xếp chồng */
-                @media (max-width:800px) {
-                .cc-row--two { flex-direction:column; gap:12px; }
-                .cc-left .cc-form { width:100%; }
-                }
-
-
-        /* Responsive: khi màn hình nhỏ, khối sẽ chiếm 100% */
-        @media (max-width: 800px) 
-            {
-            .cc-left {
-                width: 100%;
-                height: auto;
-                border-radius: 5px;
-                box-shadow: 0 6px 18px rgba(0,0,0,0.06);
-            }
-            }
-
-        /* Responsive: khối bên phải màn hình nhỏ, khối sẽ chiếm 100% */
-            .cc-right
-                {                              
-                flex:0 0 480px;
-                background-color: #ffe3ef; 
-                border:1px solid #e5e5e5;
-                padding:16px;
-                box-sizing:border-box;
-                width:480px;
-                }
-
-
-            .cc-right table
-                {
-                    width:100%;
-                    border-collapse:collapse; 
-                }
-            .cc-right td, .cc-right th
-                {
-                    padding:6px 0;
-                    vertical-align:top;
-                }
-            .cc-cart-item
-            { 
-                border-bottom:1px solid #f0f0f0;
-                    padding:8px 0; 
-                }
-            .cc-total 
-            {
-                font-weight:700;
-                margin-top:12px;
-            }
-
-            @media (max-width:800px) 
-            {
-                .cc-right {
-                    width:100%;
-                    flex:1 1 100%; 
-                    }
-            }
-
-            select
-             {
-                position: relative;
-             }
-            select option 
-            {
-             direction: ltr;
-            }
-
-
-    </style>
-
-     <!-- CSS khối giỏ hành thanh toán-->
-      <style>
-        .cc-right{
-            font-family: 'Be Vietnam Pro', sans-serif;
-            line-height: 1.6;
-            }
-
-        .cc-right h3{
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 20px;
-        }
-
-        .cc-cart-item{
-            display:flex;
-            gap:15px;
-            margin-bottom:20px;
-        }
-
-        .cc-cart-item img{
-            width:90px;
-            height:auto;
-        }
-      </style>
-
-
-
-    
   <!-- Phần HTML CỦA TRANG THANH TOÁN. -->
 
    <div class="cc-checkout-container">
@@ -1027,76 +730,133 @@ add_shortcode( 'custom_checkout_wc', function() {
                         </script>
 
              <!-- KHỐI HIỂN THỊ CÁC SẢN PHẨM KHÁCH ĐẶT -->
-            <div class="cc-right">
+             <div class="cc-right">
 
-            <h3>Đơn hàng của bạn</h3>
+                <h3>Đơn hàng của bạn</h3>
 
-            <?php
-            $cart = WC()->cart;
+                <?php
 
-            if ( ! $cart || $cart->is_empty() ) {
+                    $cart = WC()->cart;
 
-                echo '<p>Giỏ hàng trống.</p>';
+                    if ( ! $cart || $cart->is_empty() ) {
 
-            } else {
+                        echo '<p>Giỏ hàng trống.</p>';
 
-                foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
+                    } else {
 
-                    $product = $cart_item['data'];
-                    $product_id = $cart_item['product_id'];
+                        // Lặp qua các sản phẩm trong giỏ
+                        foreach ( $cart->get_cart() as $cart_item_key => $cart_item ) {
 
-                    $product_name = $product->get_name();
-                    $product_price = $product->get_price();
-                    $product_image = $product->get_image( 'thumbnail' );
+                            $product = $cart_item['data'];
+                            $product_id = $cart_item['product_id'];
 
-                    $qty = $cart_item['quantity'];
-                    ?>
+                            $product_name  = $product->get_name();
+                            $product_price = $product->get_price();
+                            $product_image = $product->get_image( 'thumbnail' );
 
-                    <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
+                            $qty = $cart_item['quantity'];
 
-                        <div class="cc-cart-img">
-                            <?php echo $product_image; ?>
-                        </div>
+                            // =========================
+                            // LẤY THUỘC TÍNH SẢN PHẨM
+                            // =========================
 
-                        <div class="cc-cart-info">
+                            $length   = '';
+                            $diameter = '';
 
-                            <div class="cc-product-name">
-                                <?php echo $product_name; ?>
+                            if ( ! empty( $cart_item['variation'] ) ) {
+
+                                // Thuộc tính chiều dài dây vòi
+                                if ( isset( $cart_item['variation']['attribute_pa_chieu-dai-day-voi'] ) ) {
+
+                                    $length_slug = $cart_item['variation']['attribute_pa_chieu-dai-day-voi'];
+
+                                    $term = get_term_by(
+                                        'slug',
+                                        $length_slug,
+                                        'pa_chieu-dai-day-voi'
+                                    );
+
+                                    if ( $term ) {
+                                        $length = $term->name;
+                                    }
+
+                                }
+
+                                // Thuộc tính đường kính trong
+                                if ( isset( $cart_item['variation']['attribute_pa_duong-kinh-trong'] ) ) {
+
+                                    $diameter_slug = $cart_item['variation']['attribute_pa_duong-kinh-trong'];
+
+                                    $term = get_term_by(
+                                        'slug',
+                                        $diameter_slug,
+                                        'pa_duong-kinh-trong'
+                                    );
+
+                                    if ( $term ) {
+                                        $diameter = $term->name;
+                                    }
+
+                                }
+
+                            }
+                            ?>
+
+                            <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
+
+                                <div class="cc-cart-img">
+                                    <?php echo $product_image; ?>
+                                </div>
+
+                                <div class="cc-cart-info">
+
+                                    <div class="cc-product-name">
+                                        <?php echo $product_name; ?>
+                                    </div>
+
+                                    <div class="cc-product-attributes">
+
+                                        <?php if ( $length ) { ?>
+                                            <div>Độ dài dây: <?php echo $length; ?> | </div>
+                                        <?php } ?>
+
+                                        <?php if ( $diameter ) { ?>
+                                            <div>Đường kính trong: <?php echo $diameter; ?></div>
+                                        <?php } ?>
+
+                                    </div>
+                                        <!-- Chỗ này hiển thị ra giá tiền sản phẩm. -->
+                                    <div  class="cc-cart-price"><?php echo wc_price( $product_price ); ?></div>
+
+                                </div>
+
                             </div>
 
-                            <div>Số lượng: <?php echo $qty; ?></div>
+                        <?php
+                        }
 
-                            <div>Giá: <?php echo wc_price( $product_price ); ?></div>
+                        $subtotal = $cart->get_subtotal();
+                        $total    = $cart->get_total();
+                        ?>
 
-                        </div>
+                        <!-- Đây rồi, thẻ HR là thẻ tạo ra đường phân cách.-->
+                        <!-- <hr> -->
 
-                    </div>
+                            <div class="cc-total">
 
-                    <?php
-                }
+                                <div>Tạm tính: <?php echo $subtotal; ?></div>
 
-                $subtotal = $cart->get_subtotal();
-                $total = $cart->get_total();
+                                <div>Phí vận chuyển: <?php echo wc_price(0); ?></div>
 
-                ?>
+                                <div style="margin-top:10px;font-weight:bold;font-size:18px;">
+                                    Tổng: <?php echo $total; ?>
+                                </div>
 
-                <hr>
+                            </div>
 
-                <div class="cc-total">
-
-                    <div>Tạm tính: <?php echo $subtotal; ?></div>
-
-                    <div>Phí vận chuyển: <?php echo wc_price(0); ?></div>
-
-                    <div style="margin-top:10px;font-weight:bold;font-size:18px;">
-                        Tổng: <?php echo $total; ?>
-                    </div>
+                    <?php } ?>
 
                 </div>
-
-            <?php } ?>
-
-            </div>
             
         </div>
     </div>

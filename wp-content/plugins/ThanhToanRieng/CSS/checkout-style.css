@@ -1,0 +1,335 @@
+/* CSS TOÀN BỘ KHỐI*/
+/* Xóa gutter ngang của row và padding của cột */
+.page-id-4734 .row {
+  --bs-gutter-x: 0 !important;
+}
+
+/* Xóa padding trái/phải của các cột bootstrap bên trong */
+.page-id-4734 .row > [class*="col-"] {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Xóa padding trái/phải của container ngoài cùng nếu có */
+.page-id-4734 .container.mt-5.mb-5.pt-5.pb-5 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+  margin-top: 0 !important;
+  padding-top: 8px !important;
+}
+
+.page-id-4734 .container.mt-5.mb-5.pt-5.pb-5 {
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
+/* Giảm/mất khoảng trắng do các utility class trên trang Thanh toán riêng */
+.page-id-4734 .container.mt-5.mb-5.pt-5.pb-5 {
+  margin-top: 0 !important;
+  margin-bottom: 12px !important;
+  padding-top: 8px !important;
+  padding-bottom: 8px !important;
+}
+
+/* Áp dụng cho container plugin checkout */
+.cc-checkout-container {
+  margin-top: 0 !important;
+  padding-top: 0px !important; /* Ngay đây còn đi tìm ở đâu */
+}
+
+/* Nếu container nằm trong entry-content, giảm khoảng cách giữa header và container */
+.entry-content > .cc-checkout-container:first-child {
+  margin-top: 0 !important;
+  padding-top: 12px !important;
+}
+
+/* Nếu theme thêm margin cho tiêu đề mặc định */
+.page-id-4734 .entry-title {
+  margin-top: 0 !important;
+  margin-bottom: 8px !important;
+}
+
+/* Nếu builder (Elementor/Block) thêm padding cho section đầu */
+.page-id-4734 .elementor-section,
+.page-id-4734 .wp-block-group,
+.page-id-4734 .wp-block-cover {
+  padding-top: 8px !important;
+}
+
+/* Giảm khoảng cách trên cùng của nội dung checkout */
+.page-id-4734 .cc-checkout-container {
+  margin-top: 0; /* bỏ khoảng cách */
+  padding-top: 20px; /* giữ khoảng cách nhỏ cho thoáng */
+}
+
+/* Nếu theme thêm margin cho entry-content */
+.page-id-4734 .entry-content {
+  margin-top: 0 !important;
+  padding-top: 0 !important;
+}
+
+.page-id-4734 .entry-title {
+  display: none;
+}
+
+.cc-checkout-container   /* Đây là khối ngoài cùng đây. */ {
+  max-width: 1140px;
+  margin: 0 auto;
+  padding: 0px;
+  box-sizing: border-box;
+}
+/* Tiêu đề chính */
+.cc-main-title {
+  font-family: "Be VietNam Pro", sans-serif;
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+/* Tiêu đề phụ */
+.cc-sub-title {
+  font-family: "Be VietNam Pro", sans-serif;
+  font-weight: 450;
+  font-size: 16px;
+  margin-bottom: 8px;
+  color: #555; /* màu nhẹ hơn để phân cấp */
+}
+
+.cc-checkout-wrap {
+  /* background-color: #c5f5d5;*/
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  max-width: 1140px; /* giới hạn chiều rộng */
+  margin: 0 auto; /* căn giữa khối */
+  padding: 0px; /* thêm khoảng cách trong */
+  box-sizing: border-box;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+/* Khối bên trái: kích thước cố định, bo góc, đổ bóng nhẹ */
+
+/* Form tổng bên trái. */
+
+.cc-form {
+  padding: 15px;
+  width: 625px;
+  font-family: "Be VietNam", sans-serif;
+  background-color: #fff0f6;
+}
+
+/* Hàng chung */
+.cc-row {
+  display: block;
+  margin-bottom: 14px;
+}
+
+/* Hai cột trên cùng và dropdown cuối */
+.cc-row--two {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Trường chung */
+.cc-field {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.cc-label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #222;
+  font-size: 14px;
+}
+.cc-optional {
+  font-weight: 400;
+  font-size: 12px;
+  color: #777;
+}
+
+/* Inputs và selects */
+.cc-field input[type="text"],
+.cc-field input[type="tel"],
+.cc-field input[type="email"],
+.cc-field select {
+  height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+/* Nếu bạn muốn giới hạn chiều rộng cố định cho khối trái */
+/* Ép khối trái cố định 625px trên desktop, responsive trên mobile */
+.cc-left {
+  box-sizing: border-box !important;
+  flex: 0 0 625px !important; /* không co, không giãn, basis = 625px */
+  width: 625px !important; /* đảm bảo width */
+  max-width: 625px !important; /* ngăn stylesheet khác thu nhỏ */
+  min-width: 320px !important; /* vẫn cho mobile an toàn */
+  height: 555px; /* theo yêu cầu trước */
+  border-radius: 5px;
+  padding: 20px; /* chỉnh theo nhu cầu */
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  overflow: auto;
+}
+
+/* Nếu parent có display:flex với gap, đảm bảo không bị ảnh hưởng */
+.cc-checkout-wrap {
+  align-items: flex-start;
+}
+
+/* Khi màn hình nhỏ, cho khối chiếm 100% */
+@media (max-width: 800px) {
+  .cc-left {
+    flex: 1 1 100% !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    height: auto;
+  }
+}
+
+/* Nút */
+.cc-btn {
+  display: inline-block;
+  padding: 10px 18px;
+  background: #0b74de;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Responsive: khi màn hình nhỏ, các cột xếp chồng */
+@media (max-width: 800px) {
+  .cc-row--two {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .cc-left .cc-form {
+    width: 100%;
+  }
+}
+
+/* Responsive: khi màn hình nhỏ, khối sẽ chiếm 100% */
+@media (max-width: 800px) {
+  .cc-left {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  }
+}
+
+/* Responsive: khối bên phải màn hình nhỏ, khối sẽ chiếm 100% */
+.cc-right {
+  flex: 0 0 480px;
+  background-color: fffffff;
+  border: 1px solid #e5e5e5;
+  padding: 16px;
+  box-sizing: border-box;
+  width: 480px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.cc-right table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cc-right td,
+.cc-right th {
+  padding: 6px 0;
+  vertical-align: top;
+}
+.cc-cart-item {
+  padding: 8px 0;
+}
+.cc-total {
+  font-weight: 700;
+  margin-top: 12px;
+}
+
+@media (max-width: 800px) {
+  .cc-right {
+    width: 100%;
+    flex: 1 1 100%;
+  }
+}
+
+select {
+  position: relative;
+}
+select option {
+  direction: ltr;
+}
+
+/* Responsive: KHỐI GIỎ HÀNG, THANH TOÁN. */
+
+.cc-right {
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.cc-right h3 {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+.cc-cart-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.cc-cart-img img {
+  width: 90px;
+  height: auto;
+}
+
+.cc-product-name {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #000;
+}
+
+.cc-cart-info {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.cc-total {
+  /* border-top: 1px solid #ddd;*/
+  padding-top: 15px;
+  margin-top: 15px;
+  font-weight: 500;
+  background: #f3f3f3;
+}
+
+/* KHỐI THUỘC TÍNH TRONG PHẦN THANH TOÁN.*/
+
+.cc-product-attributes {
+  display: flex;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 6px;
+  color: #777777;
+}
+
+.cc-cart-price {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+}
