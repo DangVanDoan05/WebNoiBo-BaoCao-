@@ -322,7 +322,7 @@ select option {
 
 .cc-total {
   /* border-top: 1px solid #ddd;*/
-  padding-top: 15px;
+  padding-top: 0px 20px 0px 20px;
   margin-top: 15px;
   font-weight: 500;
   background: #f3f3f3;
@@ -347,7 +347,7 @@ select option {
 
 /* THUỘC TÍNH BIỂU DIỄN CỦA PHẦN PADDING: padding: trên  phải  dưới  trái; */
 .cc-total-wrap {
-  padding: 16px;
+  padding: 16px 16px 16px 16px;
   background: #f3f3f3;
 }
 
@@ -355,5 +355,139 @@ select option {
   font-family: "Be Vietnam", sans-serif;
   font-size: 24px;
   font-weight: 600;
-  padding: 16px 16px 0px 16px;
+  padding: 10px 16px 0px 16px;
+}
+
+/* CSS CHO PHẦN HÌNH ẢNH SẢN PHẨM. */
+.cc-cart-img {
+  position: relative;
+  display: inline-block;
+}
+
+.cc-so-luon-SP {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  background: #670130;
+  color: #fff;
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+
+  padding: 1px 3px 1px 3px;
+  /*Thứ tự của Border Radius:  border-radius: top-left top-right bottom-right bottom-left; */
+  border-radius: 0 5px 0 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* CSS PHẦN TÍNH GIÁ TIỀN.*/
+.row-subtotal {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-ship-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.row-total-price {
+  display: flex;
+  justify-content: space-between;
+}
+
+.title-subtotal,
+.title-ship-price {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #64748b;
+}
+
+.title-subtotal {
+  padding-bottom: 5px;
+}
+
+.subtotal-price {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+}
+
+.ship-price {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: #670130;
+}
+
+.title-total-price {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+}
+
+.total-price {
+  font-family: "Be Vietnam", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: #670130;
+}
+
+/* CSS CHO KHỐI MÃ GIẢM GIÁ. */
+.cc-coupon-box {
+  display: flex;
+  gap: 10px;
+  margin: 15px 0;
+  padding: 5px 16px 10px 16px;
+}
+
+.cc-coupon-box .cc-coupon-input {
+  flex: 1;
+  height: 40px;
+  padding: 0 12px;
+
+  background-color: #f5f5f5;
+
+  border: 1px solid #cbcbcb;
+  border-radius: 5px;
+
+  font-size: 16px;
+  font-weight: 400;
+  color: #cbcbcb;
+  outline: none;
+}
+
+.cc-coupon-input:focus {
+  border-color: #7a003c;
+}
+
+.cc-coupon-btn {
+  width: 120px;
+  height: 40px;
+  padding: 0 18px;
+
+  border: none;
+  border-radius: 5px;
+
+  background: #d9d9d9;
+  color: #000000;
+
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.cc-coupon-btn:hover {
+  background: #d8d8d8;
+}
+
+.cc-coupon-input::placeholder {
+  color: #cbcbcb;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Be Vietnam", sans-serif;
 }

@@ -796,18 +796,28 @@ add_shortcode( 'custom_checkout_wc', function() {
                                             if ( $term ) {
                                                 $diameter = $term->name;
                                             }
-
                                         }
-
                                     }
                                     ?>
                                 
 
-                            <div class="cc-cart-item-wrap"> 
-                                <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
+                            <div class="cc-cart-item-wrap">
 
-                                    <div class="cc-cart-img">
-                                        <?php echo $product_image; ?>
+                                <div class="cc-cart-item" style="display:flex;gap:10px;margin-bottom:15px;">
+                                     <!-- ĐÂY LÀ PHẦN HÌNH ẢNH SẢN PHẨM. -->
+
+                                     <div class="cc-cart-img">
+
+                                        <div class="cc-so-luon-SP">
+
+                                            <!-- ĐÂY LÀ PHẦN SỐ LƯỢNG SẢN PHẨM. -->
+
+                                            x<?php echo $qty; ?>
+
+                                        </div>
+
+                                    <?php echo $product_image; ?>
+
                                     </div>
 
                                     <div class="cc-cart-info">
@@ -845,19 +855,53 @@ add_shortcode( 'custom_checkout_wc', function() {
                         <!-- Đây rồi, thẻ HR là thẻ tạo ra đường phân cách.-->
                         <!-- <hr> -->
 
+                        <!-- KHỐI NHẬP LIỆU MÃ GIẢM GIÁ.-->
+                         
+                        <div class="cc-coupon-box">
+                            <input 
+                                type="text" 
+                                class="cc-coupon-input" 
+                                placeholder="Mã giảm giá"
+                            >
+                            <button class="cc-coupon-btn">
+                                Áp dụng
+                            </button>
+                        </div>
+
                             <div class="cc-total-wrap">
 
                                 <div class="cc-total">
 
-                                    <div>Tạm tính: <?php echo $subtotal; ?></div>
+                                    <!-- <div>Tạm tính: <?php echo $subtotal; ?></div> -->
 
-                                    <div>Phí vận chuyển: <?php echo wc_price(0); ?></div>
+                                      <!-- Quên mất không nhét giá động vào đây-->
+
+                                      <!-- GIÁ TẠM TÍNH.-->
+
+                                    <div class="row-subtotal">
+                                        <div class="title-subtotal">Tạm tính</div>
+                                        <div class="subtotal-price"><?php echo wc_price($subtotal); ?></div>
+                                    </div>
+
+                                    <!-- <div>Phí vận chuyển: <?php echo wc_price(0); ?></div> -->
+
+                                     <!-- PHÍ VẬN CHUYỂN -->
+                                    <div class="row-ship-price">
+                                        <div class="title-ship-price">Phí vận chuyển: </div>
+                                        <div class="ship-price">Miễn phí</div>
+                                    </div>
 
                                     <hr>
 
-                                    <div style="margin-top:10px;font-weight:bold;font-size:18px;">
+                                    <!--<div style="margin-top:10px;font-weight:bold;font-size:18px;">
                                         Tổng: <?php echo $total; ?>
+                                    </div> -->
+
+                                    <div class="row-total-price">
+                                        <div class="title-total-price">Tổng:</div>
+                                        <div class="total-price"><?php echo $total; ?></div>
                                     </div>
+
                                 </div>
 
                             </div>
