@@ -479,16 +479,21 @@ add_shortcode( 'custom_checkout_wc', function() {
                     </label>
                 </div>
 
-                <!-- Địa chỉ cụ thể -->
+                <!-- Địa chỉ cụ thể --> 
                 <div class="cc-row">
-                    <label class="cc-field">
-                        <span class="cc-label">Địa chỉ cụ thể *</span>
-                        <input type="text" name="cc_address" required placeholder="Số nhà, đường, phường, quận...">
+                                <label class="cc-field">
+                    <span class="cc-label">Địa chỉ cụ thể *</span>
+                    <textarea 
+                        name="cc_address"
+                        class="cc-address"
+                        required
+                        placeholder="Số nhà, đường, phường, quận..."
+                    ></textarea>
                     </label>
                 </div>
 
                 <!-- Vĩ độ và Kinh độ --> 
-                <div class="cc-row cc-row--two"> 
+                <!--<div class="cc-row cc-row--two"> 
                     <label class="cc-field">
                         <span class="cc-label">Vĩ độ (Latitude)</span>
                         <input type="text" id="lat" name="cc_lat" readonly>
@@ -498,18 +503,18 @@ add_shortcode( 'custom_checkout_wc', function() {
                         <span class="cc-label">Kinh độ (Longitude)</span>
                         <input type="text" id="lng" name="cc_lng" readonly> 
                     </label>
-                </div>
+                </div> -->
 
                 <!-- Nút lấy tọa độ -->
-                <button type="button" id="getCoords">Lấy tọa độ</button>
+                <!--<button type="button" id="getCoords">Lấy tọa độ</button>
 
-                <button type="button" id="findNearestStore">Tìm cửa hàng gần nhất</button>
+                <button type="button" id="findNearestStore">Tìm cửa hàng gần nhất</button>-->
 
-                <!-- Submit -->
+                <!-- NÚT ĐẶT HÀNG -->
 
-                <div class="cc-row">
+                <!--<div class="cc-row">
                     <button type="submit" class="cc-btn">Đặt hàng</button>
-                </div>
+                </div>-->
 
                 <input type="hidden" name="nearest_store_manager" id="nearest_store_manager">
               
@@ -642,51 +647,8 @@ add_shortcode( 'custom_checkout_wc', function() {
                         });
                     });
                     </script>
-
-
-
-                    <!-- Đoạn script lấy ra được cửa hàng gần nhất. -->
-
-                    <!--
-                    <script>
-
-                    document.getElementById("findNearestStore").addEventListener("click", function() {
-                        const lat = document.getElementById("lat").value;
-                        const lng = document.getElementById("lng").value;
-
-                        fetch("<?php echo admin_url('admin-ajax.php'); ?>", {
-                            method: "POST",
-                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                            body: new URLSearchParams({
-                                action: "find_nearest_store",
-                                lat: lat,
-                                lng: lng
-                            })
-                        })
-                        .then(res => res.json())
-                        .then(data => {
-                            console.log("AJAX response:", data);
-
-                            if (data.success) {
-                                alert("Cửa hàng gần nhất là: " + data.data.store_name);
-                            } else {
-                                alert("Không tìm thấy cửa hàng");
-                            }
-                        });
-                    });
-
-                    </script>
-
-                -->
-
-
-
-
-
-                
-                       
-                    <!-- Thêm thanh tìm kiếm gõ tên tỉnh thành. -->
-                      
+                                                            
+                    <!-- Thêm thanh tìm kiếm gõ tên tỉnh thành. -->                      
                         <script>
                             $(document).ready(function() {
                             $('#province').select2({
@@ -697,8 +659,6 @@ add_shortcode( 'custom_checkout_wc', function() {
                             });
                             });
                         </script>
-
-
                         <!-- Đoạn để đổ Dropdown xuống phía bên dưới. -->
                         <script>
                             jQuery(document).ready(function($) {
@@ -720,8 +680,6 @@ add_shortcode( 'custom_checkout_wc', function() {
                          });
 
                         </script>
-
-
                         <script>
                             document.addEventListener("DOMContentLoaded", function() {
                                 const provinceSelect = document.getElementById("province");
@@ -730,9 +688,10 @@ add_shortcode( 'custom_checkout_wc', function() {
                         </script>
 
              <!-- KHỐI HIỂN THỊ CÁC SẢN PHẨM KHÁCH ĐẶT -->
+
              <div class="cc-right">
 
-                            <div class="cc-cart-title">Đơn hàng của bạn </div> <!-- CỨ BẢO LÀM SAO.-->
+                            <div class="cc-cart-title">Đơn hàng của bạn </div> 
                                                           
                                 <?php
 
