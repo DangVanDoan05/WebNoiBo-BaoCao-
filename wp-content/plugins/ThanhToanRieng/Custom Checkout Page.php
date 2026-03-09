@@ -436,89 +436,149 @@ add_shortcode( 'custom_checkout_wc', function() {
         <!-- Khối 2 cột -->
         <div class="cc-checkout-wrap"> <!-- Đây là khối bao ngoài cùng 2 khối thanh toán. -->
 
-         <!-- Đây là Form khách hàng nhập để thanh toán và lên đơn hàng -->
+         
 
-         <form class="cc-form" method="post">
+            <div class="cc-left">
+                <!-- ĐÂY LÀ FORM NHẬP THÔNG TIN KHÁCH HÀNG. -->
+                    <form class="cc-form" method="post">
 
-            <!-- Hàng họ tên + số điện thoại -->
-            <div class="cc-row cc-row--two">
-                <label class="cc-field">
-                    <span class="cc-label">Họ và tên *</span>
-                    <input type="text" name="cc_fullname" required placeholder="Nhập họ tên">
-                </label>
+                        <!-- Hàng họ tên + số điện thoại -->
+                        <div class="cc-row cc-row--two">
+                            <label class="cc-field">
+                                <span class="cc-label">Họ và tên *</span>
+                                <input type="text" name="cc_fullname" required placeholder="Nhập họ tên">
+                            </label>
 
-                <label class="cc-field">
-                    <span class="cc-label">Số điện thoại *</span>
-                    <input type="tel" name="cc_phone" required placeholder="Nhập số điện thoại"
-                        pattern="[0-9]{9,11}">
-                </label>
-            </div>
+                            <label class="cc-field">
+                                <span class="cc-label">Số điện thoại *</span>
+                                <input type="tel" name="cc_phone" required placeholder="Nhập số điện thoại"
+                                    pattern="[0-9]{9,11}">
+                            </label>
+                        </div>
 
-                <!-- Email -->
-                <div class="cc-row">
-                    <label class="cc-field">
-                        <span class="cc-label">Email <small class="cc-optional">(Tùy chọn)</small></span>
-                        <input type="email" name="cc_email" placeholder="example@gmail.com">
-                    </label>
-                </div>
-
-                <!-- Load tỉnh và thành phố -->
-                <div class="cc-row cc-row--two">
-                    <label class="cc-field">
-                        <span class="cc-label">Tỉnh/Thành phố *</span>
-                        <select id="province" name="cc_province" required>
-                            <option value="">Chọn Tỉnh/TP</option>
-                        </select>
-                    </label>
-
-                    <label class="cc-field">
-                        <span class="cc-label">Xã/Phường *</span>
-                        <select id="ward" name="cc_ward" required>
-                            <option value="">Chọn Xã/Phường</option>
-                        </select>
-                    </label>
-                </div>
-
-                <!-- Địa chỉ cụ thể --> 
-                <div class="cc-row">
+                            <!-- Email -->
+                            <div class="cc-row">
                                 <label class="cc-field">
-                    <span class="cc-label">Địa chỉ cụ thể *</span>
-                    <textarea 
-                        name="cc_address"
-                        class="cc-address"
-                        required
-                        placeholder="Số nhà, đường, phường, quận..."
-                    ></textarea>
-                    </label>
-                </div>
+                                    <span class="cc-label">Email <small class="cc-optional">(Tùy chọn)</small></span>
+                                    <input type="email" name="cc_email" placeholder="example@gmail.com">
+                                </label>
+                            </div>
 
-                <!-- Vĩ độ và Kinh độ --> 
-                <!--<div class="cc-row cc-row--two"> 
-                    <label class="cc-field">
-                        <span class="cc-label">Vĩ độ (Latitude)</span>
-                        <input type="text" id="lat" name="cc_lat" readonly>
-                    </label>
+                            <!-- Load tỉnh và thành phố -->
+                            <div class="cc-row cc-row--two">
+                                <label class="cc-field">
+                                    <span class="cc-label">Tỉnh/Thành phố *</span>
+                                    <select id="province" name="cc_province" required>
+                                        <option value="">Chọn Tỉnh/TP</option>
+                                    </select>
+                                </label>
 
-                    <label class="cc-field">
-                        <span class="cc-label">Kinh độ (Longitude)</span>
-                        <input type="text" id="lng" name="cc_lng" readonly> 
-                    </label>
-                </div> -->
+                                <label class="cc-field">
+                                    <span class="cc-label">Xã/Phường *</span>
+                                    <select id="ward" name="cc_ward" required>
+                                        <option value="">Chọn Xã/Phường</option>
+                                    </select>
+                                </label>
+                            </div>
 
-                <!-- Nút lấy tọa độ -->
-                <!--<button type="button" id="getCoords">Lấy tọa độ</button>
+                            <!-- Địa chỉ cụ thể --> 
+                            <div class="cc-row">
+                                            <label class="cc-field">
+                                <span class="cc-label">Địa chỉ cụ thể *</span>
+                                <textarea 
+                                    name="cc_address"
+                                    class="cc-address"
+                                    required
+                                    placeholder="Số nhà, đường, phường, quận..."
+                                ></textarea>
+                                </label>
+                            </div>
 
-                <button type="button" id="findNearestStore">Tìm cửa hàng gần nhất</button>-->
+                            <div class="cc-row-checkbox">
+                                <label class="cc-checkbox">       
+                                    <input type="checkbox" name="cc_vat_invoice">
+                                    <span class="cc-label-invoice">Xuất hóa đơn GTGT</span>
+                                </label>
+                            </div>
 
-                <!-- NÚT ĐẶT HÀNG -->
+                            <!-- Vĩ độ và Kinh độ --> 
+                            <!--<div class="cc-row cc-row--two"> 
+                                <label class="cc-field">
+                                    <span class="cc-label">Vĩ độ (Latitude)</span>
+                                    <input type="text" id="lat" name="cc_lat" readonly>
+                                </label>
 
-                <!--<div class="cc-row">
-                    <button type="submit" class="cc-btn">Đặt hàng</button>
-                </div>-->
+                                <label class="cc-field">
+                                    <span class="cc-label">Kinh độ (Longitude)</span>
+                                    <input type="text" id="lng" name="cc_lng" readonly> 
+                                </label>
+                            </div> -->
 
-                <input type="hidden" name="nearest_store_manager" id="nearest_store_manager">
-              
-            </form>
+                            <!-- Nút lấy tọa độ -->
+                            <!--<button type="button" id="getCoords">Lấy tọa độ</button>
+
+                            <button type="button" id="findNearestStore">Tìm cửa hàng gần nhất</button>-->
+
+                            <!-- NÚT ĐẶT HÀNG -->
+
+                            <!--<div class="cc-row">
+                                <button type="submit" class="cc-btn">Đặt hàng</button>
+                            </div>-->
+
+                            <input type="hidden" name="nearest_store_manager" id="nearest_store_manager">
+                        
+                        </form>
+                 <!-- ĐÂY LÀ FORM NHẬP THÔNG TIN KHÁCH HÀNG. -->
+                    <div class="cc-install-box">
+
+                        <div class="cc-install-icon">
+                            🔧
+                        </div>
+
+                        <div class="cc-install-content">
+                            <div class="cc-install-title">
+                                Dịch vụ lắp đặt tại nhà
+                                <span class="cc-install-badge">Bạn thuộc vùng hỗ trợ lắp đặt kỹ thuật</span>
+                            </div>
+
+                            <div class="cc-install-desc">
+                                Phí lắp đặt sẽ được đại lý tư vấn và thu trực tiếp sau khi khách hàng đồng ý sử dụng dịch vụ lắp đặt tại nhà
+                            </div>
+                        </div>
+
+                    </div>
+
+                <!-- ĐÂY LÀ KHỐI PHƯƠNG THỨC THANH TOÁN. -->
+
+                    <div class="cc-payment-box">
+
+                        <div class="cc-payment-title">
+                            Phương thức thanh toán
+                        </div>
+
+                        <label class="cc-payment-item">
+
+                            <input type="radio" name="payment_method" checked>
+
+                            <div class="cc-payment-content">
+                                <div class="cc-payment-name">
+                                    Thanh toán khi nhận hàng (COD)
+                                </div>
+
+                                <div class="cc-payment-desc">
+                                    Thanh toán tiền mặt khi nhận hàng
+                                </div>
+                            </div>
+
+                            <div class="cc-payment-check">
+                                ✓
+                            </div>
+
+                        </label>
+
+                    </div>
+
+            </div> 
 
                 <!-- Đoạn script chạy tổng thể -->
 
@@ -699,7 +759,7 @@ add_shortcode( 'custom_checkout_wc', function() {
 
                                     if ( ! $cart || $cart->is_empty() ) {
 
-                                        echo '<p>Giỏ hàng trống.</p>';
+                                        echo '<p class="cc-cart-title">Giỏ hàng trống.</p>';
 
                                     } else {
 

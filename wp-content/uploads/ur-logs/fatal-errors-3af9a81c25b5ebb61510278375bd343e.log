@@ -1406,3 +1406,7 @@ Stack trace:
 #12 {main}
   thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\woo-vietnam-checkout\devvn-woo-address-selectbox.php on line 576
 
+2026-03-09T01:09:57+00:00 CRITICAL syntax error, unexpected identifier "type", expecting ")" in C:\xampp\htdocs\kamashop\wp-content\plugins\essential-addons-for-elementor-lite\includes\Elements\Woo_Product_List.php on line 572
+
+2026-03-09T01:09:57+00:00 CRITICAL syntax error, unexpected identifier "type", expecting ")" in C:\xampp\htdocs\kamashop\wp-content\plugins\essential-addons-for-elementor-lite\includes\Elements\Woo_Product_List.php on line 572
+

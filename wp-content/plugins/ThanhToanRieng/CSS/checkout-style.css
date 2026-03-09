@@ -99,7 +99,7 @@
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
-  max-width: 1140px; /* giới hạn chiều rộng */
+  /* max-width: 1140px; /* giới hạn chiều rộng */
   margin: 0 auto; /* căn giữa khối */
   padding: 0px; /* thêm khoảng cách trong */
   box-sizing: border-box;
@@ -182,12 +182,11 @@
   width: 625px !important; /* đảm bảo width */
   max-width: 625px !important; /* ngăn stylesheet khác thu nhỏ */
   min-width: 320px !important; /* vẫn cho mobile an toàn */
-  height: 555px; /* theo yêu cầu trước */
   border-radius: 5px;
-  padding: 20px; /* chỉnh theo nhu cầu */
-  background: #fff;
+  padding: 0px; /* chỉnh theo nhu cầu */
+  background-color: transparent;
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
-  overflow: auto;
+  gap: 50px; /* Các phần tử cách đều nhau là 10 px */
 }
 
 /* Nếu parent có display:flex với gap, đảm bảo không bị ảnh hưởng */
@@ -512,4 +511,140 @@ select option {
   font-weight: 400;
   outline: none;
   resize: vertical;
+}
+
+/* CSS CHECK BOX KHỐI  HÓA ĐƠN. */
+
+.cc-row-checkbox {
+  margin-top: 15px;
+}
+
+.cc-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+.cc-checkbox input {
+  width: 25px;
+  height: 25px;
+  margin: 0;
+  border: 1px solid #cbcbcb;
+}
+
+.cc-label-invoice {
+  color: #000000;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.cc-row input select textarea {
+  border: 1px solid #cbcbcb;
+}
+
+/* CSS KHỐI LẮP ĐẶT VÀ KHỐI PT THANH TOÁN */
+/* Dịch vụ lắp đặt. */
+.cc-install-box {
+  display: flex;
+  gap: 15px;
+
+  padding: 16px;
+
+  border: 1px solid #8ed9b3;
+  border-radius: 8px;
+
+  background: #e8f7ef;
+
+  margin-top: 20px;
+
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.cc-install-icon {
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: #d6f2e4;
+  border-radius: 50%;
+
+  font-size: 20px;
+}
+
+.cc-install-title {
+  font-weight: 600;
+  color: #1e7e4a;
+}
+
+.cc-install-badge {
+  margin-left: 10px;
+
+  font-size: 12px;
+  padding: 3px 8px;
+
+  background: #d6f2e4;
+  border-radius: 5px;
+}
+
+.cc-install-desc {
+  margin-top: 5px;
+  font-size: 14px;
+  color: #2f8f60;
+}
+
+.cc-payment-box {
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+/* KHỐI PHƯƠNG THỨC THANH TOÁN. */
+.cc-payment-box {
+  margin-top: 20px;
+  padding: 16px;
+
+  border: 1px solid #e2e2e2;
+  border-radius: 8px;
+}
+
+.cc-payment-title {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.cc-payment-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  padding: 12px;
+
+  border: 1px solid #d8a4b2;
+  border-radius: 8px;
+
+  cursor: pointer;
+}
+
+.cc-payment-item input {
+  display: none;
+}
+
+.cc-payment-check {
+  margin-left: auto;
+
+  width: 24px;
+  height: 24px;
+
+  background: #7a003c;
+  color: white;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
 }
