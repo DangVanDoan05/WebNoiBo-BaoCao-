@@ -176,6 +176,7 @@
 
 /* Nếu bạn muốn giới hạn chiều rộng cố định cho khối trái */
 /* Ép khối trái cố định 625px trên desktop, responsive trên mobile */
+
 .cc-left {
   box-sizing: border-box !important;
   flex: 0 0 625px !important; /* không co, không giãn, basis = 625px */
@@ -563,17 +564,16 @@ select option {
 }
 
 .cc-install-icon {
-  width: 40px;
-  height: 40px;
-
+  width: 45px;
+  height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  background: #d6f2e4;
+  background: #ffffff;
   border-radius: 50%;
-
   font-size: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  color: #206c3e;
 }
 
 .cc-install-title {
@@ -635,16 +635,17 @@ select option {
 
 .cc-payment-check {
   margin-left: auto;
-
   width: 24px;
   height: 24px;
-
   background: #7a003c;
   color: white;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   border-radius: 50%;
+}
+
+.material-icons {
+  font-size: 40px;
+  color: #1b6e44;
 }

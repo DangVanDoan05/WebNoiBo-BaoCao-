@@ -531,9 +531,12 @@ add_shortcode( 'custom_checkout_wc', function() {
                  <!-- ĐÂY LÀ FORM NHẬP THÔNG TIN KHÁCH HÀNG. -->
                     <div class="cc-install-box">
 
-                        <div class="cc-install-icon">
-                            🔧
-                        </div>
+                        <!-- KHỐI ICON -->
+                        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+                            <div class="cc-install-icon">
+                            <span class="material-icons">build</span>
+                            </div>
 
                         <div class="cc-install-content">
                             <div class="cc-install-title">
