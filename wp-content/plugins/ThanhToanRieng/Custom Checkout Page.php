@@ -564,12 +564,15 @@ add_shortcode( 'custom_checkout_wc', function() {
 
                         <div class="cc-payment-item">
                             <div class="cc-payment-item-truck">
-                                <img class="cc-img-truck" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/XeTai.png'; ?>" alt="">
+                            
+                                    <img class="cc-img-truck"
+                                        src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/XeTai.png'; ?>"
+                                        alt="COD">
+                               
                                 <div class="cc-payment-content">
                                     <div class="cc-payment-name">
                                         Thanh toán khi nhận hàng (COD)
                                     </div>
-
                                     <div class="cc-payment-desc">
                                         Thanh toán tiền mặt khi nhận hàng
                                     </div>

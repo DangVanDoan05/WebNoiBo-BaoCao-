@@ -633,6 +633,7 @@ select option {
   border-radius: 8px;
   cursor: pointer;
   background-color: #fff0f6;
+  height: 85px;
 }
 
 .cc-payment-item input {
@@ -690,6 +691,7 @@ select option {
   display: flex;
   height: 35px;
   width: 35px;
+  gap: 10px;
 }
 
 .cc-payment-item-check {
@@ -714,4 +716,8 @@ select option {
   font-size: 16px;
   font-weight: 300;
   font-family: "Be Vietnam Pro", sans-serif;
+}
+.cc-row-img-truck {
+  display: flex;
+  align-items: center;
 }
