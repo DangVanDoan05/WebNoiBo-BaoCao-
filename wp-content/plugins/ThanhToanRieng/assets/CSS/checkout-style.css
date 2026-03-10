@@ -479,13 +479,10 @@ select option {
   width: 120px;
   height: 40px;
   padding: 0 18px;
-
   border: none;
   border-radius: 5px;
-
   background: #d9d9d9;
   color: #000000;
-
   font-size: 16px;
   font-weight: 600;
   cursor: pointer;
@@ -550,17 +547,20 @@ select option {
 .cc-install-box {
   display: flex;
   gap: 15px;
-
   padding: 16px;
-
-  border: 1px solid #8ed9b3;
+  border: 2px solid #c5f5d5;
   border-radius: 8px;
-
-  background: #e8f7ef;
-
+  background: #f0fdf4;
   margin-top: 20px;
-
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+.cc-install-content {
+  width: 535px;
+}
+
+.cc-icon-box {
+  padding-top: 8px;
 }
 
 .cc-install-icon {
@@ -579,16 +579,23 @@ select option {
 .cc-install-title {
   font-weight: 600;
   color: #1e7e4a;
+  height: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .cc-install-badge {
+  width: 249px;
+  height: 30px;
   margin-left: 10px;
-
-  font-size: 12px;
-  padding: 3px 8px;
-
-  background: #d6f2e4;
+  padding: 7px 10px 7px 10px;
+  background: #ffffff;
   border-radius: 5px;
+  color: #206c3e;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Be Vietnam Pro", sans-serif;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
 .cc-install-desc {
@@ -619,14 +626,13 @@ select option {
 .cc-payment-item {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   gap: 15px;
-
   padding: 12px;
-
-  border: 1px solid #d8a4b2;
+  border: 1px solid #670130;
   border-radius: 8px;
-
   cursor: pointer;
+  background-color: #fff0f6;
 }
 
 .cc-payment-item input {
@@ -641,11 +647,71 @@ select option {
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
   border-radius: 50%;
+}
+.cc-payment-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .material-icons {
   font-size: 40px;
   color: #1b6e44;
+}
+
+.cc-install-title {
+  color: #206c3e;
+  font-size: 16px;
+  font-weight: 500;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.cc-install-desc {
+  color: #339156;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.cc-payment-title img {
+  height: 32px;
+  width: 32px;
+}
+
+.cc-payment-title-text {
+  color: #000000;
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+
+.cc-payment-item-truck {
+  display: flex;
+  height: 35px;
+  width: 35px;
+}
+
+.cc-payment-item-check {
+  height: 35px;
+  width: 35px;
+}
+
+.cc-payment-content {
+  width: 350px;
+  height: 39px;
+  gap: 15px;
+}
+.cc-payment-name {
+  width: 350px;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
+.cc-payment-desc {
+  color: #64748b;
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Be Vietnam Pro", sans-serif;
 }

@@ -111,9 +111,9 @@ function thanhtoanrieng_load_css() {
 
     wp_enqueue_style(
         'thanhtoanrieng-style',
-        plugin_dir_url(__FILE__) . 'css/checkout-style.css',
+        plugin_dir_url(__FILE__) . 'assets/css/checkout-style.css',
         array(),
-        '1.0'
+        filemtime(plugin_dir_path(__FILE__) . 'assets/css/checkout-style.css')
     );
 
 }
@@ -534,9 +534,11 @@ add_shortcode( 'custom_checkout_wc', function() {
                         <!-- KHỐI ICON -->
                         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
+                        <div class="cc-icon-box">
                             <div class="cc-install-icon">
                             <span class="material-icons">build</span>
                             </div>
+                        </div>
 
                         <div class="cc-install-content">
                             <div class="cc-install-title">
@@ -556,28 +558,29 @@ add_shortcode( 'custom_checkout_wc', function() {
                     <div class="cc-payment-box">
 
                         <div class="cc-payment-title">
-                            Phương thức thanh toán
+                            <img src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/payment.png'; ?>" alt="">
+                            <span class="cc-payment-title-text">Phương thức thanh toán</span>
                         </div>
 
-                        <label class="cc-payment-item">
+                        <div class="cc-payment-item">
+                            <div class="cc-payment-item-truck">
+                                <img class="cc-img-truck" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/XeTai.png'; ?>" alt="">
+                                <div class="cc-payment-content">
+                                    <div class="cc-payment-name">
+                                        Thanh toán khi nhận hàng (COD)
+                                    </div>
 
-                            <input type="radio" name="payment_method" checked>
-
-                            <div class="cc-payment-content">
-                                <div class="cc-payment-name">
-                                    Thanh toán khi nhận hàng (COD)
-                                </div>
-
-                                <div class="cc-payment-desc">
-                                    Thanh toán tiền mặt khi nhận hàng
+                                    <div class="cc-payment-desc">
+                                        Thanh toán tiền mặt khi nhận hàng
+                                    </div>
                                 </div>
                             </div>
-
-                            <div class="cc-payment-check">
-                                ✓
+                            <div class="cc-payment-item-check">
+                                <!--INPUT NÀY ĐỂ CẢI BIÊN SAU TẠM THỜI ĐỂ HÌNH ẢNH VÀO ĐÃ.-->
+                                <!--<input type="radio" name="payment_method" checked> -->  
+                                <img class="cc-img-check" src="<?php echo plugin_dir_url(__FILE__) . 'assets/img/DauTich.png'; ?>" alt="">                                     
                             </div>
-
-                        </label>
+                        </div>
 
                     </div>
 
