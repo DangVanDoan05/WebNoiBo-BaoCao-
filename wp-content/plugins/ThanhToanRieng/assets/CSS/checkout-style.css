@@ -185,14 +185,15 @@
   min-width: 320px !important; /* vẫn cho mobile an toàn */
   border-radius: 5px;
   padding: 0px; /* chỉnh theo nhu cầu */
-  background-color: transparent;
-  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+  background: transparent;
+  /*box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);*/
   gap: 50px; /* Các phần tử cách đều nhau là 10 px */
 }
 
 /* Nếu parent có display:flex với gap, đảm bảo không bị ảnh hưởng */
 .cc-checkout-wrap {
   align-items: flex-start;
+  background-color: #ffffff;
 }
 
 /* Khi màn hình nhỏ, cho khối chiếm 100% */
@@ -234,6 +235,7 @@
     width: 100%;
     height: auto;
     border-radius: 5px;
+    background-color: transparent;
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
   }
 }
@@ -720,4 +722,112 @@ select option {
 .cc-row-img-truck {
   display: flex;
   align-items: center;
+}
+
+/* CSS KHỐI ĐIỀU KHOẢN DỊCH VỤ.*/
+.cc-checkout-bottom {
+  margin-top: 20px;
+}
+
+.cc-agree {
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+/* CSS cho Input */
+
+.cc-checkbox {
+  position: relative;
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+}
+
+.cc-checkbox input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 22px;
+  height: 22px;
+  border: 1px solid #0066cc;
+  border-radius: 4px;
+  background: white;
+}
+
+/* khi checked */
+.cc-checkbox input:checked + .checkmark {
+  background: #e6f2ff;
+}
+
+/* dấu tick */
+.checkmark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  left: 6px;
+  top: 2px;
+  width: 6px;
+  height: 12px;
+  border: solid #0066cc;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.cc-checkbox input:checked + .checkmark::after {
+  display: block;
+}
+
+/* CSS cho Input */
+.cc-agree a {
+  font-size: 16px;
+  font-weight: 400;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.cc-checkout-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cc-back-cart {
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: #7a0a2b;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.cc-back-cart:hover {
+  text-decoration: underline;
+}
+
+.cc-btn-order {
+  font-family: "Be Vietnam Pro", sans-serif;
+  background: #7a0a2b;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.cc-btn-order:hover {
+  background: #5f0821;
+}
+
+.cc-agree label {
+  font-size: 16px;
+  font-weight: 300;
+  font-family: "Be Vietnam Pro", sans-serif;
+  color: #000000;
 }

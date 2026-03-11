@@ -495,8 +495,11 @@ add_shortcode( 'custom_checkout_wc', function() {
                             </div>
 
                             <div class="cc-row-checkbox">
-                                <label class="cc-checkbox">       
-                                    <input type="checkbox" name="cc_vat_invoice">
+                                <label class="cc-checkbox1">       
+                                    <label class="cc-checkbox">
+                                        <input type="checkbox" checked>
+                                        <span class="checkmark"></span>
+                                    </label>
                                     <span class="cc-label-invoice">Xuất hóa đơn GTGT</span>
                                 </label>
                             </div>
@@ -586,6 +589,39 @@ add_shortcode( 'custom_checkout_wc', function() {
                         </div>
 
                     </div>
+
+                    <div class="cc-checkout-bottom">
+
+                  
+              <!-- ĐÂY LÀ KHỐI ĐIỀU KHOẢN DỊCH VỤ.-->
+
+                <div class="cc-agree">
+                    <label>
+                        <label class="cc-checkbox">
+                            <input type="checkbox" checked>
+                            <span class="checkmark"></span>
+                        </label>
+                        Tôi đồng ý với 
+                        <a href="#">Điều khoản dịch vụ</a> 
+                        và 
+                        <a href="#">Chính sách bảo mật</a> 
+                        của website Joinex
+                    </label>
+                </div>
+
+                <div class="cc-checkout-actions">
+
+                    <a href="#" class="cc-back-cart">
+                        &lt; Quay lại giỏ hàng
+                    </a>
+
+                    <button class="cc-btn-order">
+                        Xác nhận đơn hàng →
+                    </button>
+
+                </div>
+
+                </div>    
 
             </div> 
 
