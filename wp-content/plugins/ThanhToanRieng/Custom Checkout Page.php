@@ -976,6 +976,7 @@ add_shortcode( 'custom_checkout_wc', function() {
             
         </div>
     </div>
+    
     <?php
 
     return ob_get_clean();

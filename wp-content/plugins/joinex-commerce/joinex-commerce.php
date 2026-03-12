@@ -5,12 +5,13 @@ Description: Custom Checkout for Joinex
 Version: 1.0
 Author: Dang Van Doan
 */
-
-
+define('JOINEX_PLUGIN_URL', plugin_dir_url(__FILE__));
+define('JOINEX_PLUGIN_PATH', plugin_dir_path(__FILE__));
 
 if (!defined('ABSPATH')) {
     exit;
 }
+
 
 /* Tạo ra Icon khi load Plugin */
 add_action('admin_menu', 'joinex_admin_menu');
@@ -28,7 +29,7 @@ function joinex_admin_menu() {
     );
 }
 
-/* Load CSS */
+/* Load CSS - ĐÃ CÓ PHẦN LOAD CSS NÀY RỒI */
 
 function joinex_load_assets(){
 
