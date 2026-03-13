@@ -51,3 +51,9 @@ require_once plugin_dir_path(__FILE__) . 'includes/checkout.php';
 /* Load shortcode - Cái mà WordPress và Elementor Page sử dụng để Show ra trang mà Plugin không cần tạo ra Page */
 
 require_once plugin_dir_path(__FILE__) . 'shortcodes/checkout-shortcode.php';
+
+// joinex-commerce.php
+function joinex_commerce_load_shortcodes() {
+    include_once plugin_dir_path(__FILE__) . 'shortcodes/List-product-HomePage.php';
+}
+add_action('init', 'joinex_commerce_load_shortcodes');
