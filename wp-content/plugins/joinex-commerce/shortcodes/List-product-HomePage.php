@@ -3,7 +3,7 @@
 function list_product_home_page_shortcode() {
     $args = array(
         'post_type' => 'product',
-        'posts_per_page' => 6
+        'posts_per_page' => 3
     );
     $loop = new WP_Query($args);
     ob_start();
