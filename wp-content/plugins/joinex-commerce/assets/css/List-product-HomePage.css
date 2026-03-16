@@ -1,41 +1,148 @@
+/* Khối cha: grid 4 cột, giới hạn 1140px */
 .product-list {
-  display: flex;
-  flex-wrap: wrap; /* cho phép xuống hàng */
-  gap: 20px;
-  max-width: 1140px;
-  margin: 0 auto;
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 20px !important;
+  max-width: 1140px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
 }
 
-.product-item {
-  flex: 0 0 calc(25% - 20px); /* mỗi item chiếm 1/4 chiều rộng trừ khoảng cách */
-  box-sizing: border-box;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
+/* Bảo đảm item không bị ép width:100% từ theme */
+
+.product-list .product-item {
+  width: auto !important;
+  max-width: 100% !important;
+  height: 440px !important;
+  /*flex: 0 0 auto !important;*/
+  box-sizing: border-box !important;
+  border-radius: 20px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
 }
 
-/*.product-item:hover {
+/* Nếu Elementor bọc shortcode trong widget, tăng specificity */
+.elementor-widget-shortcode .product-list,
+.elementor-widget .product-list {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+}
+
+/* Override rule phổ biến của theme/elementor */
+.elementor-widget .product-item,
+.elementor-column .product-item,
+.widget .product-item {
+  width: auto !important;
+  flex-basis: auto !important;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 100% !important;
+    padding: 0 16px;
+  }
+}
+@media (max-width: 576px) {
+  .product-list {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.product-item:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.product-item img {
+/* KHỐI CHỨA HÌNH ẢNH */
+/* Khối chứa ảnh: bo góc trên, căn giữa cả ngang và dọc */
+.product-item-image {
+  display: flex; /* bắt buộc để justify/align có hiệu lực */
+  justify-content: center; /* căn giữa ngang */
+  align-items: center; /* căn giữa dọc */
+  background-color: #f5f5f5;
+  height: 285px;
+  border-radius: 20px 20px 0 0;
+  overflow: hidden; /* cắt ảnh theo bo góc */
+  box-sizing: border-box;
+  padding: 12px; /* nếu muốn khoảng cách xung quanh ảnh */
+}
+
+/* Ảnh bên trong: giữ tỉ lệ, không chiếm 100% chiều ngang nếu muốn */
+.product-item-image img {
+  display: block; /* tránh inline spacing */
   max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
-  border-radius: 6px;
+  object-fit: contain; /* giữ tỉ lệ và căn giữa bên trong khung */
+  margin: 0 auto;
+}
+
+/* KHÓI TIÊU ĐỀ SẢN PHẨM */
+.product-item-title {
+  display: flex; /* bắt buộc để justify/align có hiệu lực */
+  justify-content: center; /* căn giữa ngang */
+  align-items: center; /* căn giữa dọc */
+  padding: 10px; /* nếu muốn khoảng cách xung quanh nội dung.*/
+}
+
+.product-item-title-detail {
+  display: block; /* tránh inline spacing */
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain; /* giữ tỉ lệ và căn giữa bên trong khung */
+  margin: 0 auto;
+}
+
+/* Rule chung cho hr trong product card */
+.product-item hr {
+  display: block; /* đảm bảo block */
+  height: 1px; /* chiều cao đường */
+  margin: 12px 0; /* khoảng cách trên/dưới */
+  border: 0; /* bỏ border mặc định */
+  background-color: #706f6f !important; /* màu đường */
+  width: 100%; /* chiếm toàn chiều ngang của card */
+  box-sizing: border-box;
+}
+
+/* Nếu theme ghi đè mạnh, tăng specificity */
+.elementor .product-list .product-item hr,
+.product-list .product-item hr {
+  display: block !important;
+  height: 1px !important;
+  background-color: #e6e6e6 !important;
+  border: 0 !important;
+}
+
+/* Nếu muốn đường mảnh hơn hoặc shadow */
+.product-item hr.thin {
+  height: 1px;
+  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.02));
+}
+
+.product-divider {
+  height: 1px;
+  background-color: #807e7e;
+  margin: 12px 0;
+  width: 100%;
 }
 
 .product-item h3 {
-  font-size: 18px;
+  font-family: "Be Vietnam", sans-serif;
+  color: #000000;
+  font-size: 16px;
+  font-weight: 600;
   margin: 10px 0;
   color: #333;
 }
 
 .product-item .price {
-  font-size: 16px;
-  color: #e63946;
-  font-weight: bold;
+  font-family: "Be Vietnam", sans-serif;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
@@ -51,4 +158,4 @@
 
 .btn-buy:hover {
   background: #457b9d;
-}*/
+}

@@ -31,16 +31,27 @@ function joinex_admin_menu() {
 
 /* Load CSS - ĐÃ CÓ PHẦN LOAD CSS NÀY RỒI */
 
+// joinex-commerce.php
+
 function joinex_load_assets(){
+    // CSS chung của plugin (ví dụ checkout)
+    wp_enqueue_style(
+        'joinex-checkout-css',
+        plugin_dir_url(__FILE__) . 'assets/css/checkout.css',
+        array(), // phụ thuộc nếu cần
+        filemtime( plugin_dir_path(__FILE__) . 'assets/css/checkout.css' )
+    );
 
-wp_enqueue_style(
-'joinex-checkout-css',
-plugin_dir_url(__FILE__) . 'assets/css/checkout.css'
-);
-
+    // CSS cho List product (đảm bảo load sau Elementor)
+    wp_enqueue_style(
+        'joinex-product-list',
+        plugin_dir_url(__FILE__) . 'assets/css/List-product-HomePage.css',
+        array('elementor-frontend', 'joinex-checkout-css'), // load sau Elementor và CSS plugin khác
+        filemtime( plugin_dir_path(__FILE__) . 'assets/css/List-product-HomePage.css' )
+    );
 }
+add_action('wp_enqueue_scripts','joinex_load_assets', 20);
 
-add_action('wp_enqueue_scripts','joinex_load_assets');
 
 
 /* Load logic -- XỬ LÝ CÁC HÀM. */  
