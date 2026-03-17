@@ -1410,3 +1410,21 @@ Stack trace:
 
 2026-03-09T01:09:57+00:00 CRITICAL syntax error, unexpected identifier "type", expecting ")" in C:\xampp\htdocs\kamashop\wp-content\plugins\essential-addons-for-elementor-lite\includes\Elements\Woo_Product_List.php on line 572
 
+2026-03-17T05:35:17+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:351
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 351
+
+2026-03-17T05:35:17+00:00 CRITICAL Uncaught Error: Call to a member function get_gallery_image_ids() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php:351
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Modules\Ai\Module->get_product_images_ajax('')
+#1 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(348): WP_Hook->apply_filters('', Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(517): WP_Hook->do_action(Array)
+#3 C:\xampp\htdocs\kamashop\wp-admin\admin-ajax.php(192): do_action('wp_ajax_element...')
+#4 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 351
+
