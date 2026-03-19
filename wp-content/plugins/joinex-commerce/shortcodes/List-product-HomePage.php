@@ -5,26 +5,37 @@
 
 function list_product_home_page_shortcode() {
     $args = array(
-        'post_type'      => 'product',
-        'posts_per_page' => 4,    // SỐ SẢN PHẨM HIỂN THỊ TRÊN TRANG.
+        'post_type'      => 'product', // Loại nội dung cần lấy.
+        'posts_per_page' => 4,    // Số bản ghi trả về.
         'post_status'    => 'publish',
-        'orderby'        => 'ID',
-        'order'          => 'DESC',
+        'orderby'        => 'ID', // Trường sắp xếp.
+        'order'          => 'DESC', // Hướng sắp xếp
     );
 
-    $loop = new WP_Query( $args );
-    ob_start();
+    //WP_Query là class chính của WordPress để tạo truy vấn tùy chỉnh lấy bài viết (posts) theo nhiều tiêu chí
+    $loop = new WP_Query( $args ); // WP_Query là một Class truy vấn tùy chỉnh của WordPress
+    // $loop là một WP_Query object chứa:
 
-    if ( $loop->have_posts() ) {
+    // methods: have_posts(), the_post(), rewind_posts(), get_posts(), next_post(), in_the_loop().
+
+    //  properties: posts (mảng WP_Post), post_count, found_posts, max_num_pages, query_vars.
+
+    ob_start(); // Bắt đầu output buffering của PHP: mọi output (echo, HTML trực tiếp) sau đó sẽ được lưu vào bộ đệm thay vì in ra trình duyệt ngay.
+
+    if ( $loop->have_posts() )
+     // Duyệt lần lượt từng đối tượng , xem truy vấn hiện tại còn bản ghi nào chưa được duyệt hay không.
+     // Nó trả về 'true' nếu còn bài viết để lặp, 'false' nếu đã hết.
+     {
         echo '<div class="product-list">';
         while ( $loop->have_posts() ) {
-            $loop->the_post();
+            $loop->the_post(); // Dùng trong vòng lặp để tiến con trỏ truy vấn
 
             // Lấy product object an toàn
             $product = wc_get_product( get_the_ID() );
             if ( ! $product ) continue;
 
             // --- BẮT ĐẦU: Thu thập tất cả entry giá (product mẹ + từng biến thể) ---
+
             $entries = array(); // mỗi phần tử: ['price'=>float, 'regular'=>float|null, 'sale'=>float|null, 'type'=>..., 'id'=>..., 'name'=>..., 'permalink'=>...]
 
             $add_entry = function( $price_val, $regular_val, $sale_val, $info ) use ( & $entries ) {
@@ -94,15 +105,53 @@ function list_product_home_page_shortcode() {
 
             // Tìm entry có price nhỏ nhất
             $min_entry = null;
-            if ( ! empty( $entries ) ) {
-                usort( $entries, function( $a, $b ) {
-                    if ( $a['price'] == $b['price'] ) return 0;
-                    return ( $a['price'] < $b['price'] ) ? -1 : 1;
-                } );
-                $min_entry = $entries[0];
+
+            foreach ( $product->get_children() as $variation_id ) {
+                $variation = wc_get_product( $variation_id );
+                if ( $variation ) {
+                    $price = $variation->get_price();
+                    if ( $price !== '' ) {
+                        $price = floatval( $price );
+                        if ( $min_entry === null || $price < $min_entry['price'] ) {
+                            $min_entry = [
+                                'id'    => $variation_id,
+                                'price' => $price,
+                            ];
+                        }
+                    }
+                }
             }
+
+            $min_product = wc_get_product( $min_entry['id'] );
+            if ( $min_product ) {
+                $regular_price = $min_product->get_regular_price();
+                
+            }          
+
+            $sale_price = $min_product->get_sale_price();
+
             // --- KẾT THÚC: Thu thập và chọn min_entry ---
 
+            // Nếu có min_entry, lấy ID và kiểm tra giá thực (regular)
+                $min_real_price_html = '';
+                if ( $min_entry && ! empty( $min_entry['id'] ) ) {
+                    error_log('Min entry ID: ' . $min_entry['id']); // Debug ID
+
+                    $min_product = wc_get_product( $min_entry['id'] );
+                    if ( $min_product ) {
+                        $regular_price = $min_product->get_regular_price();
+
+                        error_log('Regular price raw: ' . var_export($regular_price, true)); // Debug giá gốc
+
+                        if ( $regular_price !== '' && is_numeric( $regular_price ) ) {
+                            $min_real_price_html = wc_price( floatval( $regular_price ) );
+
+                            error_log('Formatted regular price: ' . $min_real_price_html); // Debug HTML đã format
+                        }
+                    }
+                }
+
+            
             // Chuẩn bị hiển thị
             $current_price_html = $product->get_price_html();
             if ( ! $current_price_html ) {
@@ -113,44 +162,61 @@ function list_product_home_page_shortcode() {
             // Tạo HTML cho giá thấp nhất theo yêu cầu:
             // Nếu min_entry có cả sale và regular -> hiển thị sale (dòng trên) và regular (gạch) dòng dưới.
             // Ngược lại hiển thị 1 dòng giá min.
-            $min_price_html = '<em>Liên hệ</em>';
-            if ( $min_entry ) {
-                if ( $min_entry['sale'] !== null && $min_entry['regular'] !== null ) {
+           // $min_price_html = '<em>Liên hệ</em>';
+           // if ( $min_entry ) {
+             //   if ( $min_entry['sale'] !== null && $min_entry['regular'] !== null ) {
                     // Hiển thị sale trên, regular gạch dưới
-                    $min_price_html = '<span class="min-sale">' . wc_price( $min_entry['sale'] ) . '</span>';
-                    $min_price_html .= '<br><span class="min-regular"><del>' . wc_price( $min_entry['regular'] ) . '</del></span>';
-                } else {
+                 //   $min_price_html = '<span class="min-sale">' . wc_price( $min_entry['sale'] ) . '</span>';
+                  //  $min_price_html .= '<br><span class="min-regular"><del>' . wc_price( $min_entry['regular'] ) . '</del></span>';
+             //   } else {
                     // Chỉ có 1 giá (hoặc không có regular/sale rõ ràng)
-                    $min_price_html = '<span class="min-only">' . wc_price( $min_entry['price'] ) . '</span>';
-                }
-            }
+                   // $min_price_html = '<span class="min-only">' . wc_price( $min_entry['price'] ) . '</span>';
+              //  }
+          //  }
 
-            // Render product item
+            // Show ra HTML của sản phẩm với giá của nó.
+
             ?>
-            <div class="product-item">
-                <a href="<?php echo esc_url( get_the_permalink() ); ?>">
-                    <div class="product-item-image">
-                        <?php echo $product->get_image(); ?>
-                    </div>
-
-                    <div class="product-item-title">
-                        <div class="product-item-title-detail">
-                            <h3><?php echo esc_html( get_the_title() ); ?></h3>
-                            <div class="product-divider"></div>
-
-                            <!-- Giá hiện tại (product mẹ) -->
-                            <p class="price current-price"><?php echo $current_price_html; ?></p>
-
-                            <!-- Giá thấp nhất: sale trên, giá gốc dưới (nếu có) -->
-                            <p class="price min-price"><?php echo $min_price_html; ?></p>
-
-                            <!-- Nút mua ngay -->
-                            <a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="btn-buy">Mua ngay</a>
+                <div class="product-item">
+                    <a href="<?php echo esc_url( get_the_permalink() ); ?>">
+                        <div class="product-item-image">
+                            <?php echo $product->get_image(); ?>
                         </div>
-                    </div>
-                </a>
-            </div>
+
+                        <div class="product-item-title">
+                            <div class="product-item-title-detail">
+                                <h3><?php echo esc_html( get_the_title() ); ?></h3>
+                                <div class="product-divider"></div>
+
+                                <!-- Giá hiện tại (product mẹ) -->
+                                <p class="price current-price"><?php echo $current_price_html; ?></p>
+
+                                <!-- Giá thấp nhất: sale trên, giá gốc dưới (nếu có) -->
+                                 <p class="price min-price"><?php // echo $min_price_html; ?></p>
+
+                               
+                                    <p class="price min-real-price">
+                                        <strong>Giá gốc của sản phẩm này:</strong> <?php
+                                        if ( $min_entry && ! empty( $min_entry['id'] ) ) {
+                                            echo '<p><strong>ID sản phẩm có giá thấp nhất:</strong> ' . $min_entry['id'] . '</p>';
+                                        }
+                                        if ( $regular_price ) {
+                                            echo '<p><strong>Giá gốc:</strong> ' . wc_price( $regular_price ) . '</p>';
+                                        }
+                                        if ( $sale_price ) {
+                                            echo '<p><strong>Giá khuyến mãi:</strong> ' . wc_price( $sale_price ) . '</p>';
+                                        }
+                                        ?>
+                                </p>
+
+                                <!-- Nút mua ngay -->
+                                <a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="btn-buy">Mua ngay</a>
+                            </div>
+                        </div>
+                    </a>
+                </div>
             <?php
+
         } // end while
         echo '</div>';
     } else {

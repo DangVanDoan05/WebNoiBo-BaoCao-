@@ -1428,3 +1428,325 @@ Stack trace:
 #4 {main}
   thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\ai\module.php on line 351
 
+2026-03-19T08:55:32+00:00 CRITICAL syntax error, unexpected token "else", expecting end of file in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 223
+
+2026-03-19T08:55:32+00:00 CRITICAL syntax error, unexpected token "else", expecting end of file in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 223
+
+2026-03-19T08:56:04+00:00 CRITICAL syntax error, unexpected token "else", expecting end of file in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 223
+
+2026-03-19T08:56:04+00:00 CRITICAL syntax error, unexpected token "else", expecting end of file in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 223
+
+2026-03-19T08:56:06+00:00 CRITICAL syntax error, unexpected token "else", expecting end of file in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 223
+
+2026-03-19T08:56:06+00:00 CRITICAL syntax error, unexpected token "else", expecting end of file in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 223
+
+2026-03-19T09:39:38+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:194
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 194
+
+2026-03-19T09:39:38+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:194
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 194
+
+2026-03-19T09:40:11+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:194
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 194
+
+2026-03-19T09:40:11+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:194
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 194
+
+2026-03-19T09:40:22+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:194
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 194
+
+2026-03-19T09:40:22+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:194
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 194
+
+2026-03-19T09:48:02+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:131
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 131
+
+2026-03-19T09:48:02+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:131
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 131
+
+2026-03-19T09:48:23+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:131
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 131
+
+2026-03-19T09:48:23+00:00 CRITICAL Uncaught Error: Call to a member function get_sale_price() on bool in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php:131
+Stack trace:
+#0 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): list_product_home_page_shortcode(Array, '', 'List_product_Ho...')
+#1 [internal function]: do_shortcode_tag(Array)
+#2 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(List_p...', 'do_shortcode_ta...', '[List_product_H...')
+#3 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\widgets\shortcode.php(141): do_shortcode('[List_product_H...')
+#4 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\controls-stack.php(2374): Elementor\Widget_Shortcode->render()
+#5 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(636): Elementor\Controls_Stack->render_by_mode()
+#6 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\widget-base.php(774): Elementor\Widget_Base->render_content()
+#7 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\base\element-base.php(494): Elementor\Widget_Base->print_content()
+#8 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\element-cache\module.php(71): Elementor\Element_Base->print_element()
+#9 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(434): Elementor\Modules\ElementCache\Module->Elementor\Modules\ElementCache\{closure}(Array, '', 'elementor-eleme...')
+#10 [internal function]: do_shortcode_tag(Array)
+#11 C:\xampp\htdocs\kamashop\wp-includes\shortcodes.php(273): preg_replace_callback('/\\[(\\[?)(elemen...', 'do_shortcode_ta...', '<div class="ele...')
+#12 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1892): do_shortcode('<div class="ele...')
+#13 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\core\base\document.php(1221): Elementor\Core\Base\Document->print_elements(Array)
+#14 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1198): Elementor\Core\Base\Document->print_elements_with_wrapper(Array)
+#15 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\includes\frontend.php(1093): Elementor\Frontend->get_builder_content(868)
+#16 C:\xampp\htdocs\kamashop\wp-includes\class-wp-hook.php(324): Elementor\Frontend->apply_builder_in_content('<img width="102...')
+#17 C:\xampp\htdocs\kamashop\wp-includes\plugin.php(205): WP_Hook->apply_filters('<img width="102...', Array)
+#18 C:\xampp\htdocs\kamashop\wp-includes\post-template.php(256): apply_filters('the_content', '<img width="102...')
+#19 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(188): the_content()
+#20 [internal function]: Elementor\Modules\PageTemplates\Module->print_callback()
+#21 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\module.php(205): call_user_func(Array)
+#22 C:\xampp\htdocs\kamashop\wp-content\plugins\elementor\modules\page-templates\templates\header-footer.php(19): Elementor\Modules\PageTemplates\Module->print_content()
+#23 C:\xampp\htdocs\kamashop\wp-includes\template-loader.php(106): include('C:\\xampp\\htdocs...')
+#24 C:\xampp\htdocs\kamashop\wp-blog-header.php(19): require_once('C:\\xampp\\htdocs...')
+#25 C:\xampp\htdocs\kamashop\index.php(17): require('C:\\xampp\\htdocs...')
+#26 {main}
+  thrown in C:\xampp\htdocs\kamashop\wp-content\plugins\joinex-commerce\shortcodes\List-product-HomePage.php on line 131
+
