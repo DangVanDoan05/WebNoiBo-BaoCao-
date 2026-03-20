@@ -84,6 +84,7 @@
   justify-content: center; /* căn giữa ngang */
   align-items: center; /* căn giữa dọc */
   padding: 10px; /* nếu muốn khoảng cách xung quanh nội dung.*/
+  padding-bottom: 0; /* không còn khoảng trống dưới */
 }
 
 .product-item-title-detail {
@@ -158,4 +159,52 @@
 
 .btn-buy:hover {
   background: #457b9d;
+}
+
+.product-price-add-to-cart {
+  display: flex;
+  justify-content: space-between; /* đẩy khối con ra hai đầu */
+  align-items: center; /* căn giữa theo chiều dọc (nếu cần) */
+}
+
+.HomePage_Sale_Price {
+  font-family: "Be Vietnam", sans-serif;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.HomePage_Regular_Price_Sale {
+  font-family: "Be Vietnam", sans-serif;
+  color: #000000;
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.HomePage_Regular_Price {
+  font-family: "Be Vietnam", sans-serif;
+  color: #777777;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #777777; /* màu xám cho giá gốc */
+  text-decoration: line-through; /* gạch ngang */
+}
+
+.add-to-cart img {
+  width: 25px;
+  height: 25px;
+}
+.price-min-real-price {
+  height: 20px;
+}
+.price-min-real-price {
+  padding: 0; /* bỏ toàn bộ padding bên trong */
+  margin: 0; /* bỏ khoảng cách bên ngoài khối div */
+}
+
+.price-min-real-price p {
+  margin: 0; /* bỏ khoảng cách mặc định của thẻ <p> */
+  padding: 0; /* bỏ padding mặc định của thẻ <p> */
 }

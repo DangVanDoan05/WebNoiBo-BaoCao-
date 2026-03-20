@@ -6,7 +6,7 @@
 function list_product_home_page_shortcode() {
     $args = array(
         'post_type'      => 'product', // Loại nội dung cần lấy.
-        'posts_per_page' => 4,    // Số bản ghi trả về.
+        'posts_per_page' => 8,    // Số bản ghi trả về.
         'post_status'    => 'publish',
         'orderby'        => 'ID', // Trường sắp xếp.
         'order'          => 'DESC', // Hướng sắp xếp
@@ -185,32 +185,37 @@ function list_product_home_page_shortcode() {
 
                         <div class="product-item-title">
                             <div class="product-item-title-detail">
-                                <h3><?php echo esc_html( get_the_title() ); ?></h3>
-                                <div class="product-divider"></div>
+                                <h3><?php echo esc_html( get_the_title() ); ?></h3> <!-- TIÊU ĐỀ SẢN PHẨM  -->
+                                <div class="product-divider"></div> <!-- ĐƯỜNG PHÂN CÁCH  -->
 
-                                <!-- Giá hiện tại (product mẹ) -->
-                                <p class="price current-price"><?php echo $current_price_html; ?></p>
+                                <div class="product-price-add-to-cart">
+                                    <div class="price-min-real-price">
+                                            <?php
+                                             if ( $sale_price )// Nếu $sale_price rỗng hoặc bằng null, thì khối lệnh bên trong sẽ không chạy.
+                                                { 
+                                                    echo '<p class="HomePage_Sale_Price">'. wc_price( $sale_price ).'</p>';
+                                                }
+                                            else // Giá $sale_price rỗng thì in ra giá thường. 
+                                                {
+                                                    echo '<p class="HomePage_Regular_Price_Sale">'. wc_price( $regular_price ).'</p>';
+                                                }
 
-                                <!-- Giá thấp nhất: sale trên, giá gốc dưới (nếu có) -->
-                                 <p class="price min-price"><?php // echo $min_price_html; ?></p>
+                                            if ($sale_price && $regular_price ) {
+                                             echo '<p class="HomePage_Regular_Price">'. wc_price( $regular_price ).'</p>';
+                                            }                                          
+                                            ?>
+                                    </div>
 
-                               
-                                    <p class="price min-real-price">
-                                        <strong>Giá gốc của sản phẩm này:</strong> <?php
-                                        if ( $min_entry && ! empty( $min_entry['id'] ) ) {
-                                            echo '<p><strong>ID sản phẩm có giá thấp nhất:</strong> ' . $min_entry['id'] . '</p>';
-                                        }
-                                        if ( $regular_price ) {
-                                            echo '<p><strong>Giá gốc:</strong> ' . wc_price( $regular_price ) . '</p>';
-                                        }
-                                        if ( $sale_price ) {
-                                            echo '<p><strong>Giá khuyến mãi:</strong> ' . wc_price( $sale_price ) . '</p>';
-                                        }
-                                        ?>
-                                </p>
-
+                                    <div class="add-to-cart">
+                                            <!-- Ảnh sản phẩm, click vào sẽ đi đến trang chi tiết sản phẩm -->
+                                            <a href="URL_TRANG_CHI_TIẾT_SẢN_PHẨM">
+                                                <img class="cc-img-CartHomePage" src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductHomePageIMG/AddToCart.png'; ?>" alt="">  
+                                                <!-- <img src="URL_ẢNH_ICON_GIỎ_HÀNG" alt="Tên sản phẩm" />-->
+                                            </a>
+                                    </div>
+                                </div>
                                 <!-- Nút mua ngay -->
-                                <a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="btn-buy">Mua ngay</a>
+                               <!-- <a href="<?php echo esc_url( $product->add_to_cart_url() ); ?>" class="btn-buy">Mua ngay</a>-->
                             </div>
                         </div>
                     </a>
