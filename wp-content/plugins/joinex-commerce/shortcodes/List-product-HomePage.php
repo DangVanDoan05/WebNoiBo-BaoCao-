@@ -205,13 +205,12 @@ function list_product_home_page_shortcode() {
                                             }                                          
                                             ?>
                                     </div>
-
                                     <div class="add-to-cart">
-                                            <!-- Ảnh sản phẩm, click vào sẽ đi đến trang chi tiết sản phẩm -->
-                                            <a href="URL_TRANG_CHI_TIẾT_SẢN_PHẨM">
-                                                <img class="cc-img-CartHomePage" src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductHomePageIMG/AddToCart.png'; ?>" alt="">  
-                                                <!-- <img src="URL_ẢNH_ICON_GIỎ_HÀNG" alt="Tên sản phẩm" />-->
-                                            </a>
+                                        <a href="<?php echo esc_url( get_the_permalink( $product->get_id() ) ); ?>">
+                                            <img class="cc-img-CartHomePage" 
+                                                src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductHomePageIMG/AddToCart.png'; ?>" 
+                                                alt="Xem chi tiết sản phẩm">  
+                                        </a>
                                     </div>
                                 </div>
                                 <!-- Nút mua ngay -->
