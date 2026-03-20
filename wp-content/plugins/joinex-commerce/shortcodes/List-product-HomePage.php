@@ -124,7 +124,7 @@ function list_product_home_page_shortcode() {
 
             $min_product = wc_get_product( $min_entry['id'] );
             if ( $min_product ) {
-                $regular_price = $min_product->get_regular_price();
+                     $regular_price = $min_product->get_regular_price();
                 
             }          
 
@@ -180,17 +180,29 @@ function list_product_home_page_shortcode() {
                 <div class="product-item">
                     <a href="<?php echo esc_url( get_the_permalink() ); ?>">
                         <div class="product-item-image">
-                            <?php echo $product->get_image(); ?>
+                            <?php
+                                echo $product->get_image();
+                                if ($sale_price && $regular_price ) {                                                                                 
+                                    $discount_percent =  round(( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+                                    echo '<p class="discount-label">-' .$discount_percent. '%</p>';
+                                }
+                              ?>
+                           
                         </div>
 
                         <div class="product-item-title">
                             <div class="product-item-title-detail">
                                 <h3><?php echo esc_html( get_the_title() ); ?></h3> <!-- TIÊU ĐỀ SẢN PHẨM  -->
                                 <div class="product-divider"></div> <!-- ĐƯỜNG PHÂN CÁCH  -->
-
                                 <div class="product-price-add-to-cart">
                                     <div class="price-min-real-price">
                                             <?php
+                                              //  if ( $min_entry && ! empty( $min_entry['id'] ) ) {
+                                                  //  $min_product = wc_get_product( $min_entry['id'] );
+                                                  //  if ( $min_product ) {
+                                                     //   echo '<p><strong>ID:</strong> ' . $min_entry['id'] . '</p>';                                                    
+                                                //    }
+                                             //   }                                      
                                              if ( $sale_price )// Nếu $sale_price rỗng hoặc bằng null, thì khối lệnh bên trong sẽ không chạy.
                                                 { 
                                                     echo '<p class="HomePage_Sale_Price">'. wc_price( $sale_price ).'</p>';
@@ -200,9 +212,26 @@ function list_product_home_page_shortcode() {
                                                     echo '<p class="HomePage_Regular_Price_Sale">'. wc_price( $regular_price ).'</p>';
                                                 }
 
-                                            if ($sale_price && $regular_price ) {
-                                             echo '<p class="HomePage_Regular_Price">'. wc_price( $regular_price ).'</p>';
-                                            }                                          
+                                            if ($sale_price && $regular_price ) {                                               
+                                                echo '<p class="HomePage_Regular_Price">'. wc_price( $regular_price ).'</p>';
+                                               // $discount_percent =  round(( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+                                               // echo '<p class="discount-label">-' .$discount_percent. '%</p>';
+                                            }
+
+                                             // Hiển thị giá và nhãn giảm giá
+                                          // if ( $regular_price && $sale_price && $regular_price > $sale_price ) {
+                                              // $discount_percent =  round(( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+                                              // echo '<span class="discount-label">-' . $discount_percent . '%</span>';
+                                         //  }
+                                          
+                                              //  $regular_price = floatval( $product->get_regular_price() );
+                                              //  $sale_price    = floatval( $product->get_sale_price() );
+
+                                              //  if ( $regular_price > 0 && $sale_price > 0 && $sale_price < $regular_price ) {
+                                                 //   $discount_percent = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+                                                  //  echo '<span class="discount-label">-' . $discount_percent . '%</span>';
+                                              //  }
+                                                                                    
                                             ?>
                                     </div>
                                     <div class="add-to-cart">

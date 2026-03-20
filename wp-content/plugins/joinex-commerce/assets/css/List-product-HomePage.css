@@ -208,3 +208,20 @@
   margin: 0; /* bỏ khoảng cách mặc định của thẻ <p> */
   padding: 0; /* bỏ padding mặc định của thẻ <p> */
 }
+
+.product-item-image {
+  position: relative; /* khung tham chiếu cho nhãn */
+  display: inline-block;
+}
+
+.discount-label {
+  position: absolute; /* nhãn nằm đè lên ảnh */
+  top: 10px; /* cách mép trên 10px */
+  right: 10px; /* cách mép phải 10px */
+  background-color: red;
+  color: #fff;
+  font-weight: bold;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+}
