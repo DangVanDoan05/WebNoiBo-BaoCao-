@@ -239,3 +239,50 @@
   /* text-align: center;*/ /* căn giữa */
   margin-top: 20px; /* khoảng cách trên */
 }
+
+.cc-product-sort {
+  display: flex;
+  padding-bottom: 15px;
+}
+
+/* Khung tổng thể */
+.cc-product-sort {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* khoảng cách giữa label và các nút */
+  font-family: "BeVietnam Pro", sans-serif;
+}
+
+/* Label "Sắp xếp:" */
+.label-product-sort {
+  margin: 0;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Các nút sắp xếp */
+.cc-product-sort form button {
+  background: none; /* bỏ nền */
+  border: none; /* bỏ viền */
+  color: #333; /* màu chữ */
+  font-size: 15px;
+  font-family: inherit; /* dùng cùng font */
+  cursor: pointer;
+  padding: 0 8px;
+}
+
+/* Hiệu ứng hover */
+.cc-product-sort form button:hover {
+  text-decoration: underline; /* gạch chân khi hover */
+  color: #000;
+}
+
+/* Nếu muốn nút đang chọn nổi bật hơn */
+.cc-product-sort form button.active {
+  font-weight: 600;
+  color: #1976d2; /* xanh lam */
+}
+/* Thêm đường phân cách dọc */
+.cc-product-sort form button + button {
+  border-left: 1px solid #ccc; /* đường kẻ màu xám nhạt */
+}

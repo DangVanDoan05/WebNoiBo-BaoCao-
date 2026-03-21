@@ -5,6 +5,7 @@
 
 function list_product_product_page_shortcode() {
     $cat_id = isset($_GET['product_cat']) ? intval($_GET['product_cat']) : 0;
+    $order_by = isset($_GET['orderby']) ? sanitize_text_field($_GET['orderby']) : ''; // Tham số để sắp xếp.
     $args = array(
         'post_type'      => 'product',
         'posts_per_page' => 12,
@@ -21,6 +22,28 @@ function list_product_product_page_shortcode() {
             ),
         );
     }
+    switch ($order_by) {
+        case 'price_asc':
+            $args['orderby']  = 'meta_value_num';
+            $args['meta_key'] = '_price';
+            $args['order']    = 'ASC';
+            break;
+    
+        case 'price_desc':
+            $args['orderby']  = 'meta_value_num';
+            $args['meta_key'] = '_price';
+            $args['order']    = 'DESC';
+            break;
+    
+        case 'date_desc':
+            $args['orderby'] = 'date';
+            $args['order']   = 'DESC';
+            break;
+    
+        default:
+            $args['orderby'] = 'ID';
+            $args['order']   = 'DESC';
+    }
     
     $loop = new WP_Query($args);
     
@@ -31,7 +54,17 @@ function list_product_product_page_shortcode() {
     //  properties: posts (mảng WP_Post), post_count, found_posts, max_num_pages, query_vars.
 
     ob_start(); // Bắt đầu output buffering của PHP: mọi output (echo, HTML trực tiếp) sau đó sẽ được lưu vào bộ đệm thay vì in ra trình duyệt ngay.
-
+    // IN RA ĐOẠN SẮP XẾP
+    echo ' <div class="cc-product-sort">
+                <p class="label-product-sort">Sắp xếp:</p> 
+                <form method="get" id="product-sort-ProductPage">
+                    <button type="submit" name="orderby" value="price_asc">Giá từ thấp đến cao</button>
+                    <button type="submit" name="orderby" value="price_desc">Giá từ cao đến thấp</button>
+                    <button type="submit" name="orderby" value="date_desc">Mới nhất</button>
+                </form>
+            </div>
+        ';
+    
     if ( $loop->have_posts() )
      // Duyệt lần lượt từng đối tượng , xem truy vấn hiện tại còn bản ghi nào chưa được duyệt hay không.
      // Nó trả về 'true' nếu còn bài viết để lặp, 'false' nếu đã hết.
@@ -187,6 +220,7 @@ function list_product_product_page_shortcode() {
             // Show ra HTML của sản phẩm với giá của nó.
 
             ?>
+                
                 <div class="product-item">
                     <a href="<?php echo esc_url( get_the_permalink() ); ?>">
                         <div class="product-item-image">
