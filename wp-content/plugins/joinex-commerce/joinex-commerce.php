@@ -49,6 +49,24 @@ function joinex_load_assets(){
         array('elementor-frontend', 'joinex-checkout-css'), // load sau Elementor và CSS plugin khác
         filemtime( plugin_dir_path(__FILE__) . 'assets/css/List-product-HomePage.css' )
     );
+
+    // CSS cho List product ở trang SẢN PHẨM (đảm bảo load sau Elementor)
+    wp_enqueue_style(
+        'joinex-product-list-ProductPage',
+        plugin_dir_url(__FILE__) . 'assets/css/List-product-ProductPage.css',
+        array('elementor-frontend', 'joinex-checkout-css'), // load sau Elementor và CSS plugin khác
+        filemtime( plugin_dir_path(__FILE__) . 'assets/css/List-product-ProductPage.css' )
+    );
+
+    // CSS cho Bộ lọc sản phẩm
+    wp_enqueue_style(
+        'joinex-product-filter-dropdown',
+        plugin_dir_url(__FILE__) . 'assets/css/product_filter_dropdown.css',
+        array('elementor-frontend', 'joinex-checkout-css'), // load sau Elementor và CSS plugin khác
+        filemtime( plugin_dir_path(__FILE__) . 'assets/css/product_filter_dropdown.css' )
+    );
+
+
 }
 add_action('wp_enqueue_scripts','joinex_load_assets', 20);
 
@@ -66,5 +84,11 @@ require_once plugin_dir_path(__FILE__) . 'shortcodes/checkout-shortcode.php';
 // joinex-commerce.php
 function joinex_commerce_load_shortcodes() {
     include_once plugin_dir_path(__FILE__) . 'shortcodes/List-product-HomePage.php';
+    include_once plugin_dir_path(__FILE__) . 'shortcodes/List-product-ProductPage.php';
+    include_once plugin_dir_path(__FILE__) . 'shortcodes/product_filter_dropdown.php';
 }
+
 add_action('init', 'joinex_commerce_load_shortcodes');
+
+
+

@@ -1,30 +1,29 @@
 <?php
-// File: shortcodes/list-product-home-page.php
-// Shortcode: [List_product_Home_page]
+// File: shortcodes/list-product-product-page.php
+// Shortcode: [List_product_Product_page]
 // Hiển thị danh sách sản phẩm kèm giá hiện tại và "giá thấp nhất" (nếu giá thấp nhất có cả sale và regular thì hiển thị sale trên, regular gạch dưới).
 
-function list_product_home_page_shortcode() {
+function list_product_product_page_shortcode() {
     $cat_id = isset($_GET['product_cat']) ? intval($_GET['product_cat']) : 0;
-
-$args = array(
-    'post_type'      => 'product',
-    'posts_per_page' => 8,
-    'post_status'    => 'publish',
-    'orderby'        => 'ID',
-    'order'          => 'DESC',
-);
-
-if ($cat_id > 0) {
-    $args['tax_query'] = array(
-        array(
-            'taxonomy' => 'product_cat',
-            'field'    => 'term_id',
-            'terms'    => $cat_id,
-        ),
-    );
-}
-
-$loop = new WP_Query($args);
+    $args = array(
+        'post_type'      => 'product',
+        'posts_per_page' => 12,
+        'post_status'    => 'publish',
+        'orderby'        => 'ID',
+        'order'          => 'DESC',
+    );    
+    if ($cat_id > 0) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'product_cat',
+                'field'    => 'term_id',
+                'terms'    => $cat_id,
+            ),
+        );
+    }
+    
+    $loop = new WP_Query($args);
+    
     // $loop là một WP_Query object chứa:
 
     // methods: have_posts(), the_post(), rewind_posts(), get_posts(), next_post(), in_the_loop().
@@ -264,10 +263,10 @@ $loop = new WP_Query($args);
         } // end while
         echo '</div>';
     } else {
-        echo '<p>Không có sản phẩm.</p>';
+        echo '<p class="no-products">Không có sản phẩm.</p>';
     }
 
     wp_reset_postdata();
     return ob_get_clean();
 }
-add_shortcode( 'List_product_Home_page', 'list_product_home_page_shortcode' );
+add_shortcode( 'List_product_Product_page', 'list_product_product_page_shortcode' );
