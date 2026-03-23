@@ -51,8 +51,8 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 		 */
 		public function __construct() {
 			add_action( 'wp_ajax_hfe_recommended_plugin_activate', [ $this, 'hfe_activate_addon' ] );
-			add_action( 'wp_ajax_hfe_recommended_plugin_install', 'wp_ajax_install_plugin' );
-			add_action( 'wp_ajax_hfe_recommended_theme_install', 'wp_ajax_install_theme' );
+			add_action( 'wp_ajax_hfe_recommended_plugin_install', [ $this, 'hfe_plugin_install' ] );
+			add_action( 'wp_ajax_hfe_recommended_theme_install', [ $this, 'hfe_theme_install' ] );
 			add_action( 'wp_ajax_hfe_admin_modal', [ $this, 'hfe_admin_modal' ] );
 			add_action( 'wp_ajax_hfe-update-subscription', [ $this, 'update_subscription' ] );
 
@@ -61,8 +61,169 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 
 			add_action( 'wp_ajax_hfe_bulk_activate_widgets', [ $this, 'bulk_activate_widgets' ] );
 			add_action( 'wp_ajax_hfe_bulk_deactivate_widgets', [ $this, 'bulk_deactivate_widgets' ] );
+			add_action( 'wp_ajax_hfe_bulk_deactivate_unused_widgets', [ $this, 'bulk_deactivate_unused_widgets' ] );
 
 			add_action( 'wp_ajax_save_theme_compatibility_option', [ $this, 'save_hfe_compatibility_option_callback' ] );
+			add_action( 'wp_ajax_save_analytics_option', [ $this, 'save_analytics_option' ] );
+
+			add_action( 'wp_ajax_update_permalink_notice_option', [ $this, 'update_permalink_notice_option' ] );
+			add_action( 'wp_ajax_hfe_flush_permalink_notice', [ $this, 'hfe_flush_permalink_notice' ] );
+
+			add_action( 'wp_ajax_hfe_dismiss_upgrade_notice', [ $this, 'dismiss_upgrade_notice' ] );
+
+		}
+
+		/**
+		 * Updated the permalink notice option.
+		 *
+		 * @since 2.2.1
+		 */
+		public function update_permalink_notice_option() {
+			// Verify the nonce.
+			if ( ! isset( $_POST['nonce'] ) || ! check_ajax_referer( 'hfe_permalink_clear_notice_nonce', 'nonce', false ) ) {
+				wp_send_json_error( 'Invalid nonce' );
+			}
+			
+			// Check if the current user has the capability to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( 'Unauthorized user' );
+			}
+
+			// Update the option to true.
+			update_user_meta( get_current_user_id(), 'hfe_permalink_notice_option', 'notice-dismissed' );
+		
+			// Send a success response.
+			wp_send_json_success( 'Option updated successfully' );
+		}
+
+		/**
+		 * Updated the permalink notice option.
+		 *
+		 * @since 2.2.1
+		 */
+		public function hfe_flush_permalink_notice() {
+			// Verify the nonce.
+			if ( ! isset( $_POST['nonce'] ) || ! check_ajax_referer( 'hfe_permalink_clear_notice_nonce', 'nonce', false ) ) {
+				wp_send_json_error( 'Invalid nonce' );
+			}
+			
+			// Check if the current user has the capability to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( 'Unauthorized user' );
+			}
+
+			$permalink_structure = get_option('permalink_structure');
+			// Check if the permalink structure is not empty.
+			if ( '' !== $permalink_structure )
+			{ 
+				update_option('permalink_structure', $permalink_structure);
+				flush_rewrite_rules(); 
+				// Update the option to true.
+				update_user_meta( get_current_user_id(), 'hfe_permalink_notice_option', 'notice-dismissed' );
+		
+			} 
+
+			// Send a success response.
+			wp_send_json_success( 'Permalink Flushed successfully' );
+		}
+		
+		/**
+		 * Handles the installation and saving of required plugins.
+		 *
+		 * This function is responsible for installing and saving required plugins.
+		 * It checks for the plugin slug in the AJAX request, verifies the nonce, and initiates the plugin installation process.
+		 * If the plugin is successfully installed, it schedules a database update to map the plugin slug to a custom key for analytics tracking.
+		 *
+		 * @since 2.2.0
+		 */
+		public function hfe_plugin_install() {
+
+			check_ajax_referer( 'updates', '_ajax_nonce' );
+
+			// Check if user has permission to install plugin.
+			if ( ! current_user_can( 'install_plugins' ) ) {
+				wp_send_json_error( esc_html__( 'Plugin installation is disabled for you on this site.', 'header-footer-elementor' ) );
+			}
+			// Fetching the plugin slug from the AJAX request.
+			// @psalm-suppress PossiblyInvalidArgument.
+			$plugin_slug = isset( $_POST['slug'] ) && is_string( $_POST['slug'] ) ? sanitize_text_field( wp_unslash( $_POST['slug'] ) ) : '';
+
+			if ( empty( $plugin_slug ) ) {
+				wp_send_json_error( [ 'message' => __( 'Plugin slug is missing.', 'header-footer-elementor' ) ] );
+			}
+
+			// Schedule the database update if the plugin is installed successfully.
+			add_action(
+				'shutdown',
+				function () use ( $plugin_slug ) {
+					// Iterate through all plugins to check if the installed plugin matches the current plugin slug.
+					$all_plugins = get_plugins();
+					foreach ( $all_plugins as $plugin_file => $_ ) {
+						if ( class_exists( 'BSF_UTM_Analytics' ) && is_callable( 'BSF_UTM_Analytics::update_referer' ) && strpos( $plugin_file, $plugin_slug . '/' ) === 0 ) {
+							// If the plugin is found and the update_referer function is callable, update the referer with the corresponding product slug.
+							BSF_UTM_Analytics::update_referer( 'header-footer-elementor', $plugin_slug );
+							return;
+						}
+					}
+				}
+			);
+
+			if ( function_exists( 'wp_ajax_install_plugin' ) ) {
+				// @psalm-suppress NoValue
+				wp_ajax_install_plugin();
+			} else {
+				wp_send_json_error( [ 'message' => __( 'Plugin installation function not found.', 'header-footer-elementor' ) ] );
+			}
+		}
+
+		
+		/**
+		 * Handles the installation and saving of required theme.
+		 *
+		 * This function is responsible for installing and saving required plugins.
+		 * It checks for the plugin slug in the AJAX request, verifies the nonce, and initiates the plugin installation process.
+		 * If the theme is successfully installed, it schedules a database update to map the plugin slug to a custom key for analytics tracking.
+		 *
+		 * @since 2.2.0
+		 */
+		public function hfe_theme_install() {
+
+			check_ajax_referer( 'updates', '_ajax_nonce' );
+
+			// Check if user has permission to install theme.
+			if ( ! current_user_can( 'install_themes' ) ) {
+				wp_send_json_error( esc_html__( 'Theme installation is disabled for you on this site.', 'header-footer-elementor' ) );
+			}
+			// Fetching the plugin slug from the AJAX request.
+			// @psalm-suppress PossiblyInvalidArgument.
+			$theme_slug = isset( $_POST['slug'] ) && is_string( $_POST['slug'] ) ? sanitize_text_field( wp_unslash( $_POST['slug'] ) ) : '';
+
+			if ( empty( $theme_slug ) ) {
+				wp_send_json_error( [ 'message' => __( 'Theme slug is missing.', 'header-footer-elementor' ) ] );
+			}
+
+			// Schedule the database update if the theme is installed successfully.
+			add_action(
+				'shutdown',
+				function () use ( $theme_slug ) {
+					// Iterate through all themes to check if the installed theme matches the current theme slug.
+					$all_themes = wp_get_themes();
+					foreach ( $all_themes as $theme_file => $_ ) {
+						if ( class_exists( 'BSF_UTM_Analytics' ) && is_callable( 'BSF_UTM_Analytics::update_referer' ) && strpos( $theme_file, $theme_slug . '/' ) === 0 ) {
+							// If the theme is found and the update_referer function is callable, update the referer with the corresponding product slug.
+							BSF_UTM_Analytics::update_referer( 'header-footer-elementor', $theme_slug );
+							return;
+						}
+					}
+				}
+			);
+
+			if ( function_exists( 'wp_ajax_install_theme' ) ) {
+				// @psalm-suppress NoValue
+				wp_ajax_install_theme();
+			} else {
+				wp_send_json_error( [ 'message' => __( 'Theme installation function not found.', 'header-footer-elementor' ) ] );
+			}
 		}
 
 		/**
@@ -71,6 +232,11 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 		public static function bulk_activate_widgets() {
 
 			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
+
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
 
 			if ( ! isset( self::$widget_list ) ) {
 				self::$widget_list = HFE_Helper::get_widget_list();
@@ -100,6 +266,11 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 
 			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
 
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
+
 			if ( ! isset( self::$widget_list ) ) {
 				self::$widget_list = HFE_Helper::get_widget_list();
 			}
@@ -122,15 +293,77 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 		}
 
 		/**
+		 * Deactivate all unused module
+		 */
+		public static function bulk_deactivate_unused_widgets() {
+
+			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
+
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
+		
+			if ( ! isset( self::$widget_list ) ) {
+				self::$widget_list = HFE_Helper::get_widget_list();
+			}
+			$used_widgets = HFE_Helper::get_used_widget();
+			// var_dump($used_widgets);
+			$unused_widgets = [];
+		
+			// Compare slugs from widget_list to keys in $used_widgets
+			foreach ( self::$widget_list as $slug => $value ) {
+				if ( ! isset( $used_widgets[ $value['slug'] ] ) ) {
+					if( $slug === 'Scroll_To_Top' || $slug === 'Reading_Progress_Bar' ){
+						continue;
+					}
+					$unused_widgets[] = $slug;
+				}
+			}
+		
+			$deactivated = [];
+			$widgets     = [];
+
+			// Set unused widgets to disabled.
+			foreach ( self::$widget_list as $slug => $value ) {
+				if ( in_array( $slug, $unused_widgets, true ) ) {
+					$widgets[ $slug ] = 'disabled';
+					$deactivated[] = $slug;
+				}
+			}
+		
+			$widgets = array_map( 'esc_attr', $widgets );
+		
+			HFE_Helper::update_admin_settings_option( '_hfe_widgets', $widgets );
+		
+			wp_send_json_success( [ 'deactivated' => $deactivated ] );
+		}
+		
+
+		/**
 		 * Deactivate module
 		 */
 		public static function deactivate_widget() {
 
 			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
 
-			$module_id = isset( $_POST['module_id'] ) ? sanitize_text_field( $_POST['module_id'] ) : '';
-			$widgets   = HFE_Helper::get_admin_settings_option( '_hfe_widgets', [] );
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
 
+			$module_id = isset( $_POST['module_id'] ) ? sanitize_text_field( wp_unslash( $_POST['module_id'] ) ) : '';
+
+			// Validate module_id against known widget list.
+			if ( ! isset( self::$widget_list ) ) {
+				self::$widget_list = HFE_Helper::get_widget_list();
+			}
+
+			if ( empty( $module_id ) || ! array_key_exists( $module_id, self::$widget_list ) ) {
+				wp_send_json_error( __( 'Invalid widget identifier.', 'header-footer-elementor' ) );
+			}
+
+			$widgets               = HFE_Helper::get_admin_settings_option( '_hfe_widgets', [] );
 			$widgets[ $module_id ] = 'disabled';
 			$widgets               = array_map( 'esc_attr', $widgets );
 
@@ -147,7 +380,22 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 
 			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
 
-			$module_id             = isset( $_POST['module_id'] ) ? sanitize_text_field( $_POST['module_id'] ) : '';
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
+
+			$module_id = isset( $_POST['module_id'] ) ? sanitize_text_field( wp_unslash( $_POST['module_id'] ) ) : '';
+
+			// Validate module_id against known widget list.
+			if ( ! isset( self::$widget_list ) ) {
+				self::$widget_list = HFE_Helper::get_widget_list();
+			}
+
+			if ( empty( $module_id ) || ! array_key_exists( $module_id, self::$widget_list ) ) {
+				wp_send_json_error( __( 'Invalid widget identifier.', 'header-footer-elementor' ) );
+			}
+
 			$widgets               = HFE_Helper::get_admin_settings_option( '_hfe_widgets', [] );
 			$widgets[ $module_id ] = $module_id;
 			$widgets               = array_map( 'esc_attr', $widgets );
@@ -169,6 +417,11 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 			// Run a security check.
 			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
 
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
+
 			update_user_meta( get_current_user_id(), 'hfe-popup', 'dismissed' );
 		}
 
@@ -187,7 +440,7 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 			}
 
 			$api_domain = trailingslashit( $this->get_api_domain() );
-			// PHPCS:Ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+			// PHPCS:Ignore WordPress.Security.ValidatedSanitizedInput.InputNotSanitized -- This code is deprecated and will be removed in future versions.
 			$arguments = isset( $_POST['data'] ) ? array_map( 'sanitize_text_field', json_decode( stripslashes( wp_unslash( $_POST['data'] ) ), true ) ) : [];
 
 			$url = add_query_arg( $arguments, $api_domain . 'wp-json/starter-templates/v1/subscribe/' ); // add URL of your site or mail API.
@@ -286,24 +539,93 @@ if ( ! class_exists( 'HFE_Addons_Actions' ) ) {
 		/**
 		 * Save HFE compatibility option via AJAX.
 		 *
-		 * @since x.x.x
+		 * @since 2.2.0
 		 * @return void
 		 */
 		public function save_hfe_compatibility_option_callback() {
 			// Check nonce for security.
 			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
 
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( esc_html__( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
+
 			if ( isset( $_POST['hfe_compatibility_option'] ) ) {
-				// Sanitize and update option.
-				$option = sanitize_text_field( $_POST['hfe_compatibility_option'] );
+				// Sanitize and validate option against allowed values.
+				$option        = sanitize_text_field( wp_unslash( $_POST['hfe_compatibility_option'] ) );
+				$allowed_values = [ '1', '2' ];
+
+				if ( ! in_array( $option, $allowed_values, true ) ) {
+					wp_send_json_error( esc_html__( 'Invalid compatibility option value.', 'header-footer-elementor' ) );
+				}
+
 				update_option( 'hfe_compatibility_option', $option );
 
 				// Return a success response.
-				wp_send_json_success( 'Settings saved successfully!' );
+				wp_send_json_success( esc_html__( 'Settings saved successfully!', 'header-footer-elementor' ) );
 			} else {
 				// Return an error response if the option is not set.
-				wp_send_json_error( 'Unable to save settings.' );
+				wp_send_json_error( esc_html__( 'Unable to save settings.', 'header-footer-elementor' ) );
 			}
+		}
+
+		/**
+		 * Save HFE analytics compatibility option via AJAX.
+		 *
+		 * @since 2.2.1
+		 * @return void
+		 */
+		public function save_analytics_option() {
+			// Check nonce for security.
+			check_ajax_referer( 'hfe-admin-nonce', 'nonce' );
+
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+			}
+
+			if ( isset( $_POST['uae_usage_optin'] ) ) {
+				// Sanitize and validate option against allowed values.
+				$option        = sanitize_text_field( wp_unslash( $_POST['uae_usage_optin'] ) );
+				$allowed_values = [ 'yes', 'no' ];
+
+				if ( ! in_array( $option, $allowed_values, true ) ) {
+					wp_send_json_error( __( 'Invalid analytics option value.', 'header-footer-elementor' ) );
+				}
+
+				update_option( 'uae_usage_optin', $option );
+
+				// Return a success response.
+				wp_send_json_success( __( 'Settings saved successfully!', 'header-footer-elementor' ) );
+			} else {
+				// Return an error response if the option is not set.
+				wp_send_json_error( __( 'Unable to save settings.', 'header-footer-elementor' ) );
+			}
+		}
+
+		/**
+		 * Dismiss upgrade notice
+		 *
+		 * @return void
+		 */
+		public function dismiss_upgrade_notice() {
+
+			// Verify nonce for security.
+			if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'hfe-admin-nonce' ) ) {
+				wp_send_json_error( __( 'Security check failed.', 'header-footer-elementor' ) );
+				return;
+			}
+
+			// Check if user has permission to manage options.
+			if ( ! current_user_can( 'manage_options' ) ) {
+				wp_send_json_error( __( 'You do not have permission to perform this action.', 'header-footer-elementor' ) );
+				return;
+			}
+
+			// Update option to remember the dismissal
+			update_user_meta( get_current_user_id(), 'hfe_upgrade_notice_dismissed', 'true' );
+			wp_send_json_success( __( 'Upgrade notice dismissed.', 'header-footer-elementor' ) );
 		}
 
 	}

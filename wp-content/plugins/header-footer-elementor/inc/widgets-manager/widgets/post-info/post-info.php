@@ -28,14 +28,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * HFE widget for Post Info.
  *
- * @since x.x.x
+ * @since 2.2.1
  */
 class Post_Info extends Common_Widget {
 
 	/**
 	 * Retrieve the widget name.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 *
 	 * @access public
 	 *
@@ -48,7 +48,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Retrieve the widget title.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 *
 	 * @access public
 	 *
@@ -61,7 +61,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Retrieve the widget icon.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 *
 	 * @access public
 	 *
@@ -72,9 +72,43 @@ class Post_Info extends Common_Widget {
 	}
 
 	/**
+	 * Retrieve Widget Keywords.
+	 *
+	 * @since 2.6.0
+	 * @access public
+	 *
+	 * @return string Widget keywords.
+	 */
+	public function get_keywords() {
+		return parent::get_widget_keywords( 'Post_Info' );
+	}
+
+	/**
+	 * Get widget upsale data.
+	 *
+	 * Retrieve the widget promotion data.
+	 *
+	 * @since 2.5.0
+	 * @access protected
+	 *
+	 * @return array Widget promotion data.
+	 */
+	protected function get_upsale_data() {
+		return [
+			'condition' => ! defined( 'UAEL_VER' ),
+			'image' => esc_url( HFE_URL . 'assets/images/upgrade-pro.png' ),
+			'image_alt' => esc_attr__( 'Upgrade', 'header-footer-elementor' ),
+			'title' => esc_html__( 'Upgrade your Post Info widget', 'header-footer-elementor' ),
+			'description' => esc_html__( 'Get the Advanced Posts widget and unlock powerful layouts, filters, and customization options with UAE Pro.', 'header-footer-elementor' ),
+			'upgrade_url' => esc_url( 'https://ultimateelementor.com/pricing/?utm_source=UAE-Post-Info&utm_medium=editor&utm_campaign=static-promotion' ),
+			'upgrade_text' => esc_html__( 'Upgrade Now', 'header-footer-elementor' ),
+		];
+	}
+	
+	/**
 	 * Register Post Info controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -89,7 +123,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Register general Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -428,7 +462,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Register style Controls for list items.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -626,7 +660,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Register style Controls for icon.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -681,7 +715,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Register style Controls for text.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -743,7 +777,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Get taxonomies.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return array
 	 */
@@ -769,7 +803,7 @@ class Post_Info extends Common_Widget {
 	/**
 	 * Render Post meta fields
 	 * 
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @param array $repeater_item An array of repeater item options for custom strings and link.
 	 * @return array An array of rendered post meta fields.
@@ -1243,7 +1277,7 @@ class Post_Info extends Common_Widget {
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */

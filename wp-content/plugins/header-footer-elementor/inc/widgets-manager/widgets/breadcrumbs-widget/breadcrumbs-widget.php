@@ -27,14 +27,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * HFE widget for site title
  *
- * @since x.x.x
+ * @since 2.2.1
  */
 class Breadcrumbs_Widget extends Common_Widget {
 
 	/**
 	 * Retrieve the widget name.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 *
 	 * @access public
 	 *
@@ -47,7 +47,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Retrieve the widget title.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 *
 	 * @access public
 	 *
@@ -60,7 +60,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Retrieve the widget icon.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 *
 	 * @access public
 	 *
@@ -68,6 +68,18 @@ class Breadcrumbs_Widget extends Common_Widget {
 	 */
 	public function get_icon() {
 		return parent::get_widget_icon( 'Breadcrumbs_Widget' );
+	}
+
+	/**
+	 * Retrieve Widget Keywords.
+	 *
+	 * @since 2.6.0
+	 * @access public
+	 *
+	 * @return string Widget keywords.
+	 */
+	public function get_keywords() {
+		return parent::get_widget_keywords( 'Breadcrumbs_Widget' );
 	}
 
 	/**
@@ -81,6 +93,28 @@ class Breadcrumbs_Widget extends Common_Widget {
 	 */
 	protected function is_dynamic_content(): bool { // phpcs:ignore
 		return true;
+	}
+
+	/**
+	 * Get widget upsale data.
+	 *
+	 * Retrieve the widget promotion data.
+	 *
+	 * @since 2.5.0
+	 * @access protected
+	 *
+	 * @return array Widget promotion data.
+	 */
+	protected function get_upsale_data() {
+		return [
+			'condition' => ! defined( 'UAEL_VER' ),
+			'image' => esc_url( HFE_URL . 'assets/images/upgrade-pro.png' ),
+			'image_alt' => esc_attr__( 'Upgrade', 'header-footer-elementor' ),
+			'title' => esc_html__( 'Get more than just Breadcrumbs', 'header-footer-elementor' ),
+			'description' => esc_html__( 'UAE Pro includes Schema widgets like FAQ Schema and How-To Schema, helping your content rank higher.', 'header-footer-elementor' ),
+			'upgrade_url' => esc_url( 'https://ultimateelementor.com/pricing/?utm_source=UAE-Breadcrumbs&utm_medium=editor&utm_campaign=static-promotion' ),
+			'upgrade_text' => esc_html__( 'Upgrade Now', 'header-footer-elementor' ),
+		];
 	}
 
 	/**
@@ -107,7 +141,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Register general Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -181,7 +215,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Register Separator Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -254,7 +288,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Register Separator Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -313,7 +347,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Register General Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -480,7 +514,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Register Separator Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -544,7 +578,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	/**
 	 * Register current Controls.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */
@@ -630,12 +664,13 @@ class Breadcrumbs_Widget extends Common_Widget {
 
 	}
 
+
 	/**
 	 * Render Heading output on the frontend.
 	 *
 	 * Written in PHP and used to generate the final HTML.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 *
 	 * // phpcs:ignore
@@ -777,7 +812,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 		$home_class = ( 'yes' === $settings['show_home'] ) ? 'hfe-breadcrumbs-show-home' : '';
 	
 		// Build the breadcrumb output.
-		$output = '<ul class="hfe-breadcrumbs ' . esc_attr( $home_class ) . '">';
+		$output = '<nav aria-label="Breadcrumb"><ul class="hfe-breadcrumbs ' . esc_attr( $home_class ) . '">';
 
 		foreach ( $breadcrumbs as $index => $breadcrumb ) {
 			// Open the breadcrumb item.
@@ -791,7 +826,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 			if ( $breadcrumb['url'] ) {
 				$output .= '<a href="' . esc_url( $breadcrumb['url'] ) . '"><span class="hfe-breadcrumbs-text">' . wp_kses_post( $breadcrumb['title'] ) . '</span></a>';
 			} else {
-				$output .= '<span class="hfe-breadcrumbs-text">' . wp_kses_post( $breadcrumb['title'] ) . '</span>';
+				$output .= '<span class="hfe-breadcrumbs-text" aria-current="page">' . wp_kses_post( $breadcrumb['title'] ) . '</span>';
 			}
 			$output .= '</li>';
 
@@ -810,9 +845,9 @@ class Breadcrumbs_Widget extends Common_Widget {
 				$output .= '</li>';
 			}
 		}
-		$output .= '</ul>';
+		$output .= '</ul></nav>';
 		
-		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $output; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- If escaped the icons are not rendering on frontend.
 
 	}
 
@@ -838,7 +873,7 @@ class Breadcrumbs_Widget extends Common_Widget {
 	 *
 	 * Written as a Backbone JavaScript template and used to generate the live preview.
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access protected
 	 * @return void
 	 */

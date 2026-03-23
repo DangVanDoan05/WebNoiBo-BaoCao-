@@ -70,6 +70,18 @@ class Page_Title extends Common_Widget {
 	}
 
 	/**
+	 * Retrieve Widget Keywords.
+	 *
+	 * @since 2.6.0
+	 * @access public
+	 *
+	 * @return string Widget keywords.
+	 */
+	public function get_keywords() {
+		return parent::get_widget_keywords( 'Page_Title' );
+	}
+
+	/**
 	 * Indicates if the widget's content is dynamic.
 	 *
 	 * This method returns true if the widget's output is dynamic and should not be cached,
@@ -92,6 +104,7 @@ class Page_Title extends Common_Widget {
 	protected function register_controls() {
 		$this->register_content_page_title_controls();
 		$this->register_page_title_style_controls();
+		$this->register_pro_promotion_controls();
 	}
 
 	/**
@@ -393,6 +406,37 @@ class Page_Title extends Common_Widget {
 		);
 
 		$this->end_controls_section();
+	}
+
+	/**
+	 * Register Page Title Promotion Controls.
+	 *
+	 * @since 2.4.0
+	 * @access protected
+	 */
+	protected function register_pro_promotion_controls() {
+
+		if(! defined( 'UAEL_VER' )){
+			$this->start_controls_section(
+				'section_pro_features_field',
+				array(
+					'label' => __( 'Go Pro for More Features', 'header-footer-elementor' ),
+				)
+			);
+
+			$this->add_control(
+				'uae_pro_promotion_notice',
+				[
+					'type' => Controls_Manager::NOTICE,
+					'notice_type' => 'info',
+					'dismissible' => false,
+					'content' => __( '<b>Build smarter and faster</b> with premium widgets, 200+ section blocks, and advanced customisation controls — all available in the <a href="https://ultimateelementor.com/pricing/?utm_source=uae-dashboard&utm_medium=editor&utm_campaign=uae-pro-promotion" target="_blank">UAE Pro</a>.', 'header-footer-elementor' ),
+				]
+			);
+
+
+			$this->end_controls_section();
+		}
 	}
 
 	/**

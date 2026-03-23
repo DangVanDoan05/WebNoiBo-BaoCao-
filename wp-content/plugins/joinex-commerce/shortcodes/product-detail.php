@@ -21,45 +21,39 @@ function joinex_product_detail_shortcode() {
                         </div>
                 </div>
                 <div class="images-gallery-product-container"> 
-    <div class="images-gallery-product">
-        <?php
-            $product = wc_get_product( $product_id );
-            $gallery_ids = $product->get_gallery_image_ids();                           
-            $max_show = 4;
-            $total = count($gallery_ids);
+                    <div class="main-image">
+                        <?php
+                            $product = wc_get_product( $product_id );
+                            $main_img_id = $product->get_image_id(); // ảnh sản phẩm chính
+                            $gallery_ids = $product->get_gallery_image_ids(); // thư viện ảnh
 
-            if ( $gallery_ids ) {
-                if ($total > $max_show) {
-                    // Slider với mũi tên
-                    ?>
-                    <div class="gallery-container">
-                        <button class="btn-prev">◀</button>
-                        <div class="product-gallery slider">
-                            <?php foreach ($gallery_ids as $img_id) : ?>
-                                <div class="gallery-item">
-                                    <?php echo wp_get_attachment_image( $img_id, 'large' ); ?>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        <button class="btn-next">▶</button>
+                            if ($main_img_id) {
+                                echo wp_get_attachment_image( $main_img_id, 'large', false, array('id' => 'current-main-image'));
+                            }
+                        ?>
                     </div>
-                    <?php
-                } else {
-                    // Hiển thị bình thường
-                    ?>
-                    <div class="product-gallery">
-                        <?php foreach ($gallery_ids as $img_id) : ?>
-                            <div class="gallery-item">
-                                <?php echo wp_get_attachment_image( $img_id, 'large' ); ?>
-                            </div>
-                        <?php endforeach; ?>
+
+                    <div class="images-gallery-product">
+                        <?php
+                            // Đưa ảnh chính lên đầu gallery thumbnail
+                            if ($main_img_id) {
+                                echo '<div class="gallery-thumb">';
+                                echo wp_get_attachment_image( $main_img_id, 'thumbnail', false, array('class' => 'thumb-image active'));
+                                echo '</div>';
+                            }
+
+                            // Sau đó lần lượt các ảnh trong thư viện
+                            if ($gallery_ids) {
+                                foreach ($gallery_ids as $img_id) {
+                                    echo '<div class="gallery-thumb">';
+                                    echo wp_get_attachment_image( $img_id, 'thumbnail', false, array('class' => 'thumb-image'));
+                                    echo '</div>';
+                                }
+                            }
+                        ?>
                     </div>
-                    <?php
-                }
-            }
-        ?>
-    </div>
-</div>
+                </div>
+
 
             </div>    
             <div class="title-short-description-product">  <!-- KHỐI TIÊU ĐỀ VÀ MÔ TẢ NGẮN  --> 
@@ -79,8 +73,6 @@ function joinex_product_detail_shortcode() {
             <?php echo wpautop($product->get_description()); ?>
         </div>          
     </div>
-
-
     <?php
     return ob_get_clean();
 }

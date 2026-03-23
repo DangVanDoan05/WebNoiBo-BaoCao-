@@ -5,6 +5,8 @@
  * @package header-footer-elementor
  */
 
+defined( 'ABSPATH' ) || exit;
+
 use HFE\Lib\Astra_Target_Rules_Fields;
 
 /**
@@ -65,7 +67,10 @@ class Header_Footer_Elementor {
 			self::$elementor_instance = Elementor\Plugin::instance();
 
 			$this->includes();
-			$this->load_textdomain();
+			
+			add_action( 'admin_init', [ $this, 'hfe_redirect_to_onboarding' ] );
+			
+			add_action( 'init', [ $this, 'load_hfe_textdomain' ] );
 
 			add_filter(
 				'elementor/admin-top-bar/is-active',
@@ -80,14 +85,20 @@ class Header_Footer_Elementor {
 			);
 			
 
-			add_action( 'current_screen', function () {
-				$current_screen = get_current_screen();
-				if ( $current_screen && ( $current_screen->id === 'edit-elementor-hf' || $current_screen->id === 'elementor-hf' ) ) {
-					add_action( 'in_admin_header', function () {
-						$this->render_admin_top_bar();
-					} );
-				}
-			} );
+			add_action(
+				'current_screen',
+				function () {
+					$current_screen = get_current_screen();
+					if ( $current_screen && ( 'edit-elementor-hf' === $current_screen->id || 'elementor-hf' === $current_screen->id ) ) {
+						add_action(
+							'in_admin_header',
+							function () {
+								$this->render_admin_top_bar();
+							} 
+						);
+					}
+				} 
+			);
 
 			$is_theme_supported = true;
 
@@ -106,6 +117,12 @@ class Header_Footer_Elementor {
 				require HFE_DIR . 'themes/storefront/class-hfe-storefront-compat.php';
 			} elseif ( 'hello-elementor' == $this->template ) {
 				require HFE_DIR . 'themes/hello-elementor/class-hfe-hello-elementor-compat.php';
+			} elseif ( 'kadence' == $this->template ) {
+				require HFE_DIR . 'themes/kadence/class-hfe-kadence-compat.php';
+			} elseif ( 'neve' == $this->template ) {
+				require HFE_DIR . 'themes/neve/class-hfe-neve-compat.php';
+			} elseif ( 'blocksy' == $this->template ) {
+				require HFE_DIR . 'themes/blocksy/class-hfe-blocksy-compat.php';
 			} else {
 				$is_theme_supported = false;
 				add_filter( 'hfe_settings_tabs', [ $this, 'setup_unsupported_theme' ] );
@@ -116,10 +133,12 @@ class Header_Footer_Elementor {
 			
 			add_action( 'init', [ $this, 'setup_settings_page' ] );
 
-			if ( 'yes' === get_option( 'hfe_plugin_is_activated' ) ) {
-				add_action( 'admin_init', [ $this, 'show_setup_wizard' ] );
+			if ( 'yes' === get_option( 'uae_lite_is_activated' ) ) {
+				add_action( 'admin_init', [ $this, 'get_plugin_version' ] );
 			}
 
+			// Filter to change Astra menu positon.
+			add_filter( 'astra_menu_priority', [ $this, 'update_admin_menu_position' ] );
 			// Scripts and styles.
 			add_action( 'wp_enqueue_scripts', [ $this, 'enqueue_scripts' ] );
 
@@ -130,30 +149,53 @@ class Header_Footer_Elementor {
 
 			add_shortcode( 'hfe_template', [ $this, 'render_template' ] );
 
-			add_action( 'astra_notice_before_markup_header-footer-elementor-rating', [ $this, 'rating_notice_css' ] );
-			// add_action( 'admin_init', [ $this, 'register_notices' ] );
 
-			// BSF Analytics Tracker.
-			if ( ! class_exists( 'BSF_Analytics_Loader' ) ) {
-				require_once HFE_DIR . 'admin/bsf-analytics/class-bsf-analytics-loader.php';
-			}
+			// Add Elementor preview notice
+			add_action( 'wp_footer', [ $this, 'elementor_preview_notice' ] );
 
-			$bsf_analytics = BSF_Analytics_Loader::get_instance();
-
-			$bsf_analytics->set_entity(
-				[
-					'bsf' => [
-						'product_name'    => 'Ultimate Addons for Elementor',
-						'path'            => HFE_DIR . 'admin/bsf-analytics',
-						'author'          => 'Brainstorm Force',
-						'time_to_display' => '+24 hours',
-					],
-				]
-			);
-
+			require_once HFE_DIR . 'inc/class-hfe-analytics.php';
+				 
 		}
 	}
 
+	/**
+	 * Update Astra's menu priority to show after Dashboard menu.
+	 *
+	 * @param int $menu_priority top level menu priority.
+	 */
+	public function update_admin_menu_position( $menu_priority ) {
+		return 2.1;
+	}
+
+	/**
+	 * Onboarding redirect function.
+	 */
+	public function hfe_redirect_to_onboarding() {
+		if ( ! get_option( 'hfe_start_onboarding', false ) ) {
+			return;
+		}
+
+		$is_old_user             = ( 'yes' === get_option( 'hfe_plugin_is_activated' ) ) ? true : false;
+		$is_onboarding_triggered = ( 'yes' === get_option( 'hfe_onboarding_triggered' ) ) ? true : false;
+		$is_uaepro_active        = ( defined( 'UAEL_PRO' ) && UAEL_PRO ) ? true : false;
+
+		// IMPORTANT: Comment out this code before release - Show onboarding only for new users only once.
+		if ( $is_old_user || $is_onboarding_triggered || $is_uaepro_active ) {
+			return;
+		}
+
+		delete_option( 'hfe_start_onboarding' );
+
+		if ( ! defined( 'WP_CLI' ) || ! WP_CLI ) {
+			update_option( 'hfe_onboarding_triggered', 'yes' );
+			wp_safe_redirect( admin_url( 'admin.php?page=hfe#onboarding' ) );
+			exit();
+		}
+	}
+	
+	/*
+	 * Render admin top bar
+	 */
 	private function render_admin_top_bar() {
 		?>
 		<div id="hfe-admin-top-bar-root">
@@ -173,67 +215,109 @@ class Header_Footer_Elementor {
 	}
 
 	/**
-	 * Register Astra Notices.
+	 * Display Elementor preview notice in footer when in preview mode.
 	 *
-	 * @since 1.2.0
-	 *
+	 * @since 2.4.9
 	 * @return void
 	 */
-	public function register_notices() {
-		$image_path = HFE_URL . 'assets/images/settings/uael-icon.svg';
+	public function elementor_preview_notice() {
+		// Show notice only for page post type in preview mode
+		if ( ! $this->should_show_preview_notice() ) {
+			return;
+		}
 
-		Astra_Notices::add_notice(
-			[
-				'id'                         => 'header-footer-elementor-rating',
-				'type'                       => '',
-				'message'                    => sprintf(
-					'<div class="notice-image">
-						<img src="%1$s" class="custom-logo" alt="Sidebar Manager" itemprop="logo"></div>
-						<div class="notice-content">
-							<div class="notice-heading">
-								%2$s
-							</div>
-							%3$s<br />
-							<div class="astra-review-notice-container">
-								<a href="%4$s" class="astra-notice-close astra-review-notice button-primary" target="_blank">
-								%5$s
-								</a>
-							<span class="dashicons dashicons-calendar"></span>
-								<a href="#" data-repeat-notice-after="%6$s" class="astra-notice-close astra-review-notice">
-								%7$s
-								</a>
-							<span class="dashicons dashicons-smiley"></span>
-								<a href="#" class="astra-notice-close astra-review-notice">
-								%8$s
-								</a>
-							</div>
-						</div>',
-					$image_path,
-					__( 'Hello! Seems like you have used Ultimate Addons for Elementor to build this website — Thanks a ton!', 'header-footer-elementor' ),
-					__( 'Could you please do us a BIG favor and give it a 5-star rating on WordPress? This would boost our motivation and help other users make a comfortable decision while choosing the Ultimate Addons for Elementor.', 'header-footer-elementor' ),
-					'https://wordpress.org/support/plugin/header-footer-elementor/reviews/?filter=5#new-post',
-					__( 'Ok, you deserve it', 'header-footer-elementor' ),
-					MONTH_IN_SECONDS,
-					__( 'Nope, maybe later', 'header-footer-elementor' ),
-					__( 'I already did', 'header-footer-elementor' )
-				),
-				'show_if'                    => ( hfe_header_enabled() || hfe_footer_enabled() || hfe_is_before_footer_enabled() ) ? true : false,
-				'repeat-notice-after'        => MONTH_IN_SECONDS,
-				'display-notice-after'       => 1296000, // Display notice after 15 days.
-				'priority'                   => 18,
-				'display-with-other-notices' => false,
-			]
-		);
+		wp_enqueue_style( 'hfe-promo-notice', HFE_URL . 'assets/css/hfe-promo-notice.css', [], HFE_VER );
+		wp_enqueue_script( 'hfe-promo-notice', HFE_URL . 'assets/js/hfe-promo-notice.js', [], HFE_VER, true );
+
+		?>
+			<div id="hfe-promo-notice" class="hfe-promo-notice">
+				<div class="hfe-promo-notice-container">
+					<div class="hfe-promo-notice-content">
+						<div class="hfe-promo-notice-text">
+							<div class="hfe-promo-notice-description">Psst… want to save hours? Get 300+ professionally built templates.</div>
+						</div>
+						<a href="https://ultimateelementor.com/pricing/?utm_source=preview&utm_medium=notice&utm_campaign=uae-lite"
+						   target="_blank"
+						   class="hfe-promo-notice-cta">
+							Unlock Now
+						</a>
+					</div>
+					<button class="hfe-promo-notice-close" onclick="hfePromoNotice.dismiss()">&times;</button>
+				</div>
+			</div>
+			<?php
 	}
 
 	/**
-	 * Enqueue CSS for the Rating Notice.
+	 * Check if preview notice should be shown for page post type only.
 	 *
-	 * @since 1.2.0
-	 * @return void
+	 * @since 2.4.9
+	 * @return bool
 	 */
-	public function rating_notice_css() {
-		wp_enqueue_style( 'hfe-admin-style', HFE_URL . 'assets/css/admin-header-footer-elementor.css', [], HFE_VER );
+	private function should_show_preview_notice() {
+		// Don't show if UAE Pro is already installed/activated
+		if ( is_plugin_active( 'ultimate-elementor/ultimate-elementor.php' ) || 
+			file_exists( WP_PLUGIN_DIR . '/ultimate-elementor/ultimate-elementor.php' ) ) {
+			return false;
+		}
+
+		// Basic preview check
+		if ( ! isset( $_GET['preview'] ) || sanitize_text_field( wp_unslash( $_GET['preview'] ) ) !== 'true' ) {
+			return false;
+		}
+
+		// Must have preview_id
+		if ( ! isset( $_GET['preview_id'] ) ) {
+			return false;
+		}
+
+		$preview_id = intval( sanitize_text_field( wp_unslash( $_GET['preview_id'] ) ) );
+
+		// Verify preview nonce for security.
+		if ( ! isset( $_GET['preview_nonce'] ) ) {
+			return false;
+		}
+
+		$preview_nonce = sanitize_text_field( wp_unslash( $_GET['preview_nonce'] ) );
+		if ( ! wp_verify_nonce( $preview_nonce, 'post_preview_' . $preview_id ) ) {
+			return false;
+		}
+
+		// Check if it's a page post type (not header/footer templates)
+		$post_type = get_post_type( $preview_id );
+		if ( $post_type !== 'page' ) {
+			return false;
+		}
+
+		// Exclude header/footer templates from UAE
+		$template_type = get_post_meta( $preview_id, 'ehf_template_type', true );
+		if ( ! empty( $template_type ) ) {
+			return false; // This is a header/footer template, don't show notice
+		}
+
+		// Optional: Check if page uses Elementor
+		if ( ! $this->is_elementor_page( $preview_id ) ) {
+			return false;
+		}
+
+		// Optional: Allow filtering for custom conditions
+		return apply_filters( 'hfe_show_preview_notice', true, $preview_id );
+	}
+
+	/**
+	 * Check if the page is built with Elementor.
+	 *
+	 * @since 2.4.9
+	 * @param int $post_id Post ID to check.
+	 * @return bool
+	 */
+	private function is_elementor_page( $post_id ) {
+		if ( ! class_exists( '\Elementor\Plugin' ) ) {
+			return false;
+		}
+
+		$elementor_data = get_post_meta( $post_id, '_elementor_data', true );
+		return ! empty( $elementor_data );
 	}
 
 	/**
@@ -337,45 +421,21 @@ class Header_Footer_Elementor {
 	}
 
 	/**
-	 * Prints the admin notics when Elementor is not installed or activated.
+	 * Plugin version tracking.
 	 *
 	 * @return void
 	 */
-	public function show_setup_wizard() {
+	public function get_plugin_version() {
 
-		$screen    = get_current_screen();
-		$screen_id = $screen ? $screen->id : '';
+		$hfe_old_version = get_option( 'hfe_plugin_version' );
+		$old_version     = $hfe_old_version ? $hfe_old_version : HFE_VER;
+		$new_version     = HFE_VER;
 
-		if ( 'plugins' !== $screen_id ) {
-			return;
+		if ( ! $hfe_old_version || ( $old_version !== $new_version ) ) {
+			// Store previous version.
+			update_option( 'hfe_plugin_previous_version', $old_version );
+			update_option( 'hfe_plugin_version', $new_version );
 		}
-
-		/* TO DO */
-		$class       = 'notice notice-info is-dismissible';
-		$setting_url = admin_url( 'edit.php?post_type=elementor-hf' );
-		$image_path  = HFE_URL . 'assets/images/settings/uael-icon.svg';
-
-		/* translators: %s: html tags */
-		$notice_message = sprintf( __( 'Thank you for installing %1$s Ultimate Addons for Elementor %2$s Plugin! Click here to %3$sget started. %4$s', 'header-footer-elementor' ), '<strong>', '</strong>', '<a href="' . $setting_url . '">', '</a>' );
-
-		Astra_Notices::add_notice(
-			[
-				'id'                         => 'header-footer-install-notice',
-				'type'                       => 'info',
-				/* translators: %s: html tags */
-				'message'                    => sprintf(
-					'<img src="%1$s" class="custom-logo" alt="HFE" itemprop="logo">
-					<div class="notice-content">
-						<p>%2$s</p>
-					</div>',
-					$image_path,
-					$notice_message
-				),
-				'repeat-notice-after'        => false,
-				'priority'                   => 18,
-				'display-with-other-notices' => false,
-			]
-		);
 	}
 
 	/**
@@ -388,6 +448,13 @@ class Header_Footer_Elementor {
 
 		require_once HFE_DIR . 'inc/hfe-functions.php';
 		require_once HFE_DIR . 'inc/class-hfe-rollback.php';
+		// Load Post Duplicator if enabled
+		if ( function_exists( 'get_option' ) ) {
+			$widgets = get_option( '_hfe_widgets', array() );
+			if ( isset( $widgets['Post_Duplicator'] ) && 'disabled' !== $widgets['Post_Duplicator'] ) {
+				require_once HFE_DIR . 'inc/class-hfe-post-duplicator.php';
+			}
+		}
 
 		// Load Elementor Canvas Compatibility.
 		require_once HFE_DIR . 'inc/class-hfe-elementor-canvas-compat.php';
@@ -412,6 +479,19 @@ class Header_Footer_Elementor {
 		require HFE_DIR . 'inc/widgets-manager/class-extensions-loader.php';
 
 		require_once HFE_DIR . 'inc/settings/hfe-settings-api.php';
+
+		// Load the NPS Survey library.
+		if ( ! class_exists( 'Uae_Nps_Survey' ) ) {
+			require_once HFE_DIR . 'inc/lib/class-uae-nps-survey.php';
+		}
+
+		// Load the Promotion system for Ultimate Elementor
+		if ( ! class_exists( 'HFE_Promotion' ) ) {
+			require_once HFE_DIR . 'inc/class-hfe-promotion.php';
+		}
+		
+		// Load the Learn API
+		require_once HFE_DIR . 'inc/class-hfe-learn-api.php';
 	}
 
 	/**
@@ -419,8 +499,50 @@ class Header_Footer_Elementor {
 	 *
 	 * @return void
 	 */
-	public function load_textdomain() {
-		load_plugin_textdomain( 'header-footer-elementor' );
+	public function load_hfe_textdomain() {
+	
+		// Default languages directory for "header-footer-elementor".
+		$lang_dir = HFE_DIR . 'languages/';
+	
+		/**
+		 * Filters the languages directory path to use for AffiliateWP.
+		 *
+		 * @param string $lang_dir The languages directory path.
+		 */
+		$lang_dir = apply_filters( 'hfe_languages_directory', $lang_dir );
+	
+		// Traditional WordPress plugin locale filter.
+		global $wp_version;
+	
+		$get_locale = get_locale();
+	
+		if ( $wp_version >= 4.7 ) {
+			$get_locale = get_user_locale();
+		}
+	
+		/**
+		 * Language Locale for Ultimate Elementor
+		 *
+		 * @var $get_locale The locale to use. Uses get_user_locale()` in WordPress 4.7 or greater,
+		 *                  otherwise uses `get_locale()`.
+		 */
+		$locale = apply_filters( 'plugin_locale', $get_locale, 'header-footer-elementor' );
+		$mofile = sprintf( '%1$s-%2$s.mo', 'header-footer-elementor', $locale );
+	
+		// Setup paths to current locale file.
+		$mofile_local  = $lang_dir . $mofile;
+		$mofile_global = WP_LANG_DIR . '/header-footer-elementor/' . $mofile;
+	
+		if ( file_exists( $mofile_global ) ) {
+			// Look in global /wp-content/languages/header-footer-elementor/ folder.
+			load_textdomain( 'header-footer-elementor', $mofile_global );
+		} elseif ( file_exists( $mofile_local ) ) {
+			// Look in local /wp-content/plugins/header-footer-elementor/languages/ folder.
+			load_textdomain( 'header-footer-elementor', $mofile_local );
+		} else {
+			// Load the default language files.
+			load_plugin_textdomain( 'header-footer-elementor', false, $lang_dir );
+		}
 	}
 
 	/**
@@ -577,7 +699,7 @@ class Header_Footer_Elementor {
 	 */
 	public static function get_header_content() {
 		$header_content = self::$elementor_instance->frontend->get_builder_content_for_display( get_hfe_header_id() );
-		echo $header_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo $header_content; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- If escaped output is not rendered on frontend.
 	}
 
 	/**
@@ -587,7 +709,7 @@ class Header_Footer_Elementor {
 	 */
 	public static function get_footer_content() {
 		echo "<div class='footer-width-fixer'>";
-		echo self::$elementor_instance->frontend->get_builder_content_for_display( get_hfe_footer_id() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo self::$elementor_instance->frontend->get_builder_content_for_display( get_hfe_footer_id() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- If escaped output is not rendered on frontend.
 		echo '</div>';
 	}
 
@@ -598,7 +720,7 @@ class Header_Footer_Elementor {
 	 */
 	public static function get_before_footer_content() {
 		echo "<div class='footer-width-fixer'>";
-		echo self::$elementor_instance->frontend->get_builder_content_for_display( hfe_get_before_footer_id() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo self::$elementor_instance->frontend->get_builder_content_for_display( hfe_get_before_footer_id() ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- If escaped output is not rendered on frontend.
 		echo '</div>';
 	}
 

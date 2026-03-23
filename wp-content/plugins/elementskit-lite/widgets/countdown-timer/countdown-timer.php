@@ -11,10 +11,13 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
     use \ElementsKit_Lite\Widgets\Widget_Notice;
 
 	public $base;
-    
+
     public function __construct( $data = [], $args = null ) {
 		parent::__construct( $data, $args );
-		$this->add_script_depends('final-countdown');
+	}
+
+	public function get_script_depends() {
+		return ['final-countdown'];
 	}
 
     public function get_name() {
@@ -1752,7 +1755,7 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
         );
 
         $this->end_controls_section();
-        
+
         $this->insert_pro_message();
     }
 
@@ -1767,23 +1770,23 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
 		extract($settings);
 
 		if(isset($ekit_countdown_timer_weeks_label)){
-			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-week', esc_attr($ekit_countdown_timer_weeks_label));
+			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-week', esc_attr(wp_strip_all_tags($ekit_countdown_timer_weeks_label)));
 		}
 
 		if(isset($ekit_countdown_timer_days_label)){
-			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-day', esc_attr($ekit_countdown_timer_days_label));
+			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-day', esc_attr(wp_strip_all_tags($ekit_countdown_timer_days_label)));
 		}
 
 		if(isset($ekit_countdown_timer_hours_label)){
-			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-hour', esc_attr($ekit_countdown_timer_hours_label));
+			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-hour', esc_attr(wp_strip_all_tags($ekit_countdown_timer_hours_label)));
 		}
 
 		if(isset($ekit_countdown_timer_minutes_hours_label)){
-			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-minute', esc_attr($ekit_countdown_timer_minutes_hours_label));
+			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-minute', esc_attr(wp_strip_all_tags($ekit_countdown_timer_minutes_hours_label)));
 		}
 
 		if(isset($ekit_countdown_timer_seconds_hours_label)){
-			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-second', esc_attr($ekit_countdown_timer_seconds_hours_label));
+			$this->add_render_attribute('ekit_countdown_timer', 'data-date-ekit-second', esc_attr(wp_strip_all_tags($ekit_countdown_timer_seconds_hours_label)));
 		}
 
 		if(isset($ekit_countdown_timer_due_time)){
@@ -1791,8 +1794,8 @@ class ElementsKit_Widget_Countdown_Timer extends Widget_Base {
 		}
 
 		$this->add_render_attribute('ekit_countdown_timer', [
-			'data-finish-title' => wp_strip_all_tags($ekit_countdown_timer_title),
-			'data-finish-content' => wp_strip_all_tags($ekit_countdown_timer_expiry_content),
+			'data-finish-title' => esc_attr(wp_strip_all_tags($ekit_countdown_timer_title)),
+			'data-finish-content' => esc_attr(wp_strip_all_tags($ekit_countdown_timer_expiry_content)),
 		]);
 
 		switch ( $ekit_countdown_timer_style ) {

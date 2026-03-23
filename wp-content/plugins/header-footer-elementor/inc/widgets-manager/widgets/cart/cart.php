@@ -66,6 +66,40 @@ class Cart extends Common_Widget {
 	}
 
 	/**
+	 * Retrieve Widget Keywords.
+	 *
+	 * @since 2.6.0
+	 * @access public
+	 *
+	 * @return string Widget keywords.
+	 */
+	public function get_keywords() {
+		return parent::get_widget_keywords( 'Cart' );
+	}
+
+	/**
+	 * Get widget upsale data.
+	 *
+	 * Retrieve the widget promotion data.
+	 *
+	 * @since 2.5.0
+	 * @access protected
+	 *
+	 * @return array Widget promotion data.
+	 */
+	protected function get_upsale_data() {
+		return [
+			'condition' => ! defined( 'UAEL_VER' ),
+			'image' => esc_url( HFE_URL . 'assets/images/upgrade-pro.png' ),
+			'image_alt' => esc_attr__( 'Upgrade', 'header-footer-elementor' ),
+			'title' => esc_html__( 'Upgrade your Cart widget', 'header-footer-elementor' ),
+			'description' => esc_html__( 'Get the WooCommerce Add to Cart widget and unlock advanced layouts, styles, and features with UAE Pro.', 'header-footer-elementor' ),
+			'upgrade_url' => esc_url( 'https://ultimateelementor.com/pricing/?utm_source=UAE-Cart&utm_medium=editor&utm_campaign=static-promotion' ),
+			'upgrade_text' => esc_html__( 'Upgrade Now', 'header-footer-elementor' ),
+		];
+	}
+
+	/**
 	 * Register cart controls.
 	 *
 	 * @since 1.5.7
@@ -625,7 +659,7 @@ class Cart extends Common_Widget {
 					<?php
 				} else {
 					?>
-					<div class="hfe-menu-cart__toggle elementor-button-wrapper">
+					<div class="hfe-menu-cart__toggle hfe-button-wrapper elementor-widget-button">
 						<a id="hfe-menu-cart__toggle_button" href="<?php echo esc_url( wc_get_cart_url() ); ?>" class="elementor-button hfe-cart-container" aria-label="<?php esc_attr_e( 'Cart', 'header-footer-elementor' ); ?>">
 							<?php if ( null !== WC()->cart ) { ?>
 								<span class="elementor-button-text hfe-subtotal">

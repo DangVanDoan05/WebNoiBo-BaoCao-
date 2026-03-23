@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace ElementsKit_Lite;
 
 use ElementsKit_Lite\Libs\Framework\Attr;
@@ -39,12 +39,11 @@ class Megamenu_Api extends Core\Handler_Api {
 	public function get_megamenu_content() {
 		$menu_item_id = intval($this->request['id']);
 
-		if (!get_post_status ($menu_item_id) || post_password_required($menu_item_id)) {
+		if ('publish' !== get_post_status ($menu_item_id) || post_password_required($menu_item_id)) {
 			return;
 		}
 
-		$elementor = \Elementor\Plugin::instance();
-		$output   = $elementor->frontend->get_builder_content_for_display($menu_item_id);
+		$output   = \ElementsKit_Lite\Utils::render_elementor_content($menu_item_id);
 
 		return $output;
 	}

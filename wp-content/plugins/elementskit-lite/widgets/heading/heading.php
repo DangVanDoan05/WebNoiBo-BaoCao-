@@ -124,7 +124,7 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 			]
 		);
 
-		$this->add_responsive_control( 'title_float_left', [
+		$this->add_control( 'title_float_left', [
 			'label' => esc_html__( 'Float Left', 'elementskit-lite' ),
 			'type' => Controls_Manager::SWITCHER,
 			'default' => 'no',
@@ -133,7 +133,7 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 		$this->add_responsive_control( 'title_float_left_width', [
 			'label' => __( 'Title Width', 'elementskit-lite' ),
 			'type' => Controls_Manager::SLIDER,
-			'size_units' => [ '%' ],
+			'size_units' => [ '%', 'px' ],
 			'default' => [ 'unit' => '%', 'size' => '40' ],
 			'range' => [
 				'%' => [
@@ -148,7 +148,7 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 			],
 			'condition' => [
 				'title_float_left' => 'yes'	
-			]
+			],
 		]);
 
 		$this->end_controls_section();
@@ -358,7 +358,7 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 					'elementskit-border-star elementskit-bullet' => esc_html__( 'Solid with bullet', 'elementskit-lite' ),
 					'ekit_border_custom' => esc_html__( 'Custom', 'elementskit-lite' ),
 				],
-				'default' => 'elementskit-border-divider',
+				'default' => 'elementskit-border-divider ekit-dotted',
 				'condition' => [
 					'ekit_heading_show_seperator' => 'yes',
 				],
@@ -392,7 +392,7 @@ class ElementsKit_Widget_Heading extends Widget_Base {
 					'active' => true,
 				],
 				'default' => [
-					'url' => Utils::get_placeholder_image_src(),
+					'url' => '',
 					'id'    => -1
 				],
 				'condition' => [
@@ -1315,33 +1315,8 @@ class ElementsKit_Widget_Heading extends Widget_Base {
         $settings = $this->get_settings_for_display();
 		extract($settings);
 
-		// Sanitize Title & Sub-Title Tags
-		$options_ekit_heading_title_tag = array_keys([
-			'h1' => 'H1',
-			'h2' => 'H2',
-			'h3' => 'H3',
-			'h4' => 'H4',
-			'h5' => 'H5',
-			'h6' => 'H6',
-			'div' => 'div',
-			'span' => 'span',
-			'p' => 'p',
-		]);
-		$title_tag = \ElementsKit_Lite\Utils::esc_options($ekit_heading_title_tag, $options_ekit_heading_title_tag, 'h2');
-
-		// Sanitize Sub Title Tag
-		$options_ekit_heading_sub_title_tag = array_keys([
-			'h1' => 'H1',
-			'h2' => 'H2',
-			'h3' => 'H3',
-			'h4' => 'H4',
-			'h5' => 'H5',
-			'h6' => 'H6',
-			'div' => 'div',
-			'span' => 'span',
-			'p' => 'p',
-		]);
-		$sub_title_tag = \ElementsKit_Lite\Utils::esc_options($ekit_heading_sub_title_tag, $options_ekit_heading_sub_title_tag, 'h3');
+		$title_tag = \Elementor\Utils::validate_html_tag($ekit_heading_title_tag);
+		$sub_title_tag = \Elementor\Utils::validate_html_tag($ekit_heading_sub_title_tag);
 
 		// Image sectionn
         $image_html = '';
@@ -1352,7 +1327,6 @@ class ElementsKit_Widget_Heading extends Widget_Base {
             $this->add_render_attribute('image', 'title', Control_Media::get_image_title($settings['ekit_heading_seperator_image']));
 
             $image_html = Group_Control_Image_Size::get_attachment_image_html($settings, 'ekit_heading_seperator_image_size', 'ekit_heading_seperator_image');
-
         }
 
 		$seperator = '';

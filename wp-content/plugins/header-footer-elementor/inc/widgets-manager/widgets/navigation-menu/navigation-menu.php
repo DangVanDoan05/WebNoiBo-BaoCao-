@@ -66,6 +66,28 @@ class Navigation_Menu extends Common_Widget {
 	}
 
 	/**
+	 * Get widget upsale data.
+	 *
+	 * Retrieve the widget promotion data.
+	 *
+	 * @since 2.5.0
+	 * @access protected
+	 *
+	 * @return array Widget promotion data.
+	 */
+	protected function get_upsale_data() {
+		return [
+			'condition' => ! defined( 'UAEL_VER' ),
+			'image' => esc_url( HFE_URL . 'assets/images/upgrade-pro.png' ),
+			'image_alt' => esc_attr__( 'Upgrade', 'header-footer-elementor' ),
+			'title' => esc_html__( 'Upgrade your Navigation widget', 'header-footer-elementor' ),
+			'description' => esc_html__( 'Get the Advanced Navigation Menu widget in UAE Pro and unlock advanced layouts, styling, and flexible menu options.', 'header-footer-elementor' ),
+			'upgrade_url' => esc_url( 'https://ultimateelementor.com/pricing/?utm_source=UAE-Navigation-menu&utm_medium=editor&utm_campaign=static-promotion' ),
+			'upgrade_text' => esc_html__( 'Upgrade Now', 'header-footer-elementor' ),
+		];
+	}
+
+	/**
 	 * Retrieve the widget icon.
 	 *
 	 * @since 1.3.0
@@ -76,6 +98,18 @@ class Navigation_Menu extends Common_Widget {
 	 */
 	public function get_icon() {
 		return parent::get_widget_icon( 'Navigation_Menu' );
+	}
+
+	/**
+	 * Retrieve Widget Keywords.
+	 *
+	 * @since 2.6.0
+	 * @access public
+	 *
+	 * @return string Widget keywords.
+	 */
+	public function get_keywords() {
+		return parent::get_widget_keywords( 'Navigation_Menu' );
 	}
 
 	/**
@@ -358,9 +392,9 @@ class Navigation_Menu extends Common_Widget {
 						],
 					],
 					'selectors_dictionary' => [
-						'left'   => 'margin-right: auto',
-						'center' => 'margin: 0 auto',
-						'right'  => 'margin-left: auto',
+						'left'   => 'margin-right: auto; margin-left: 0; justify-content: flex-start;',
+						'center' => 'margin: 0 auto; justify-content: center;',
+						'right'  => 'margin-left: auto; margin-right: 0; justify-content: flex-end;',
 					],
 					'selectors'            => [
 						'{{WRAPPER}} .hfe-nav-menu__toggle,
@@ -403,8 +437,8 @@ class Navigation_Menu extends Common_Widget {
 					],
 					'selectors'          => [
 						'{{WRAPPER}} li.menu-item a' => 'justify-content: {{VALUE}};',
-						'{{WRAPPER}} li .elementor-button-wrapper' => 'text-align: {{VALUE}};',
-						'{{WRAPPER}}.hfe-menu-item-flex-end li .elementor-button-wrapper' => 'text-align: right;',
+						'{{WRAPPER}} li.hfe-button-wrapper' => 'text-align: {{VALUE}};',
+						'{{WRAPPER}}.hfe-menu-item-flex-end li.hfe-button-wrapper' => 'text-align: right;',
 					],
 					'prefix_class'       => 'hfe-menu-item-',
 					'frontend_available' => true,
@@ -1932,7 +1966,7 @@ class Navigation_Menu extends Common_Widget {
 			}
 
 			?>
-			<div class="hfe-nav-menu__toggle elementor-clickable hfe-flyout-trigger" tabindex="0">
+			<div class="hfe-nav-menu__toggle elementor-clickable hfe-flyout-trigger" tabindex="0" role="button" aria-label="<?php esc_attr_e( 'Menu Toggle', 'header-footer-elementor' ); ?>">
 					<div class="hfe-nav-menu-icon">
 						<?php echo isset( $menu_close_icons[0] ) ? $menu_close_icons[0] : ''; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
@@ -2009,7 +2043,7 @@ class Navigation_Menu extends Common_Widget {
 
 			?>
 			<div <?php $this->print_render_attribute_string( 'hfe-main-menu' ); ?>>
-				<div role="button" class="hfe-nav-menu__toggle elementor-clickable">
+				<div role="button" class="hfe-nav-menu__toggle elementor-clickable" tabindex="0" aria-label="<?php esc_attr_e( 'Menu Toggle', 'header-footer-elementor' ); ?>">
 					<span class="screen-reader-text"><?php esc_html_e( 'Menu', 'header-footer-elementor' ); ?></span>
 					<div class="hfe-nav-menu-icon">
 						<?php

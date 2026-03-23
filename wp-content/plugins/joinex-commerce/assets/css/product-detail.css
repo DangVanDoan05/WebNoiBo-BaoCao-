@@ -126,3 +126,23 @@
 .product-gallery.slider {
   -ms-overflow-style: none;
 }
+.main-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.images-gallery-product {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.gallery-thumb img {
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.gallery-thumb img.active {
+  border-color: #f00; /* highlight ảnh đang chọn */
+}

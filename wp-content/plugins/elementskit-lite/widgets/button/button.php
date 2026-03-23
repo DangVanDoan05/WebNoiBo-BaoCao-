@@ -137,6 +137,7 @@ class ElementsKit_Widget_Button extends Widget_Base {
 			[
 				'label' =>esc_html__( 'Alignment', 'elementskit-lite' ),
 				'type' => Controls_Manager::CHOOSE,
+				'default' => 'center',
 				'options' => [
 					'left'    => [
 						'title' =>esc_html__( 'Left', 'elementskit-lite' ),
@@ -151,9 +152,14 @@ class ElementsKit_Widget_Button extends Widget_Base {
 						'icon' => 'eicon-text-align-right',
 					],
 				],
-				'default' => 'center',
+				'selectors_dictionary' => [
+					'left' => 'justify-content: flex-start;',
+					'center' => 'justify-content: center;',
+					'right' => 'justify-content: flex-end;',
+				],
+				'prefix_class' => 'elementor-align-%s',
 				'selectors' => [
-					'{{WRAPPER}} .ekit-btn-wraper' => 'text-align: {{VALUE}};',
+					'{{WRAPPER}} .ekit-btn-wraper .elementskit-btn' => '{{VALUE}};',
 				],
 			]
 		);
@@ -249,8 +255,7 @@ class ElementsKit_Widget_Button extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '',
 				'selectors' => [
-					'{{WRAPPER}} .elementskit-btn' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementskit-btn svg path' => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .elementskit-btn' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				],
 			]
 		);
@@ -279,8 +284,7 @@ class ElementsKit_Widget_Button extends Widget_Base {
 				'type' => Controls_Manager::COLOR,
 				'default' => '#ffffff',
 				'selectors' => [
-					'{{WRAPPER}} .elementskit-btn:hover' => 'color: {{VALUE}};',
-					'{{WRAPPER}} .elementskit-btn:hover svg path' => 'stroke: {{VALUE}}; fill: {{VALUE}};',
+					'{{WRAPPER}} .elementskit-btn:hover' => 'color: {{VALUE}}; fill: {{VALUE}};',
 				],
 			]
 		);
@@ -421,6 +425,14 @@ class ElementsKit_Widget_Button extends Widget_Base {
 			  'selector' => '{{WRAPPER}} .elementskit-btn',
 			]
 		);
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+			  'name' => 'ekit_btn_hover_box_shadow_group',
+			  'label' => esc_html__( 'Hover Box Shadow', 'elementskit-lite' ),
+			  'selector' => '{{WRAPPER}} .elementskit-btn:hover',
+			]
+		);
 
 
 		$this->end_controls_section();
@@ -449,9 +461,12 @@ class ElementsKit_Widget_Button extends Widget_Base {
 						'max' => 100,
 					),
 				),
+				'default' => [
+					'unit' => 'px',
+					'size' => 14,
+				],
 				'selectors'  => array(
-					'{{WRAPPER}} .elementskit-btn > i' => 'font-size: {{SIZE}}{{UNIT}};',
-					'{{WRAPPER}} .elementskit-btn > svg'	=> 'max-width: {{SIZE}}{{UNIT}};',
+					'{{WRAPPER}} .elementskit-btn > :is(i, svg)' => 'font-size: {{SIZE}}{{UNIT}};',
 				),
 			)
 		);
@@ -578,38 +593,15 @@ class ElementsKit_Widget_Button extends Widget_Base {
 				<a <?php $this->print_render_attribute_string( 'button' ); ?>>
 					<?php
 						echo esc_html( $btn_text );
-					
-						// new icon
-						$migrated = isset( $settings['__fa4_migrated']['ekit_btn_icons'] );
-						// Check if its a new widget without previously selected icon using the old Icon control
-						$is_new = empty( $settings['ekit_btn_icon'] );
-						if ( $is_new || $migrated ) {
-							// new icon
-							Icons_Manager::render_icon( $settings['ekit_btn_icons'], [ 'aria-hidden' => 'true' ] );
-						} else {
-							?>
-							<i class="<?php echo esc_attr($settings['ekit_btn_icon']); ?>" aria-hidden="true"></i>
-							<?php
-						}
+						Icons_Manager::render_icon($settings['ekit_btn_icons']);
 					?>
 				</a>
 			<?php elseif ($icon_align == 'left') : ?>
 				<a <?php $this->print_render_attribute_string( 'button' ); ?>>
 					<?php
-					// new icon
-					$migrated = isset( $settings['__fa4_migrated']['ekit_btn_icons'] );
-					// Check if its a new widget without previously selected icon using the old Icon control
-					$is_new = empty( $settings['ekit_btn_icon'] );
-					if ( $is_new || $migrated ) {
-						// new icon
-						Icons_Manager::render_icon( $settings['ekit_btn_icons'], [ 'aria-hidden' => 'true' ] );
-					} else {
-						?>
-						<i class="<?php echo esc_attr($settings['ekit_btn_icon']); ?>" aria-hidden="true"></i>
-						<?php
-					}
-
-					echo esc_html( $btn_text ); ?>
+					Icons_Manager::render_icon($settings['ekit_btn_icons']);
+					echo esc_html( $btn_text );
+					?>
 				</a>
 			<?php else : ?>
 				<a <?php $this->print_render_attribute_string( 'button' ); ?>>

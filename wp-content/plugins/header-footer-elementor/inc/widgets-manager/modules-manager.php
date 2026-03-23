@@ -11,7 +11,6 @@ use HFE\WidgetsManager\Base\Module_Base;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
-	return $this->_modules;
 }
 
 /**
@@ -56,6 +55,10 @@ class Modules_Manager {
 			'search-button',
 			'breadcrumbs-widget',
 			'post-info',
+			'infocard',
+			'woo-product-grid',
+			'basic-posts',
+			'counter',
 		];
 
 		foreach ( $all_modules as $module_name ) {
@@ -87,8 +90,8 @@ class Modules_Manager {
 	 */
 	public function get_modules( $module_name = null ) {
 		if ( $module_name ) {
-			if ( isset( $this->modules[ $module_name ] ) ) {
-				return $this->modules[ $module_name ];
+			if ( isset( $this->_modules[ $module_name ] ) ) {
+				return $this->_modules[ $module_name ];
 			}
 			return null;
 		}

@@ -195,8 +195,8 @@ class Utils {
 				'fill' => true,
 			),
 			'input'							=> array(
-				'class'		=> array(), 
-				'type'		=> array(), 
+				'class'		=> array(),
+				'type'		=> array(),
 				'value'		=> array()
 			)
 		);
@@ -238,7 +238,7 @@ class Utils {
 
 		return $options;
 	}
-	
+
 	public static function ekit_get_ninja_form() {
 		$options = array();
 
@@ -270,11 +270,11 @@ class Utils {
 			foreach ( $table_ids as $table_id ) {
 				// Load table, without table data, options, and visibility settings.
 				$table = \TablePress::$model_table->load( $table_id, false, false );
-	
+
 				if ( '' === trim( $table['name'] ) ) {
 					$table['name'] = __( '(no name)', 'elementskit-lite' );
 				}
-				
+
 				$table_options[ $table['id'] ] = $table['name'];
 			}
 		} else {
@@ -283,7 +283,7 @@ class Utils {
 
 		return $table_options;
 	}
-	
+
 	public static function ekit_do_shortcode( $tag, array $atts = array(), $content = null ) {
 		global $shortcode_tags;
 		if ( ! isset( $shortcode_tags[ $tag ] ) ) {
@@ -308,9 +308,8 @@ class Utils {
 		}
 	}
 
-	public static function render_elementor_content( $content_id ) {
+	public static function render_elementor_content( $content_id, $has_css = false ) {
 		$elementor_instance = \Elementor\Plugin::instance();
-		$has_css            = false;
 
 		/**
 		 * CSS Print Method Internal and Exteral option support for Header and Footer Builder.
@@ -318,10 +317,10 @@ class Utils {
 		if ( ( 'internal' === get_option( 'elementor_css_print_method' ) ) || \Elementor\Plugin::$instance->preview->is_preview_mode() ) {
 			$has_css = true;
 		}
-		
+
 		return $elementor_instance->frontend->get_builder_content_for_display( $content_id, $has_css );
 	}
-	
+
 	public static function render( $content ) {
 		if ( stripos( $content, 'elementskit-has-lisence' ) !== false ) {
 			return null;
@@ -329,7 +328,7 @@ class Utils {
 
 		return $content;
 	}
-	
+
 	public static function render_tab_content( $content, $id ) {
 		return str_replace( '.elementor-' . $id . ' ', '#elementor .elementor-' . $id . ' ', $content );
 	}
@@ -367,10 +366,16 @@ class Utils {
 		$size = $image_size_key;
 
 		$html = '';
-		if ( ! empty( $image['id'] ) && $image['id'] != '-1' ) {
+		if ( ! empty( $image['id'] ) && $image['id'] != '-1' && get_post($image['id'])) {
 			$html .= wp_get_attachment_image( $image['id'], $size, false, $image_attr );
 		} else {
-			$html .= sprintf( '<img src="%s" title="%s" alt="%s" />', esc_attr( $image['url'] ), \Elementor\Control_Media::get_image_title( $image ), \Elementor\Control_Media::get_image_alt( $image ) );
+			$html .= sprintf(
+				'<img src="%s" title="%s" alt="%s" class="%s" />',
+				esc_attr($image['url']),
+				\Elementor\Control_Media::get_image_title($image),
+				\Elementor\Control_Media::get_image_alt($image),
+				(isset($image_attr['class']) ? esc_attr($image_attr['class']) : '')
+			);
 		}
 
 		$html = preg_replace( array( '/max-width:[^"]*;/', '/width:[^"]*;/', '/height:[^"]*;/' ), '', $html );
@@ -379,28 +384,81 @@ class Utils {
 	}
 
 	public static function swiper_class() {
-		$swiper_class = \Elementor\Plugin::$instance->experiments->is_feature_active( 'e_swiper_latest' ) ? 'swiper' : 'swiper-container';
-		return 'ekit-main-swiper ' . $swiper_class;
+		return 'ekit-main-swiper swiper';
 	}
 
-	public static function get_page_by_title( $page_title, $post_type = 'page' ) {
-		$query = new \WP_Query(
-			array(
+
+	/**
+	* Get a page/post by slug (new method).
+	*
+	* 🚀 New Code (preferred):
+	* - Uses post slug instead of post title.
+	* - More reliable because titles can change or contain duplicates, while slugs are unique per post type.
+	*
+	* 🕑 Migration Plan:
+	* - Keep the old `get_page_by_title()` method for the next 5–10 releases as a fallback.
+	* - If this slug-based approach proves stable, we will fully remove the title-based method afterwards.
+	* - If slug lookups fail in some use cases, we will continue to keep the title-based code.
+	*
+	* @introduced: 2025-09-01
+	* @issue: https://tree.taiga.io/project/wpmet-elementskit/issue/219
+	* @since 3.6.1
+	* @param string $slug      Post slug.
+	* @param string $post_type Post type. Default 'page'.
+	* @return WP_Post|null     WP_Post object if found, null otherwise.
+	*/
+	public static function get_page_by_title( $slug, $post_type = 'page' ) {
+		$posts = get_posts(
+			[
+				'name' => $slug,
 				'post_type' => $post_type,
-				'title' => $page_title,
-			)
+				'post_status' => 'publish',
+				'numberposts' => 1,
+				'no_found_rows' => true,
+				'ignore_sticky_posts' => true,
+			]
 		);
 
-		if (!empty($query->post)) {
-			$page_got_by_title = $query->post;
-		} else {
-			$page_got_by_title = null;
+		if ( ! empty( $posts ) ) {
+			return $posts[0];
 		}
 
-		return $page_got_by_title;
+		return null;
 	}
 
 	public static function remove_special_chars($string) {
 		return preg_replace('/[^A-Za-z0-9 ]/', '', $string);
 	}
+
+	/**
+	 * Check whether a specific plugin is active.
+	 *
+	 * Works for both single-site and multisite installations
+	 * (including network-activated plugins).
+	 *
+	 * @since 3.7.8
+	 *
+	 * @param string $plugin_file Plugin file path relative to the plugins directory.
+	 *                            Example: 'elementskit/elementskit.php'.
+	 *
+	 * @return bool True if the plugin is active, false otherwise.
+	 */
+	public static function ekit_is_plugin_active( string $plugin_file ): bool {
+		$active_plugins = (array) apply_filters(
+			'active_plugins',
+			get_option( 'active_plugins', [] )
+		);
+
+		// Include network-activated plugins for multisite installs.
+		if ( is_multisite() ) {
+			$network_plugins = array_keys(
+				(array) get_site_option( 'active_sitewide_plugins', [] )
+			);
+
+			$active_plugins = array_merge( $active_plugins, $network_plugins );
+		}
+
+		return in_array( $plugin_file, $active_plugins, true );
+	}
+
 }

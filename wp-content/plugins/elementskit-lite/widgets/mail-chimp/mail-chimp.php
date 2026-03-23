@@ -11,6 +11,10 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 
 	public $base;
 
+	public function get_script_depends() {
+		return ['ekit-mailchimp'];
+	}
+
     public function get_name() {
         return Handler::get_name();
     }
@@ -100,7 +104,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 				'options' => $this->__get_lists(),
 				'description' => esc_html__('Create a campaign in mailchimp account <a href="https://mailchimp.com/help/create-a-regular-email-campaign/#Create_a_campaign" target="_blank"> Create Campaign</a>', 'elementskit-lite'),
 			]
-		);	
+		);
 
 		$this->add_control(
             'ekit_mail_chimp_double_opt_in',
@@ -111,7 +115,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
                 'description' => esc_html__('If you enable this feature , then you must need to enable it inside Mailchimp campaign settings. Otherwise please disable it.', 'elementskit-lite')
             ]
         );
- 
+
         $this->add_control(
             'ekit_mail_chimp_opt_in_success_message',
             [
@@ -585,7 +589,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
                 ],
             ]
 		);
-		
+
 		$this->add_control(
 			'ekit_mail_chimp_success_message',
 			[
@@ -664,6 +668,17 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 			]
 		);
 
+		$this->start_controls_tabs(
+			'mailchimp_input_tabs'
+		);
+
+		$this->start_controls_tab(
+			'mailchimp_input_normal_tab',
+			[
+				'label' => esc_html__( 'Normal', 'elementskit-lite' ),
+			]
+		);
+
 		$this->add_group_control(
 			Group_Control_Background::get_type(),
 			[
@@ -672,18 +687,6 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 				'types' => [ 'classic', 'gradient' ],
 				'selector' => '{{WRAPPER}} .ekit_form_control',
 				'exclude' => ['image'] // PHPCS:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
-			]
-		);
-
-		$this->add_responsive_control(
-			'ekit_mail_chimp_input_style_radius',
-			[
-				'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
-				'type' => Controls_Manager::DIMENSIONS,
-				'size_units' => [ 'px', '%' ],
-				'selectors' => [
-					'{{WRAPPER}} .ekit_form_control' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
-				],
 			]
 		);
 
@@ -702,6 +705,60 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 				'name' => 'ekit_mail_chimp_input_style_box_shadow',
 				'label' => esc_html__( 'Box Shadow', 'elementskit-lite' ),
 				'selector' => '{{WRAPPER}} .ekit_form_control, {{WRAPPER}} .ekit_form_control:focus',
+			]
+		);
+
+		$this->end_controls_tab();
+
+		$this->start_controls_tab(
+			'mailchimp_input_focus_tab',
+			[
+				'label' => esc_html__( 'Focus', 'elementskit-lite' ),
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Background::get_type(),
+			[
+				'name' => 'ekit_mail_chimp_input_focus_style_background',
+				'label' => esc_html__( 'Background', 'elementskit-lite' ),
+				'types' => [ 'classic', 'gradient' ],
+				'selector' => '{{WRAPPER}} .ekit_form_control:focus',
+				'exclude' => ['image'] // PHPCS:ignore WordPressVIPMinimum.Performance.WPQueryParams.PostNotIn_exclude
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Border::get_type(),
+			[
+				'name' => 'ekit_mail_chimp_input_focus_style_border',
+				'label' => esc_html__( 'Border', 'elementskit-lite' ),
+				'selector' => '{{WRAPPER}} .ekit_form_control:focus',
+			]
+		);
+
+		$this->add_group_control(
+			Group_Control_Box_Shadow::get_type(),
+			[
+				'name' => 'ekit_mail_chimp_input_focus_style_box_shadow',
+				'label' => esc_html__( 'Box Shadow', 'elementskit-lite' ),
+				'selector' => '{{WRAPPER}} .ekit_form_control:focus',
+			]
+		);
+
+		$this->end_controls_tab();
+		$this->end_controls_tabs();
+
+		$this->add_responsive_control(
+			'ekit_mail_chimp_input_style_radius',
+			[
+				'label' => esc_html__( 'Border Radius', 'elementskit-lite' ),
+				'type' => Controls_Manager::DIMENSIONS,
+				'size_units' => [ 'px', '%' ],
+				'selectors' => [
+					'{{WRAPPER}} .ekit_form_control' => 'border-radius: {{TOP}}{{UNIT}} {{RIGHT}}{{UNIT}} {{BOTTOM}}{{UNIT}} {{LEFT}}{{UNIT}};',
+				],
+				'separator' => 'before',
 			]
 		);
 
@@ -1327,7 +1384,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
                 'type' => Controls_Manager::HEADING,
             ]
 		);
-		
+
 		$this->add_responsive_control(
 			'ekit_mail_chimp_success_color', [
 				'label'		 =>esc_html__( 'Color', 'elementskit-lite' ),
@@ -1346,7 +1403,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 				'selector' => '{{WRAPPER}} .ekit-mail-message.success',
             )
 		);
-		
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
@@ -1363,7 +1420,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
                 'type' => Controls_Manager::HEADING,
             ]
 		);
-		
+
 		$this->add_responsive_control(
 			'ekit_mail_chimp_error_color', [
 				'label'		 =>esc_html__( 'Color', 'elementskit-lite' ),
@@ -1382,7 +1439,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 				'selector' => '{{WRAPPER}} .ekit-mail-message.error',
             )
 		);
-		
+
 		$this->add_group_control(
 			Group_Control_Border::get_type(),
 			[
@@ -1394,7 +1451,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 
 
 		$this->end_controls_section();
-		
+
 		$this->insert_pro_message();
 	}
 
@@ -1408,16 +1465,26 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
     protected function render_raw( ) {
 		$settings = $this->get_settings_for_display();
 		extract($settings);
-		
+
 		$this->add_render_attribute(
 			'content_wrapper',
 			[
 				'class'	=> 'elementskit_form_wraper'.($ekit_mail_chimp_form_style_switcher == 'yes' ? ' elementskit_inline_form' : '' ).(($ekit_mail_chimp_section_form_phone_show === 'yes' || $ekit_mail_chimp_section_form_name_show === 'yes') ? ' has-extra-fields' : ''),
 			]
 		);
+		$this->add_render_attribute(
+			'form',
+			[
+				'class' => 'ekit-mailChimpForm',
+				'data-listed' => esc_attr($ekit_mail_chimp_select_listed_id),
+				'data-success-message' => esc_attr($ekit_mail_chimp_success_message),
+				'data-success-opt-in-message' => esc_attr($ekit_mail_chimp_opt_in_success_message),
+				'data-nonce' => wp_create_nonce('wp_rest'),
+			]
+		);
 		?>
 		<div class="ekit-mail-chimp">
-		<form method="post" class="ekit-mailChimpForm" data-listed="<?php echo esc_attr($ekit_mail_chimp_select_listed_id);?>" data-success-message="<?php echo esc_attr($ekit_mail_chimp_success_message); ?>" data-success-opt-in-message="<?php echo esc_attr($ekit_mail_chimp_opt_in_success_message)?>">
+		<form method="post" <?php echo $this->get_render_attribute_string('form'); ?>>
 			<div class="ekit-mail-message"></div>
 			<input type="hidden" name="double_opt_in" value="<?php echo esc_attr($ekit_mail_chimp_double_opt_in)?>">
 
@@ -1635,7 +1702,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 						</div>
 					</div>
 					<div class="ekit_submit_input_holder elementskit_input_wraper">
-						<button type="submit" aria-label="submit" class="ekit-mail-submit" name="ekit_mail_chimp"><?php if(($ekit_mail_chimp_submit_icon_show == 'yes') && ($ekit_mail_chimp_submit_icons != '') && ($ekit_mail_chimp_submit_icon_position == 'before')): ?> 
+						<button type="submit" aria-label="submit" class="ekit-mail-submit" name="ekit_mail_chimp"><?php if(($ekit_mail_chimp_submit_icon_show == 'yes') && ($ekit_mail_chimp_submit_icons != '') && ($ekit_mail_chimp_submit_icon_position == 'before')): ?>
 
 							<?php
 								// new icon
@@ -1652,7 +1719,7 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 								}
 							?>
 
-							<?php endif; ?><?php echo esc_html( $ekit_mail_chimp_submit );?><?php if(($ekit_mail_chimp_submit_icon_show == 'yes') && ($ekit_mail_chimp_submit_icons != '') && ($ekit_mail_chimp_submit_icon_position == 'after')): ?> 
+							<?php endif; ?><?php echo esc_html( $ekit_mail_chimp_submit );?><?php if(($ekit_mail_chimp_submit_icon_show == 'yes') && ($ekit_mail_chimp_submit_icons != '') && ($ekit_mail_chimp_submit_icon_position == 'after')): ?>
 
 								<?php
 									// new icon
@@ -1675,5 +1742,5 @@ class ElementsKit_Widget_Mail_Chimp extends Widget_Base {
 			</form>
 		</div>
 		<?php
-	  }
+	}
 }

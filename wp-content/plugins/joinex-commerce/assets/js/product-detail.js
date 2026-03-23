@@ -1,14 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
-  const slider = document.querySelector(".product-gallery.slider");
-  const btnPrev = document.querySelector(".btn-prev");
-  const btnNext = document.querySelector(".btn-next");
+  const mainImage = document.getElementById("current-main-image");
+  const thumbs = document.querySelectorAll(".thumb-image");
 
-  if (slider && btnPrev && btnNext) {
-    btnPrev.addEventListener("click", () => {
-      slider.scrollBy({ left: -slider.clientWidth, behavior: "smooth" });
+  thumbs.forEach((thumb) => {
+    thumb.addEventListener("click", () => {
+      // đổi src ảnh chính sang ảnh thumbnail được chọn
+      mainImage.src = thumb.src.replace("-150x150", ""); // bỏ suffix thumbnail để lấy ảnh lớn
+      // highlight thumbnail đang chọn
+      thumbs.forEach((t) => t.classList.remove("active"));
+      thumb.classList.add("active");
     });
-    btnNext.addEventListener("click", () => {
-      slider.scrollBy({ left: slider.clientWidth, behavior: "smooth" });
-    });
-  }
+  });
 });

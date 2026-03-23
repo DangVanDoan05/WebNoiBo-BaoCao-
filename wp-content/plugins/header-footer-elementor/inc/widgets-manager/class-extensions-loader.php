@@ -6,7 +6,7 @@
  * @author      HFE
  * @copyright   Copyright (c) 2018, HFE
  * @link        http://brainstormforce.com/
- * @since       HFE x.x.x
+ * @since       HFE 2.2.1
  */
 
 namespace HFE\WidgetsManager;
@@ -24,7 +24,7 @@ class Extensions_Loader {
 	/**
 	 * Instance of Extensions_Loader.
 	 *
-	 * @since  x.x.x
+	 * @since  2.2.1
 	 * @var null
 	 */
 	private static $_instance = null;
@@ -32,7 +32,7 @@ class Extensions_Loader {
 	/**
 	 * Get instance of Extensions_Loader
 	 *
-	 * @since  x.x.x
+	 * @since  2.2.1
 	 * @return Extensions_Loader
 	 */
 	public static function instance() {
@@ -46,13 +46,23 @@ class Extensions_Loader {
 	/**
 	 * Setup actions and filters.
 	 *
-	 * @since  x.x.x
+	 * @since  2.2.1
 	 * @access private
 	 */
 	private function __construct() {
 
-		$this->include_extensions_files();
+		add_action( 'elementor/init', [ $this, 'elementor_init' ] );
 
+	}
+
+	/**
+	 * Elementor Init.
+	 *
+	 * @since 2.2.1
+	 */
+	public function elementor_init() {
+
+		$this->include_extensions_files();
 	}
 
 	/**
@@ -62,9 +72,10 @@ class Extensions_Loader {
 	 * @since 1.3.0
 	 */
 	public static function get_extensions_list() {
-		$extensions_list = [
-			'Scroll_To_Top' => 'scroll-to-top',
-		];
+               $extensions_list = [
+                       'Scroll_To_Top'      => 'scroll-to-top',
+                       'Reading_Progress_Bar' => 'reading-progress-bar',
+               ];
 
 		return $extensions_list;
 	}
@@ -74,7 +85,7 @@ class Extensions_Loader {
 	 *
 	 * Load Extensions files
 	 *
-	 * @since x.x.x
+	 * @since 2.2.1
 	 * @access public
 	 * @return void
 	 */
