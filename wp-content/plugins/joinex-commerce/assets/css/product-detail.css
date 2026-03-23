@@ -1,0 +1,128 @@
+.joinex-product-detail {
+  max-width: 1140px; /* giới hạn chiều rộng nội dung */
+  margin: 0 auto; /* căn giữa theo chiều ngang */
+  text-align: center; /* căn giữa chữ và các phần tử bên trong */
+  font-family: "BeVietnam Pro", sans-serif;
+}
+
+.images-short-description-product {
+  display: flex;
+  gap: 30px;
+}
+
+.images-product-container {
+  display: grid;
+
+  padding: 5px;
+  gap: 20px;
+}
+
+.images-large-product-container {
+  background-color: #dbdbdb;
+  border-radius: 5px;
+  gap: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+.images-large-product {
+  width: 600px;
+  padding: 25px;
+}
+
+.gallery-item img {
+  background-color: #dbdbdb;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+.images-gallery-product {
+  width: 600px;
+}
+.product-gallery {
+  display: flex;
+  border-radius: 5px;
+  gap: 10px;
+}
+
+.title-short-description-product {
+  width: 508px;
+}
+.product-title h1 {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+/* Thanh trượt gallery */
+
+.gallery-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.product-gallery.slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  width: 100%;
+}
+
+.gallery-item {
+  flex: 0 0 auto;
+  width: 25%; /* mỗi ảnh full chiều rộng khối */
+}
+
+.product-gallery.slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.product-gallery.slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mũi tên đè lên khối ảnh */
+.btn-prev,
+.btn-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.btn-prev {
+  left: 10px;
+}
+.btn-next {
+  right: 10px;
+}
+.product-gallery.slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+}
+
+/* Ẩn scrollbar trên Chrome, Safari */
+.product-gallery.slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* Ẩn scrollbar trên Firefox */
+.product-gallery.slider {
+  scrollbar-width: none;
+}
+
+/* Ẩn scrollbar trên IE/Edge cũ */
+.product-gallery.slider {
+  -ms-overflow-style: none;
+}

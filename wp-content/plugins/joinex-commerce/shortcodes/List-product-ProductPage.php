@@ -222,7 +222,8 @@ function list_product_product_page_shortcode() {
             ?>
                 
                 <div class="product-item">
-                    <a href="<?php echo esc_url( get_the_permalink() ); ?>">
+                <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
+
                         <div class="product-item-image">
                             <?php
                                 echo $product->get_image();
@@ -241,12 +242,12 @@ function list_product_product_page_shortcode() {
                                 <div class="product-price-add-to-cart">
                                     <div class="price-min-real-price">
                                             <?php
-                                              //  if ( $min_entry && ! empty( $min_entry['id'] ) ) {
-                                                  //  $min_product = wc_get_product( $min_entry['id'] );
+                                               // if ( $min_entry && ! empty( $min_entry['id'] ) ) {
+                                                  // $min_product = wc_get_product( $min_entry['id'] );
                                                   //  if ( $min_product ) {
-                                                     //   echo '<p><strong>ID:</strong> ' . $min_entry['id'] . '</p>';                                                    
-                                                //    }
-                                             //   }                                      
+                                                      //  echo '<p><strong>ID:</strong> ' . $min_entry['id'] . '</p>';                                                    
+                                                  //  }
+                                              //  }                                      
                                              if ( $sale_price )// Nếu $sale_price rỗng hoặc bằng null, thì khối lệnh bên trong sẽ không chạy.
                                                 { 
                                                     echo '<p class="HomePage_Sale_Price">'. wc_price( $sale_price ).'</p>';
