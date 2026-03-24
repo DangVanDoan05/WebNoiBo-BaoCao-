@@ -14,48 +14,74 @@ function joinex_product_detail_shortcode() {
 
     <div class="joinex-product-detail">   
         <div class="images-short-description-product">
-           <div class="images-product-container">    <!-- KHỐI HÌNH ẢNH SẢN PHẨM --> 
-                <div class="images-large-product-container"> 
-                        <div class="images-large-product">
-                            <?php echo $product->get_image('large'); ?>
-                        </div>
-                </div>
-                <div class="images-gallery-product-container"> 
-                    <div class="main-image">
-                        <?php
-                            $product = wc_get_product( $product_id );
-                            $main_img_id = $product->get_image_id(); // ảnh sản phẩm chính
-                            $gallery_ids = $product->get_gallery_image_ids(); // thư viện ảnh
+        <div class="images-product-container">  
+            <!-- ẢNH CHÍNH -->
+            <div class="main-image-container">
+                <?php
+                    $product     = wc_get_product( $product_id );
+                    $main_img_id = $product->get_image_id(); // ảnh sản phẩm chính
+                    $gallery_ids = $product->get_gallery_image_ids(); // thư viện ảnh
 
-                            if ($main_img_id) {
-                                echo wp_get_attachment_image( $main_img_id, 'large', false, array('id' => 'current-main-image'));
-                            }
-                        ?>
-                    </div>
+                    if ( $main_img_id ) {
+                        echo wp_get_attachment_image( $main_img_id, 'large', false, array( 'id' => 'current-main-image' ));
+                    }
+                ?>
+            </div>            
 
-                    <div class="images-gallery-product">
-                        <?php
-                            // Đưa ảnh chính lên đầu gallery thumbnail
-                            if ($main_img_id) {
-                                echo '<div class="gallery-thumb">';
-                                echo wp_get_attachment_image( $main_img_id, 'thumbnail', false, array('class' => 'thumb-image active'));
-                                echo '</div>';
-                            }
+            <!-- GALLERY THUMBNAIL -->
+            <div class="images-gallery-product-container">
+                <?php
+                    if ( $main_img_id || $gallery_ids ) {
+                        $all_ids = array(); 
+                        if ( $main_img_id ) {
+                            $all_ids[] = $main_img_id; // đưa ảnh chính lên đầu
+                        }
+                        if ( $gallery_ids ) {
+                            $all_ids = array_merge( $all_ids, $gallery_ids );
+                        }
 
-                            // Sau đó lần lượt các ảnh trong thư viện
-                            if ($gallery_ids) {
-                                foreach ($gallery_ids as $img_id) {
-                                    echo '<div class="gallery-thumb">';
-                                    echo wp_get_attachment_image( $img_id, 'thumbnail', false, array('class' => 'thumb-image'));
-                                    echo '</div>';
-                                }
-                            }
-                        ?>
-                    </div>
-                </div>
+                        $max_show = 4;
+                        $total    = count( $all_ids );
+
+                        if ( $total > $max_show ) {
+                            // Nếu nhiều hơn 4 ảnh thì hiển thị slider với mũi tên
+                            ?>
+                            <div class="gallery-container">
+                                <button class="btn-prev">◀</button>
+                                <div class="images-gallery-product slider">
+                                    <?php foreach ( $all_ids as $index => $img_id ) : ?>
+                                        <div class="gallery-thumb">
+                                            <?php 
+                                                $class = $index === 0 ? 'thumb-image active' : 'thumb-image';
+                                                echo wp_get_attachment_image( $img_id, 'thumbnail', false, array( 'class' => $class ));
+                                            ?>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+                                <button class="btn-next">▶</button>
+                            </div>
+                            <?php
+                        } else {
+                            // Nếu ≤4 ảnh thì hiển thị bình thường
+                            ?>
+                            <div class="images-gallery-product">
+                                <?php foreach ( $all_ids as $index => $img_id ) : ?>
+                                    <div class="gallery-thumb">
+                                        <?php 
+                                            $class = $index === 0 ? 'thumb-image active' : 'thumb-image';
+                                            echo wp_get_attachment_image( $img_id, 'thumbnail', false, array( 'class' => $class ));
+                                        ?>
+                                    </div>
+                                <?php endforeach; ?>
+                            </div>
+                            <?php
+                        }
+                    }
+                ?>
+            </div>
+        </div>
 
 
-            </div>    
             <div class="title-short-description-product">  <!-- KHỐI TIÊU ĐỀ VÀ MÔ TẢ NGẮN  --> 
                 <div class="product-title">
                     <h1 class="title"><?php echo esc_html($product->get_name()); ?></h1>

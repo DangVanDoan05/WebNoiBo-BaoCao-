@@ -280,7 +280,7 @@ function list_product_product_page_shortcode() {
                                             ?>
                                     </div>
                                     <div class="add-to-cart">
-                                        <a href="<?php echo esc_url( get_the_permalink( $product->get_id() ) ); ?>">
+                                        <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
                                             <img class="cc-img-CartHomePage" 
                                                 src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductHomePageIMG/AddToCart.png'; ?>" 
                                                 alt="Xem chi tiết sản phẩm">  
