@@ -164,3 +164,94 @@
 .gallery-thumb {
   flex: 0 0 23.7%; /* mỗi ảnh chiếm 1/4 khung */
 }
+
+.product-price {
+  text-align: left;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 22px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.product-short-description {
+  text-align: justify;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #000000;
+  margin-bottom: 0;
+}
+
+.divider {
+  border-top: 2px solid #bfbfbf; /* đường kẻ mảnh màu xám */
+  margin: 0 0; /* khoảng cách trên dưới */
+}
+
+/* BẮT ĐẦU CSS KHỐI THUỘC TÍNH SẢN PHẨM */
+.variation-group {
+  display: flex;
+}
+
+.label-variation {
+  width: 150px;
+  text-align: left;
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 16px;
+  line-height: 25px;
+  font-weight: 400;
+  margin-bottom: 20px;
+  color: #000000;
+}
+
+.attr-btn button {
+  font-family: "Be Vietnam Pro", sans-serif;
+  font-size: 14px;
+  line-height: 21px;
+  font-weight: 500;
+  color: #000000;
+  background-color: #ffffff;
+  width: 35px;
+  height: 35px;
+  border-radius: 4px;
+}
+
+.button-variation-container {
+  height: 40px;
+}
+
+.attribute-group {
+  margin: 15px 0;
+}
+
+.attribute-group strong {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+
+.attr-btn {
+  display: inline-block;
+  margin: 5px;
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 14px;
+}
+
+.attr-btn:hover {
+  border-color: #0073aa;
+  background-color: #eef6fb;
+}
+
+.attr-btn.active {
+  border-color: #0073aa;
+  background-color: #0073aa;
+  color: #fff;
+  font-weight: 600;
+}

@@ -531,7 +531,7 @@
                                     </div> -->
 
                                     <div class="row-total-price">
-                                        <div class="title-total-price">Tổng:</div>
+                                        <div class="title-total-price">Tổng cộng:</div>
                                         <div class="total-price"><?php echo $total; ?></div>
                                     </div>
 
