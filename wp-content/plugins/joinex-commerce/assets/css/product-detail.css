@@ -242,6 +242,7 @@
   cursor: pointer;
   transition: all 0.2s ease;
   font-size: 14px;
+  color: #000000; /* màu chữ mặc định */
 }
 
 .attr-btn:hover {
