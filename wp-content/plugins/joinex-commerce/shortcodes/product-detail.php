@@ -162,10 +162,47 @@ function joinex_product_detail_shortcode() {
                         <button class="qty-btn-joinex plus-joinex">+</button>
                     </div>
                     <div class="action-buttons-joinex">
-                        <button class="cart-btn-joinex">🛒 Thêm vào giỏ hàng</button>
-                        <button class="buy-btn-joinex">⚡ Mua ngay</button>
+                        <button class="cart-btn-joinex">                          
+                             <img class="cart-icon-joinex"  src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductDetailPageIMG/CartIMG.png'; ?>" alt="Cart">                          
+                           <!-- <img src="/assets/img/ProductDetailPageIMG/CartIMG.png" alt="" class="cart-icon-joinex"> -->
+                             Thêm vào giỏ hàng
+                        </button>
+                        <button class="buy-btn-joinex">
+                        <img class="buy-icon-joinex"  src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductDetailPageIMG/BuyNowIMG.png'; ?>" alt="Cart"> 
+                             Mua ngay</button>
                     </div>
                                     
+                </div>
+                <div class="service-info-joinex"> <!-- KHỐI THÔNG TIN DỊCH VỤ --> 
+                        <div class="service-item-joinex">
+                            <div class="service-img">
+                              <img class="support-joinex"  src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductDetailPageIMG/NutLienHeIMG.png'; ?>" alt="Cart">
+                            </div>  
+                            <div class="service-text-joinex">
+                                <h4>Lắp đặt tận nơi</h4>
+                                <p>Hướng dẫn và hỗ trợ lắp đặt tại nhà. <a href="#">Xem chi tiết</a></p>
+                            </div>
+                        </div>
+                         <div class="service-divider"></div> <!-- ĐƯỜNG PHÂN CÁCH--> 
+                        <div class="service-item-joinex">
+                            <div class="service-img">
+                                <img class="transport-joinex"  src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductDetailPageIMG/XeTaiIMG.png'; ?>" alt="Cart">
+                            </div>  
+                            <div class="service-text-joinex">
+                                <h4>Giao hàng miễn phí</h4>
+                                <p>Miễn phí giao hàng cho đơn từ 500.000đ.</p>
+                            </div>
+                        </div>
+                        <div class="service-divider"></div> <!-- ĐƯỜNG PHÂN CÁCH--> 
+                        <div class="service-item-joinex">
+                            <div class="service-img">
+                                <img class="return-product-joinex"  src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductDetailPageIMG/HoanHangIMG.png'; ?>" alt="Cart">
+                            </div> 
+                            <div class="service-text-joinex">
+                                <h4>Trả hàng</h4>
+                                <p>Miễn phí trả hàng trong vòng 30 ngày. <a href="#">Xem thêm</a></p>
+                            </div>
+                        </div>
                 </div>
             </div>
         </div>     
