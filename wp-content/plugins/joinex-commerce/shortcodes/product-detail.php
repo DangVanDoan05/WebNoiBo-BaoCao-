@@ -93,7 +93,7 @@ function joinex_product_detail_shortcode() {
                     <?php echo apply_filters( 'woocommerce_short_description', $product->get_short_description() );?>
                 </div>
                 <div class="divider"></div> <!-- ĐƯỜNG PHÂN CÁCH--> 
-                <div class="product-variation">
+                <div class="product-variation"> <!-- KHỐI THUỘC TÍNH SẢN PHẨM --> 
                 <?php
                     // Lấy ID từ URL
                     $product_id = isset($_GET['product_id']) ? intval($_GET['product_id']) : 0;
@@ -110,8 +110,7 @@ function joinex_product_detail_shortcode() {
                                 $parent_product = $product;
                             }
                             if ($parent_product) {
-                                $attributes = $parent_product->get_attributes();
-                                echo '<h3>Thuộc tính sản phẩm:</h3>';
+                                $attributes = $parent_product->get_attributes();                            
                                 echo '<div class="cc-variation-container">';
                                     foreach ($attributes as $attribute) {
                                         $name = wc_attribute_label($attribute->get_name());
@@ -156,7 +155,18 @@ function joinex_product_detail_shortcode() {
 
 
                 </div>
-              
+                <div class="product-actions">  <!-- CÁC HÀNH ĐỘNG SẢN PHẨM --> 
+                    <div class="quantity-joinex">
+                        <button class="qty-btn-joinex minus-joinex">-</button>
+                        <input type="number" class="qty-input-joinex" value="1" min="1">
+                        <button class="qty-btn-joinex plus-joinex">+</button>
+                    </div>
+                    <div class="action-buttons-joinex">
+                        <button class="cart-btn-joinex">🛒 Thêm vào giỏ hàng</button>
+                        <button class="buy-btn-joinex">⚡ Mua ngay</button>
+                    </div>
+                                    
+                </div>
             </div>
         </div>     
         <div class="long-description-product">  <!-- KHỐI MÔ TẢ DÀI.  --> 

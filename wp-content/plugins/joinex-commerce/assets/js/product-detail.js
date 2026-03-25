@@ -60,3 +60,50 @@ document.addEventListener("DOMContentLoaded", function () {
   showImage(currentIndex);
   updateSlider();
 });
+
+// JS CHO PHẦN TÙY CHỌN THUỘC TÍNH
+
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("✅ JS đã load và đang chạy!");
+
+  const groups = document.querySelectorAll(".button-variation-container");
+  console.log("Tìm thấy số nhóm:", groups.length);
+
+  groups.forEach((group) => {
+    const buttons = group.querySelectorAll(".attr-btn");
+    console.log("Trong nhóm có nút:", buttons.length);
+
+    buttons.forEach((btn) => {
+      btn.addEventListener("click", function () {
+        console.log("👉 Click vào nút:", this.dataset.attr);
+
+        // Bỏ active khỏi tất cả nút trong cùng nhóm
+        buttons.forEach((b) => b.classList.remove("active"));
+
+        // Thêm active cho nút vừa chọn
+        this.classList.add("active");
+      });
+    });
+  });
+});
+
+// JS CHO PHẦN NÚT BẤM.
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("✅ JS joinex đã load và đang chạy!");
+
+  const qtyInput = document.querySelector(".qty-input-joinex");
+  const minusBtn = document.querySelector(".minus-joinex");
+  const plusBtn = document.querySelector(".plus-joinex");
+
+  minusBtn.addEventListener("click", function () {
+    let value = parseInt(qtyInput.value);
+    if (value > 1) qtyInput.value = value - 1;
+    console.log("Số lượng sau khi trừ:", qtyInput.value);
+  });
+
+  plusBtn.addEventListener("click", function () {
+    let value = parseInt(qtyInput.value);
+    qtyInput.value = value + 1;
+    console.log("Số lượng sau khi cộng:", qtyInput.value);
+  });
+});
