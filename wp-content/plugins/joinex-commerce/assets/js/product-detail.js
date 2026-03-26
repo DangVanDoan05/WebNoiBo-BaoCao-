@@ -107,3 +107,25 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Số lượng sau khi cộng:", qtyInput.value);
   });
 });
+
+//#region   MÔ TẢ DÀI SẢN PHẨM
+
+document.addEventListener("DOMContentLoaded", function () {
+  const tabs = document.querySelectorAll(".tab-link-joinex");
+  const panes = document.querySelectorAll(".tab-pane-joinex");
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", function () {
+      // bỏ active cũ
+      tabs.forEach((t) => t.classList.remove("active"));
+      panes.forEach((p) => p.classList.remove("active"));
+
+      // thêm active mới
+      this.classList.add("active");
+      const target = this.getAttribute("data-tab");
+      document.getElementById(target).classList.add("active");
+    });
+  });
+});
+
+//#endregion

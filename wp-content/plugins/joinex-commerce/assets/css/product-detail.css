@@ -473,3 +473,50 @@
   background-color: #bfbfbf; /* màu đường kẻ */
   margin: 0px 0; /* khoảng cách trên dưới */
 }
+
+/* #region   KHỐI MÔ TẢ DÀI SẢN PHẨM */
+.product-tabs-joinex {
+  margin-top: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.tab-header-joinex {
+  list-style: none;
+  display: flex;
+  border-bottom: 2px solid #e2e2e2;
+  padding: 0;
+  margin: 0;
+}
+
+.tab-header-joinex li {
+  padding: 10px 20px;
+  cursor: pointer;
+  border: 1px solid #e2e2e2;
+  border-bottom: none;
+  background-color: #f9f9f9;
+  margin-right: 5px;
+  border-radius: 6px 6px 0 0;
+}
+
+.tab-header-joinex li.active {
+  background-color: #fff;
+  color: #670130;
+  font-weight: bold;
+}
+
+.tab-content-joinex {
+  border: 1px solid #e2e2e2;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 0 6px 6px 6px;
+}
+
+.tab-pane-joinex {
+  display: none;
+}
+
+.tab-pane-joinex.active {
+  display: block;
+}
+
+/* #endregion */

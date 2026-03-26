@@ -93,6 +93,7 @@ function joinex_product_detail_shortcode() {
                     <?php echo apply_filters( 'woocommerce_short_description', $product->get_short_description() );?>
                 </div>
                 <div class="divider"></div> <!-- ĐƯỜNG PHÂN CÁCH--> 
+                <!-- PHẦN GIÁ SẢN PHẨM LẤY ĐỘNG THEO THUỘC TÍNH SẼ ĐỂ XỬ LÝ SAU. --> 
                 <div class="product-variation"> <!-- KHỐI THUỘC TÍNH SẢN PHẨM --> 
                 <?php
                     // Lấy ID từ URL
@@ -118,7 +119,7 @@ function joinex_product_detail_shortcode() {
                                         echo '<div class="variation-group">';
                                             echo '<div class="label-variation">' . $name . ':</div> ';              
                                             if ($attribute->is_taxonomy()) {    // Nếu là TAXONOMY
-                                                // Nếu là taxonomy (pa_xxx)
+                                                // Nếu là TAXONOMY (pa_xxx)
                                                 $terms = wc_get_product_terms(
                                                     $parent_product->get_id(),
                                                     $attribute->get_name(),
@@ -207,7 +208,36 @@ function joinex_product_detail_shortcode() {
             </div>
         </div>     
         <div class="long-description-product">  <!-- KHỐI MÔ TẢ DÀI.  --> 
-            <?php echo wpautop($product->get_description()); ?>
+            <!-- PHẦN MÔ TẢ DÀI SẢN PHẨM  --> 
+            <!-- <?php echo wpautop($product->get_description()); ?> --> 
+            <div class="product-tabs-joinex">
+
+                <ul class="tab-header-joinex">
+                    <li class="tab-link-joinex active" data-tab="desc">Mô tả sản phẩm</li>
+                    <li class="tab-link-joinex" data-tab="specs">Thông số kỹ thuật</li>
+                    <li class="tab-link-joinex" data-tab="guide">Hướng dẫn lắp đặt</li>
+                </ul>
+                <div class="tab-content-joinex">
+                    <div id="desc" class="tab-pane-joinex active">
+                    <?php echo wpautop($product->get_description()); ?>
+                </div>
+                <div id="specs" class="tab-pane-joinex">
+                    <ul>
+                        <li>Thành phần: Bộ tưới - ống dẫn nước - giá đỡ</li>
+                        <li>Kích thước: 250 x 125 x 200 (mm)</li>
+                        <li>Chất liệu: Nhựa (PVC/ABS)</li>
+                        <li>Kiểu phun: Sương mù</li>
+                        <li>Chuẩn kết nối: 4/6 mm</li>
+                        <li>Xuất xứ: Việt Nam</li>
+                        <li>Bảo hành: 12 tháng</li>
+                    </ul>
+                </div>
+
+                <div id="guide" class="tab-pane-joinex">
+                    <p>Hướng dẫn chi tiết cách lắp đặt sản phẩm tại nhà...</p>
+                </div>
+            </div>
+        </div>
         </div>          
     </div>
     <?php
