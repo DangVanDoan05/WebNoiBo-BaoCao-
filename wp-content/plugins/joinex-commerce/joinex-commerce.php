@@ -91,6 +91,7 @@ require_once plugin_dir_path(__FILE__) . 'shortcodes/checkout-shortcode.php';
 
 // joinex-commerce.php
 function joinex_commerce_load_shortcodes() {
+
     include_once plugin_dir_path(__FILE__) . 'shortcodes/List-product-HomePage.php';
     include_once plugin_dir_path(__FILE__) . 'shortcodes/List-product-ProductPage.php';
     include_once plugin_dir_path(__FILE__) . 'shortcodes/product_filter_dropdown.php';
@@ -99,5 +100,10 @@ function joinex_commerce_load_shortcodes() {
 
 add_action('init', 'joinex_commerce_load_shortcodes');
 
+/* Load phần Custom trang chỉnh sửa sản phẩm THÊM Ô NHẬP THÔNG SỐ KỸ THUẬT VÀ HƯỚNG DẪN LẮP ĐẶT */
 
+require_once plugin_dir_path(__FILE__) . 'includes/product-custom-fields.php';
 
+/* THÊM PHẦN PHÔNG CHỮ VÀO CÀI ĐẶT */
+
+require_once plugin_dir_path(__FILE__) . 'includes/editor-fonts.php';

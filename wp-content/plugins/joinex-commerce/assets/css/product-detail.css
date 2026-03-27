@@ -477,7 +477,7 @@
 /* #region   KHỐI MÔ TẢ DÀI SẢN PHẨM */
 .product-tabs-joinex {
   margin-top: 20px;
-  font-family: Arial, sans-serif;
+  font-family: "Be Vietnam Pro", sans-serif !important;
 }
 
 .tab-header-joinex {
@@ -513,10 +513,20 @@
 
 .tab-pane-joinex {
   display: none;
+  text-align: left;
 }
 
 .tab-pane-joinex.active {
   display: block;
 }
 
+/* #endregion */
+
+/* #region   KHỐI ĐÁNH GIÁ SẢN PHẨM TỪ KHÁCH HÀNG */
+.customer-review-product {
+  border: 2px solid #707070;
+  border-radius: 5px;
+  text-align: left;
+  font-family: "Be Vietnam Pro", sans-serif;
+}
 /* #endregion */
