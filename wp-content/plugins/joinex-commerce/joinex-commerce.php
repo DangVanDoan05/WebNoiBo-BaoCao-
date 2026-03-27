@@ -107,3 +107,42 @@ require_once plugin_dir_path(__FILE__) . 'includes/product-custom-fields.php';
 /* THÊM PHẦN PHÔNG CHỮ VÀO CÀI ĐẶT */
 
 require_once plugin_dir_path(__FILE__) . 'includes/editor-fonts.php';
+
+
+// Hàm enqueue CSS/JS để CHẠY SLIDER Ở TRANG CHI TIẾT SẢN PHẨM, MỤC SẢN PHẨM LIÊN QUAN.
+function joinex_enqueue_assets() {
+    // Slick CSS
+    wp_enqueue_style(
+        'slick-css',
+        'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css'
+    );
+    wp_enqueue_style(
+        'slick-theme-css',
+        'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css'
+    );
+
+    // Slick JS
+    wp_enqueue_script(
+        'slick-js',
+        'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
+        array('jquery'),
+        null,
+        true
+    );
+
+    // JS custom của plugin (ví dụ product-detail.js)
+    wp_enqueue_script(
+        'joinex-product-detail',
+        plugins_url('assets/js/product-detail.js', __FILE__),
+        array('jquery','slick-js'), // phụ thuộc slick
+        '1.0.0',
+        true
+    );
+
+    // CSS custom của plugin (ví dụ product-detail.css)
+    wp_enqueue_style(
+        'joinex-product-detail-css',
+        plugins_url('assets/css/product-detail.css', __FILE__)
+    );
+}
+add_action('wp_enqueue_scripts', 'joinex_enqueue_assets');

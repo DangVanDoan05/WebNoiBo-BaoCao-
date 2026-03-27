@@ -524,9 +524,43 @@
 
 /* #region   KHỐI ĐÁNH GIÁ SẢN PHẨM TỪ KHÁCH HÀNG */
 .customer-review-product {
-  border: 2px solid #707070;
+  border: 2px solid #e2e2e2;
   border-radius: 5px;
   text-align: left;
   font-family: "Be Vietnam Pro", sans-serif;
 }
+/* #endregion */
+
+/* #region   KHỐI SLIDER SẢN PHẨM LIÊN QUAN */
+/*
+.relative-product-joinex-slider .slider-item {
+  padding: 15px;
+  text-align: center;
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  transition: box-shadow 0.3s ease;
+}
+
+.relative-product-joinex-slider .slider-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.relative-product-joinex-slider .slider-item img {
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.relative-product-joinex-slider .slider-item h4 {
+  font-size: 16px;
+  margin: 8px 0;
+  color: #333;
+}
+
+.relative-product-joinex-slider .slider-item .price {
+  font-weight: bold;
+  color: #e74c3c;
+}*/
+
 /* #endregion */
