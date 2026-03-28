@@ -132,4 +132,71 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //#region   PHẦN SLIDER SẢN PHẨM LIÊN QUAN
 
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("🚀 DOM đã load");
+
+  let index1 = 0;
+
+  const track = document.querySelector(".product-list-slider-track");
+  const items = document.querySelectorAll(".product-slider-item");
+  const nextBtn = document.querySelector(".custom-next");
+  const prevBtn = document.querySelector(".custom-prev");
+
+  console.log("👉 track:", track);
+  console.log("👉 items:", items.length);
+
+  const itemWidth = items[0].offsetWidth + 15;
+  const visibleItems = Math.floor(track.parentElement.offsetWidth / itemWidth);
+  const maxIndex = items.length - visibleItems;
+
+  console.log("📏 itemWidth:", itemWidth);
+  console.log("📦 visibleItems:", visibleItems);
+  console.log("🔚 maxIndex:", maxIndex);
+
+  function updateSlider() {
+    const translateX = index1 * itemWidth;
+    console.log(`➡️ index1 = ${index1}, translateX = ${translateX}`);
+    track.style.transform = `translateX(-${translateX}px)`;
+  }
+
+  // 👉 NEXT
+  nextBtn.addEventListener("click", () => {
+    console.log("👉 CLICK NEXT");
+
+    if (index1 < maxIndex) {
+      index1++;
+    } else {
+      index1 = 0;
+    }
+
+    updateSlider();
+  });
+
+  // 👉 PREV
+  prevBtn.addEventListener("click", () => {
+    console.log("👉 CLICK PREV");
+
+    if (index1 > 0) {
+      index1--;
+    } else {
+      index1 = maxIndex;
+    }
+
+    updateSlider();
+  });
+
+  // 👉 AUTO SLIDE
+  setInterval(() => {
+    console.log("⏱️ AUTO RUN");
+
+    if (index1 < maxIndex) {
+      index1++;
+    } else {
+      index1 = 0;
+    }
+
+    updateSlider();
+  }, 3000);
+});
+
 //#endregion
