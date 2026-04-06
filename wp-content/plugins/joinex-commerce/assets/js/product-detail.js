@@ -130,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //#endregion
 
-//#region   PHẦN SLIDER SẢN PHẨM LIÊN QUAN
+//#region   PHẦN SLIDER SẢN PHẨM LIÊN QUAN PHẢI HỌC THÔI CHỨ KHÔNG LÀ KHÔNG LÀM CHỦ ĐƯỢC ĐÂU
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM đã load");

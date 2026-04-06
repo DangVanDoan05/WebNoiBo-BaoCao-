@@ -599,3 +599,41 @@
 }
 
 /* #endregion */
+
+/*#region   KHỐI BĂNG TẢI HÌNH ẢNH */
+
+.product-carousel-item {
+  background-color: pink;
+  padding: 5px;
+  border-radius: 10px;
+  min-width: 280px;
+  height: 420px;
+}
+
+.product-list-carousel {
+  padding: 10px;
+  margin: 100px auto;
+  border: 3px solid red;
+  border-radius: 10px;
+  display: flex;
+  gap: 10px;
+  overflow-x: hidden; /*Không cho vượt quá khung ngang vừa ẩn thanh trượt đi. */
+}
+
+.group-carousel {
+  display: flex;
+  gap: 10px;
+  animation: spin 1000s infinite linear;
+}
+
+/*Phần chế để cho chuyển động được*/
+@keyframes spin {
+  from {
+    translate: 0;
+  }
+  to {
+    translate: -100%;
+  }
+}
+
+/*#endregion */
