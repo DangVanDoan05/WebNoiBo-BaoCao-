@@ -623,7 +623,7 @@
 .group-carousel {
   display: flex;
   gap: 10px;
-  animation: spin 1000s infinite linear;
+  animation: spin 100s infinite linear;
 }
 
 /*Phần chế để cho chuyển động được*/
