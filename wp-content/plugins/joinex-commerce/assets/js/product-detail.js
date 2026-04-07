@@ -134,9 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM đã load");
-
   let index1 = 0;
-
   const track = document.querySelector(".product-list-slider-track");
   const items = document.querySelectorAll(".product-slider-item");
   const nextBtn = document.querySelector(".custom-next");

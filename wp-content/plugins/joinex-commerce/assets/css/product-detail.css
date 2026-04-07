@@ -560,7 +560,7 @@
 /* Khung ngoài */
 .product-list-slider {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 
 /* Track chứa tất cả item */
@@ -623,7 +623,7 @@
 .group-carousel {
   display: flex;
   gap: 10px;
-  animation: spin 100s infinite linear;
+  /* animation: spin 100s infinite linear; /*Phần chuyển động của ANIMATION */
 }
 
 /*Phần chế để cho chuyển động được*/
