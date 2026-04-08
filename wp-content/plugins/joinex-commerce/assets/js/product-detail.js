@@ -132,69 +132,33 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //#region   PHẦN SLIDER SẢN PHẨM LIÊN QUAN PHẢI HỌC THÔI CHỨ KHÔNG LÀ KHÔNG LÀM CHỦ ĐƯỢC ĐÂU
 
-document.addEventListener("DOMContentLoaded", function () {
-  console.log("🚀 DOM đã load");
-  let index1 = 0;
-  const track = document.querySelector(".product-list-slider-track");
-  const items = document.querySelectorAll(".product-slider-item");
-  const nextBtn = document.querySelector(".custom-next");
-  const prevBtn = document.querySelector(".custom-prev");
+const track = document.querySelector(".product-list-slider-track");
+const delay = 3000; // 3 giây
+let isSliding = false;
 
-  console.log("👉 track:", track);
-  console.log("👉 items:", items.length);
+function slide() {
+  if (isSliding) return;
+  isSliding = true;
 
-  const itemWidth = items[0].offsetWidth + 15;
-  const visibleItems = Math.floor(track.parentElement.offsetWidth / itemWidth);
-  const maxIndex = items.length - visibleItems;
+  const firstItem = track.querySelector(".product-slider-item");
+  const itemWidth = firstItem.offsetWidth + 20; // 300 + margin
 
-  console.log("📏 itemWidth:", itemWidth);
-  console.log("📦 visibleItems:", visibleItems);
-  console.log("🔚 maxIndex:", maxIndex);
+  // Đẩy phần tử đầu tiên xuống cuối TRƯỚC khi dịch
+  track.appendChild(firstItem.cloneNode(true));
+  track.removeChild(firstItem);
 
-  function updateSlider() {
-    const translateX = index1 * itemWidth;
-    console.log(`➡️ index1 = ${index1}, translateX = ${translateX}`);
-    track.style.transform = `translateX(-${translateX}px)`;
-  }
+  // Dịch sang trái
+  track.style.transition = "transform 0.5s ease";
+  track.style.transform = `translateX(-${itemWidth}px)`;
 
-  // 👉 NEXT
-  nextBtn.addEventListener("click", () => {
-    console.log("👉 CLICK NEXT");
+  // Sau khi dịch xong, reset transform về 0
+  setTimeout(() => {
+    track.style.transition = "none";
+    track.style.transform = "translateX(0)";
+    isSliding = false;
+  }, 500);
+}
 
-    if (index1 < maxIndex) {
-      index1++;
-    } else {
-      index1 = 0;
-    }
-
-    updateSlider();
-  });
-
-  // 👉 PREV
-  prevBtn.addEventListener("click", () => {
-    console.log("👉 CLICK PREV");
-
-    if (index1 > 0) {
-      index1--;
-    } else {
-      index1 = maxIndex;
-    }
-
-    updateSlider();
-  });
-
-  // 👉 AUTO SLIDE
-  setInterval(() => {
-    console.log("⏱️ AUTO RUN");
-
-    if (index1 < maxIndex) {
-      index1++;
-    } else {
-      index1 = 0;
-    }
-
-    updateSlider();
-  }, 3000);
-});
+setInterval(slide, delay);
 
 //#endregion

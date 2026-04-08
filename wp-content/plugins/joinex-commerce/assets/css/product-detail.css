@@ -523,58 +523,55 @@
 /* #endregion */
 
 /* #region   KHỐI ĐÁNH GIÁ SẢN PHẨM TỪ KHÁCH HÀNG */
-.customer-review-product {
-  border: 2px solid #e2e2e2;
-  border-radius: 5px;
-  text-align: left;
-  font-family: "Be Vietnam Pro", sans-serif;
-}
-/* #endregion */
 
-/* #region   KHỐI SLIDER SẢN PHẨM LIÊN QUAN */
 .product-list-slider {
-  position: relative; /* position: relative thường được dùng để làm mốc cho phần tử con position: absolute*/
-  /* position: relative = giữ nguyên chỗ + cho phép dịch chuyển Quan trọng nhất là: 👉 làm “gốc” cho absolute*/
-  overflow: hidden; /* tràn: ẩn; Ẩn toàn bộ phần nội dung bị tràn ra ngoài khung của phần tử*/
-  background-color: green;
+  position: relative; /* để khối overlay định vị theo container */
+
   padding: 10px;
+  overflow: hidden;
 }
 
 .product-list-slider-track {
-  background-color: blue;
-  padding: 10px;
   display: flex;
-  transition: transform 0.5s ease; /* transition: transform 0.5s ease; là thuộc tính CSS dùng để tạo hiệu ứng chuyển động mượt (animation) khi giá trị transform thay đổi. */
-  /* tràn: ẩn; Ẩn toàn bộ phần nội dung bị tràn ra ngoài khung của phần tử*/
-  gap: 10px;
-}
-
-.product-slider-item {
-  background-color: pink;
-  padding: 5px;
-  border-radius: 10px;
-  min-width: 280px;
-  height: 420px;
-}
-
-/* Khung ngoài */
-.product-list-slider {
+  gap: 0px;
+  transition: transform 0.5s ease;
   position: relative;
-  /* overflow: hidden; */
+  z-index: 1; /* các item nằm dưới */
 }
 
-/* Track chứa tất cả item */
-.product-list-slider-track {
-  display: flex;
-  transition: transform 0.1s ease;
-  will-change: transform;
+.overlay-block {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999; /* nằm trên cùng */
+  background: rgba(255, 255, 255, 0); /* trong suốt */
+  pointer-events: none; /* không chặn thao tác chuột */
 }
-
-/* Mỗi sản phẩm */
+@keyframes scroll-left {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%); /* cuộn nửa track, vì ta sẽ nhân đôi item */
+  }
+}
 .product-slider-item {
-  min-width: 250px; /* chỉnh theo UI của bạn */
-  margin-right: 15px;
-  flex-shrink: 0;
+  flex: 0 0 auto; /* giữ kích thước cố định */
+  width: 300px;
+  margin: 0 10px; /* đây này bị dôi khoảng như này*/
+  transition: transform 0.3s ease-in-out; /* hiệu ứng khi hover */
+}
+
+.product-slider-item:hover {
+  transform: scale(1.05); /* phóng to nhẹ khi hover */
+}
+
+.product-item-image img {
+  border-radius: 8px;
+  max-width: 100%;
+  height: auto;
 }
 
 /* Nút next prev */
