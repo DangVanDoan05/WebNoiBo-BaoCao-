@@ -232,3 +232,12 @@
   padding: 4px 8px;
   border-radius: 4px;
 }
+
+.no-products {
+  font-family: "BeVietnam Pro", sans-serif; /* đổi font */
+  font-size: 30px; /* cỡ chữ */
+  font-weight: 500; /* độ đậm */
+  color: #000000; /* màu chữ (ví dụ đỏ) */
+  /* text-align: center;*/ /* căn giữa */
+  margin-top: 20px; /* khoảng cách trên */
+}
