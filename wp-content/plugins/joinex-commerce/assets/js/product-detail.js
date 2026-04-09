@@ -131,7 +131,6 @@ document.addEventListener("DOMContentLoaded", function () {
 //#endregion
 
 //#region   PHẦN SLIDER SẢN PHẨM LIÊN QUAN PHẢI HỌC THÔI CHỨ KHÔNG LÀ KHÔNG LÀM CHỦ ĐƯỢC ĐÂU
-
 const track = document.querySelector(".product-list-slider-track");
 const delay = 3000; // 3 giây
 let isSliding = false;

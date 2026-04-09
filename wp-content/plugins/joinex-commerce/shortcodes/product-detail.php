@@ -383,17 +383,19 @@ function joinex_product_detail_shortcode() {
                         
                                 <div class="product-slider-item">
                                     <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
-                                        <div class="product-item-image">
-                                            <?php
-                                                echo $product->get_image();
-                        
-                                                if ( $discount_percent ) {
-                                                    echo '<p class="discount-label">- ' . $discount_percent . '%</p>';
-                                                }
-                                            ?>
+                                        <div class="product-slider-item-image-container">
+                                            <div class="product-slider-item-image">
+                                                <?php
+                                                    echo $product->get_image();
+                            
+                                                    if ( $discount_percent ) {
+                                                        echo '<p class="discount-label">- ' . $discount_percent . '%</p>';
+                                                    }
+                                                ?>
+                                            </div>
                                         </div>
                         
-                                        <div class="product-item-title">
+                                        <div class="product-slider-item-title">
                                             <div class="product-item-title-detail">
                         
                                                 <h3><?php echo esc_html( get_the_title() ); ?></h3>
