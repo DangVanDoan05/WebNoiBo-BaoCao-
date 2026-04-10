@@ -134,6 +134,11 @@ document.addEventListener("DOMContentLoaded", function () {
 const track = document.querySelector(".product-list-slider-track");
 const delay = 3000; // 3 giây
 let isSliding = false;
+const btnPrev = document.getElementById("prev-joinex-slider");
+const btnNext = document.getElementById("next-joinex-slider");
+
+const itemWidth = 270.75 + 15; // chiều rộng + margin (theo CSS bạn đặt)
+let scrollAmount = 0;
 
 function slide() {
   if (isSliding) return;
@@ -159,5 +164,25 @@ function slide() {
 }
 
 setInterval(slide, delay);
+
+// NEXT → dịch sang trái
+btnNext.addEventListener("click", () => {
+  scrollAmount += itemWidth;
+  if (scrollAmount > track.scrollWidth - track.clientWidth) {
+    scrollAmount = 0; // quay lại đầu
+  }
+  track.style.transition = "transform 0.5s ease";
+  track.style.transform = `translateX(-${scrollAmount}px)`;
+});
+
+// PREV → dịch sang phải
+btnPrev.addEventListener("click", () => {
+  scrollAmount -= itemWidth;
+  if (scrollAmount < 0) {
+    scrollAmount = track.scrollWidth - track.clientWidth; // quay về cuối
+  }
+  track.style.transition = "transform 0.5s ease";
+  track.style.transform = `translateX(-${scrollAmount}px)`;
+});
 
 //#endregion

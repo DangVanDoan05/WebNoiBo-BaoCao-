@@ -256,6 +256,7 @@ function joinex_product_detail_shortcode() {
             </div>
         </div>
         </div> 
+        <!-- KHỐI REVIEW SẢN PHẨM  --> 
         <div id="reviews" class="customer-review-product">  <!-- KHỐI REVIEW SẢN PHẨM  --> 
             <div><p>ĐÂY LÀ KHỐI KẾT QUẢ ĐÁNH GIÁ SẢN PHẨM</p></div>
             <?php
@@ -314,138 +315,142 @@ function joinex_product_detail_shortcode() {
                 // HIỂN THỊ DẠNG SLIDER  
 
                 if ( $loop->have_posts()) { 
-    
-                    echo '<div class="product-list-slider">';
-                        echo '<div class="product-list-slider-track">';
-                            // VÒNG LẶP ĐỂ IN RA CÁC KHỐI SẢN PHẨM
-                            while ( $loop->have_posts() ) {
-                                $loop->the_post();
-                        
-                                $product = wc_get_product( get_the_ID() );
-                                if ( ! $product ) continue;
-                        
-                                // =============================
-                                // 🔥 LẤY GIÁ THẤP NHẤT (FIX FULL)
-                                // =============================
-                                $min_product = null;
-                        
-                                if ( $product->is_type( 'variable' ) ) {
-                        
-                                    $min_price = null;
-                                    $variation_ids = $product->get_children();
-                        
-                                    foreach ( $variation_ids as $vid ) {
-                                        $variation = wc_get_product( $vid );
-                                        if ( ! $variation ) continue;
-                        
-                                        $price = $variation->get_price();
-                        
-                                        if ( $price !== '' && is_numeric( $price ) ) {
-                                            $price = floatval( $price );
-                        
-                                            if ( $min_price === null || $price < $min_price ) {
-                                                $min_price = $price;
-                                                $min_product = $variation;
+                    echo '<div class="product-list-slider-container">'; 
+                        echo '<button id="prev-joinex-slider"><</button>';
+                        echo '<div class="product-list-slider">';                      
+                            echo '<div class="product-list-slider-track">';
+                                // VÒNG LẶP ĐỂ IN RA CÁC KHỐI SẢN PHẨM
+                                while ( $loop->have_posts() ) {
+                                    $loop->the_post();
+                            
+                                    $product = wc_get_product( get_the_ID() );
+                                    if ( ! $product ) continue;
+                            
+                                    // =============================
+                                    // 🔥 LẤY GIÁ THẤP NHẤT (FIX FULL)
+                                    // =============================
+                                    $min_product = null;
+                            
+                                    if ( $product->is_type( 'variable' ) ) {
+                            
+                                        $min_price = null;
+                                        $variation_ids = $product->get_children();
+                            
+                                        foreach ( $variation_ids as $vid ) {
+                                            $variation = wc_get_product( $vid );
+                                            if ( ! $variation ) continue;
+                            
+                                            $price = $variation->get_price();
+                            
+                                            if ( $price !== '' && is_numeric( $price ) ) {
+                                                $price = floatval( $price );
+                            
+                                                if ( $min_price === null || $price < $min_price ) {
+                                                    $min_price = $price;
+                                                    $min_product = $variation;
+                                                }
                                             }
                                         }
-                                    }
-                        
-                                    // fallback nếu không tìm được biến thể
-                                    if ( ! $min_product ) {
+                            
+                                        // fallback nếu không tìm được biến thể
+                                        if ( ! $min_product ) {
+                                            $min_product = $product;
+                                        }
+                            
+                                    } else {
+                                        // 👉 sản phẩm đơn
                                         $min_product = $product;
                                     }
-                        
-                                } else {
-                                    // 👉 sản phẩm đơn
-                                    $min_product = $product;
-                                }
-                        
-                                // =============================
-                                // 🔥 LẤY GIÁ AN TOÀN
-                                // =============================
-                                $regular_price = '';
-                                $sale_price    = '';
-                        
-                                if ( $min_product && is_a( $min_product, 'WC_Product' ) ) {
-                                    $regular_price = $min_product->get_regular_price();
-                                    $sale_price    = $min_product->get_sale_price();
-                                }
-                        
-                                // =============================
-                                // 🔥 TÍNH % GIẢM GIÁ
-                                // =============================
-                                $discount_percent = null;
-                        
-                                if ( $sale_price && $regular_price && $regular_price > 0 ) {
-                                    $discount_percent = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
-                                }
-                                ?>
-                        
-                                <div class="product-slider-item">
-                                    <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
-                                        <div class="product-slider-item-image-container">
-                                            <div class="product-slider-item-image">
-                                                <?php
-                                                    echo $product->get_image();
                             
-                                                    if ( $discount_percent ) {
-                                                        echo '<p class="discount-label">- ' . $discount_percent . '%</p>';
-                                                    }
-                                                ?>
-                                            </div>
-                                        </div>
-                        
-                                        <div class="product-slider-item-title">
-                                            <div class="product-item-title-detail">
-                        
-                                                <h3><?php echo esc_html( get_the_title() ); ?></h3>
-                        
-                                                <div class="product-divider"></div>
-                        
-                                                <div class="product-price-add-to-cart">
-                        
-                                                    <div class="price-min-real-price">
-                        
-                                                        <?php
-                                                        // 👉 Có giá sale
-                                                        if ( $sale_price ) {
-                                                            echo '<p class="HomePage_Sale_Price">' . wc_price( $sale_price ) . '</p>';
-                        
-                                                            if ( $regular_price ) {
-                                                                echo '<p class="HomePage_Regular_Price">' . wc_price( $regular_price ) . '</p>';
-                                                            }
-                                                        } 
-                                                        // 👉 Không có sale → giá thường
-                                                        else {
-                                                            if ( $regular_price ) {
-                                                                echo '<p class="HomePage_Regular_Price_Sale">' . wc_price( $regular_price ) . '</p>';
-                                                            } else {
-                                                                echo '<p><em>Liên hệ</em></p>';
-                                                            }
+                                    // =============================
+                                    // 🔥 LẤY GIÁ AN TOÀN
+                                    // =============================
+                                    $regular_price = '';
+                                    $sale_price    = '';
+                            
+                                    if ( $min_product && is_a( $min_product, 'WC_Product' ) ) {
+                                        $regular_price = $min_product->get_regular_price();
+                                        $sale_price    = $min_product->get_sale_price();
+                                    }
+                            
+                                    // =============================
+                                    // 🔥 TÍNH % GIẢM GIÁ
+                                    // =============================
+                                    $discount_percent = null;
+                            
+                                    if ( $sale_price && $regular_price && $regular_price > 0 ) {
+                                        $discount_percent = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
+                                    }
+                                    ?>
+                            
+                                    <div class="product-slider-item">
+                                        <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
+                                            <div class="product-slider-item-image-container">
+                                                <div class="product-slider-item-image">
+                                                    <?php
+                                                        echo $product->get_image();
+                                
+                                                        if ( $discount_percent ) {
+                                                            echo '<p class="discount-label">- ' . $discount_percent . '%</p>';
                                                         }
-                                                        ?>
-                        
-                                                    </div>
-                        
-                                                    <div class="add-to-cart">
-                                                        <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
-                                                            <img class="cc-img-CartHomePage" 
-                                                                src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductHomePageIMG/AddToCart.png'; ?>" 
-                                                                alt="Xem chi tiết sản phẩm">  
-                                                        </a>
-                                                    </div>
-                        
+                                                    ?>
                                                 </div>
-                        
                                             </div>
-                                        </div>
-                                    </a>
-                                </div>
-                                <?php
-                            }
+                            
+                                            <div class="product-slider-item-title">
+                                                <div class="product-item-title-detail">
+                            
+                                                    <h3><?php echo esc_html( get_the_title() ); ?></h3>
+                            
+                                                    <div class="product-divider"></div>
+                            
+                                                    <div class="product-price-add-to-cart">
+                            
+                                                        <div class="price-min-real-price">
+                            
+                                                            <?php
+                                                            // 👉 Có giá sale
+                                                            if ( $sale_price ) {
+                                                                echo '<p class="HomePage_Sale_Price">' . wc_price( $sale_price ) . '</p>';
+                            
+                                                                if ( $regular_price ) {
+                                                                    echo '<p class="HomePage_Regular_Price">' . wc_price( $regular_price ) . '</p>';
+                                                                }
+                                                            } 
+                                                            // 👉 Không có sale → giá thường
+                                                            else {
+                                                                if ( $regular_price ) {
+                                                                    echo '<p class="HomePage_Regular_Price_Sale">' . wc_price( $regular_price ) . '</p>';
+                                                                } else {
+                                                                    echo '<p><em>Liên hệ</em></p>';
+                                                                }
+                                                            }
+                                                            ?>
+                            
+                                                        </div>
+                            
+                                                        <div class="add-to-cart">
+                                                            <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
+                                                                <img class="cc-img-CartHomePage" 
+                                                                    src="<?php echo JOINEX_PLUGIN_URL . 'assets/img/ProductHomePageIMG/AddToCart.png'; ?>" 
+                                                                    alt="Xem chi tiết sản phẩm">  
+                                                            </a>
+                                                        </div>
+                            
+                                                    </div>
+                            
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <?php
+                                }
+                            echo '</div>';                       
+                            echo '<div class="overlay-block"></div>';                                           
                         echo '</div>';
-                        echo '<div class="overlay-block"></div>';
+                        echo '<button id="next-joinex-slider">></button>';
                     echo '</div>';
+                     
                 } else {
                     echo '<p class="no-products">Không có sản phẩm.</p>';
                 } 
