@@ -113,13 +113,14 @@ $loop = new WP_Query($args);
                         ?>
                     </div>
     
-                    <div class="product-item-title">
-                        <div class="product-item-title-detail">
-    
-                            <h3><?php echo esc_html( get_the_title() ); ?></h3>
-    
+                    <div class="product-item-joinex-title">
+
+                            <div class="product-item-title-detail">    
+                                <h3><?php echo esc_html( get_the_title() ); ?></h3>
+                            </div>
+
                             <div class="product-divider"></div>
-    
+
                             <div class="product-price-add-to-cart">
     
                                 <div class="price-min-real-price">
@@ -153,10 +154,10 @@ $loop = new WP_Query($args);
                                     </a>
                                 </div>
     
-                            </div>
-    
-                        </div>
+                            </div>  
+
                     </div>
+
                 </a>
             </div>
             <?php

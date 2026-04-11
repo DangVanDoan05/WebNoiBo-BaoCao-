@@ -79,22 +79,24 @@
 }
 
 /* KHÓI TIÊU ĐỀ SẢN PHẨM */
-.product-item-title {
-  display: flex; /* bắt buộc để justify/align có hiệu lực */
+
+.product-item-joinex-title {
+  display: grid; /* bắt buộc để justify/align có hiệu lực */
   justify-content: center; /* căn giữa ngang */
   align-items: center; /* căn giữa dọc */
   padding: 10px; /* nếu muốn khoảng cách xung quanh nội dung.*/
-  padding-bottom: 0; /* không còn khoảng trống dưới */
+  background-color: greenyellow;
+  height: 140px;
 }
 
 .product-item-title-detail {
   display: block; /* tránh inline spacing */
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
+  width: 100%;
   height: auto;
   object-fit: contain; /* giữ tỉ lệ và căn giữa bên trong khung */
   margin: 0 auto;
+  background-color: #db4444;
+  padding: 10px;
 }
 
 .product-item-title-detail h3 {
@@ -170,6 +172,7 @@
 }
 
 .product-price-add-to-cart {
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between; /* đẩy khối con ra hai đầu */
   align-items: center; /* căn giữa theo chiều dọc (nếu cần) */
@@ -182,6 +185,7 @@
   font-weight: 600;
   margin-bottom: 10px;
 }
+
 .HomePage_Regular_Price_Sale {
   font-family: "Be Vietnam", sans-serif;
   color: #000000;
@@ -222,8 +226,8 @@
 }
 .discount-label {
   position: absolute; /* nhãn nằm đè lên ảnh */
-  top: 10px; /* cách mép trên 10px */
-  left: 10px; /* cách mép phải 10px */
+  top: 0px; /* cách mép trên 10px */
+  left: 0px; /* cách mép phải 10px */
   background-color: #db4444;
   font-family: "Be Vietnam", sans-serif;
   color: #ffffff;

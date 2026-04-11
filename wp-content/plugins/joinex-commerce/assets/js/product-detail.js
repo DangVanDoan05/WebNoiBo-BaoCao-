@@ -61,10 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
   updateSlider();
 });
 
-// JS CHO PHẦN TÙY CHỌN THUỘC TÍNH
+// #region JS CHO PHẦN TÙY CHỌN THUỘC TÍNH
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("✅ JS đã load và đang chạy!");
+  console.log("✅ JS phần CHỌN THUỘC TÍNH SẢN PHẨM đã load và đang chạy!");
 
   const groups = document.querySelectorAll(".button-variation-container");
   console.log("Tìm thấy số nhóm:", groups.length);
@@ -86,10 +86,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   });
 });
+//#endregion
 
-// JS CHO PHẦN NÚT BẤM.
+//#region JS CHO PHẦN NÚT BẤM.
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("✅ JS joinex đã load và đang chạy!");
+  console.log("✅ JS joinex PHẦN CHỌN SỐ LƯỢNG SẢN PHẨM đã load và đang chạy!");
 
   const qtyInput = document.querySelector(".qty-input-joinex");
   const minusBtn = document.querySelector(".minus-joinex");
@@ -107,6 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log("Số lượng sau khi cộng:", qtyInput.value);
   });
 });
+//#endregion
 
 //#region   MÔ TẢ DÀI SẢN PHẨM
 
@@ -126,63 +128,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.getElementById(target).classList.add("active");
     });
   });
-});
-
-//#endregion
-
-//#region   PHẦN SLIDER SẢN PHẨM LIÊN QUAN PHẢI HỌC THÔI CHỨ KHÔNG LÀ KHÔNG LÀM CHỦ ĐƯỢC ĐÂU
-const track = document.querySelector(".product-list-slider-track");
-const delay = 3000; // 3 giây
-let isSliding = false;
-const btnPrev = document.getElementById("prev-joinex-slider");
-const btnNext = document.getElementById("next-joinex-slider");
-
-const itemWidth = 270.75 + 15; // chiều rộng + margin (theo CSS bạn đặt)
-let scrollAmount = 0;
-
-function slide() {
-  if (isSliding) return;
-  isSliding = true;
-
-  const firstItem = track.querySelector(".product-slider-item");
-  const itemWidth = firstItem.offsetWidth + 20; // 300 + margin
-
-  // Đẩy phần tử đầu tiên xuống cuối TRƯỚC khi dịch
-  track.appendChild(firstItem.cloneNode(true));
-  track.removeChild(firstItem);
-
-  // Dịch sang trái
-  track.style.transition = "transform 0.5s ease";
-  track.style.transform = `translateX(-${itemWidth}px)`;
-
-  // Sau khi dịch xong, reset transform về 0
-  setTimeout(() => {
-    track.style.transition = "none";
-    track.style.transform = "translateX(0)";
-    isSliding = false;
-  }, 500);
-}
-
-setInterval(slide, delay);
-
-// NEXT → dịch sang trái
-btnNext.addEventListener("click", () => {
-  scrollAmount += itemWidth;
-  if (scrollAmount > track.scrollWidth - track.clientWidth) {
-    scrollAmount = 0; // quay lại đầu
-  }
-  track.style.transition = "transform 0.5s ease";
-  track.style.transform = `translateX(-${scrollAmount}px)`;
-});
-
-// PREV → dịch sang phải
-btnPrev.addEventListener("click", () => {
-  scrollAmount -= itemWidth;
-  if (scrollAmount < 0) {
-    scrollAmount = track.scrollWidth - track.clientWidth; // quay về cuối
-  }
-  track.style.transition = "transform 0.5s ease";
-  track.style.transform = `translateX(-${scrollAmount}px)`;
 });
 
 //#endregion
