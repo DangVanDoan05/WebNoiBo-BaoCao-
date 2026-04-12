@@ -103,7 +103,8 @@ $loop = new WP_Query($args);
                 ?>
         
                 <div class="product-item-joinex">
-                    <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
+                    <a id="joinex-a" style=" border: 2px solid #000;" href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
+                        <!-- KHỐI HÌNH ẢNH -->
                         <div class="product-item-joinex-image">
                             <?php
                                 echo $product->get_image();
@@ -113,14 +114,15 @@ $loop = new WP_Query($args);
                                 }
                             ?>
                         </div>
-        
+                        
+                        <!-- KHỐI TIÊU ĐỀ  -->
                         <div class="product-item-joinex-title">
 
                                 <div class="product-item-joinex-title-detail">    
-                                    <h3><?php echo esc_html( get_the_title() ); ?></h3>
+                                    <h3 class="joinex"><?php echo esc_html( get_the_title() ); ?></h3> 
                                 </div>
 
-                                <div class="product-joinex-divider"></div>
+                            
 
                                 <div class="product-joinex-price-add-to-cart">
         
