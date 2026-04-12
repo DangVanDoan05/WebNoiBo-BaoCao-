@@ -86,7 +86,7 @@
   align-items: center; /* căn giữa dọc */
   padding: 10px; /* nếu muốn khoảng cách xung quanh nội dung.*/
   background-color: greenyellow;
-  height: 140px;
+  height: 250px;
 }
 
 .product-item-title-detail {
