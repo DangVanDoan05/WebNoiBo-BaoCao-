@@ -132,8 +132,8 @@ function list_product_product_page_shortcode() {
             $discount_percent = round( ( ( $regular_price - $sale_price ) / $regular_price ) * 100 );
         }
         ?>
-
-        <div class="product-item">
+        <!-- 🔥 HTML RENDER RA SẢN PHẨM  -->
+        <div class="product-item-joinex">
             <a href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
                 <div class="product-item-image">
                     <?php
@@ -145,7 +145,7 @@ function list_product_product_page_shortcode() {
                     ?>
                 </div>
 
-                <div class="product-item-title">
+                <div class="product-item-joinex-title">
                     <div class="product-item-title-detail">
 
                         <h3><?php echo esc_html( get_the_title() ); ?></h3>
@@ -164,7 +164,7 @@ function list_product_product_page_shortcode() {
                                     if ( $regular_price ) {
                                         echo '<p class="HomePage_Regular_Price">' . wc_price( $regular_price ) . '</p>';
                                     }
-                                } 
+                                }
                                 // 👉 Không có sale → giá thường
                                 else {
                                     if ( $regular_price ) {
