@@ -17,8 +17,8 @@
   box-sizing: border-box !important;
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
-  display: inline;
-  gap: 0px;
+  display: grid;
+  gap: 5px;
 }
 
 /*#region Responsive */
@@ -68,6 +68,7 @@
 
 /* KHÓI TIÊU ĐỀ SẢN PHẨM */
 .product-joinex-title-card-a {
+  /* margin-top: -20px;*/
 }
 
 .product-item-joinex-title {
@@ -80,10 +81,12 @@
   height: 147.25px !important; /* Chưa ưng lắm */
   padding-left: 15px;
   padding-right: 15px;
+
+  margin-top: -20px;
 }
 
 .product-item-joinex-title-detail {
-  padding-top: 10px;
+  /* padding-top: 10px; */
   width: 240.75px;
   height: 60px;
   border-bottom: 1px solid #cbcbcb;
@@ -203,4 +206,10 @@
   color: #000000; /* màu chữ (ví dụ đỏ) */
   /* text-align: center;*/ /* căn giữa */
   margin-top: 20px; /* khoảng cách trên */
+}
+/* Reset margin mặc định */
+h3,
+p {
+  margin: 0;
+  padding: 0;
 }

@@ -82,8 +82,8 @@ function joinex_product_detail_shortcode() {
                 </div>
             </div>
             <div class="title-short-description-product">  <!-- KHỐI TIÊU ĐỀ VÀ MÔ TẢ NGẮN  --> 
-                <div class="product-title">
-                    <h1 class="title"><?php echo esc_html($product->get_name()); ?></h1>
+                <div class="product-detail-page-title-joinex">
+                    <h1 id="product-detail-page-title-joinex"><?php echo esc_html($product->get_name()); ?></h1>
                     <?php echo wc_get_rating_html($product->get_average_rating()); ?>
                 </div>               
                 <div class="product-price">

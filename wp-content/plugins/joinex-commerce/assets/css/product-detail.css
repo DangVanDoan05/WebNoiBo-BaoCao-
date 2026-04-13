@@ -14,14 +14,17 @@
   width: 508px;
 }
 
-.product-title h1 {
+.product-detail-page-title-joinex h1 {
   font-family: "Be Vietnam Pro", sans-serif;
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 20px;
   color: #000000;
 }
-
+.product-detail-page-title-joinex {
+  display: flex;
+  justify-content: left;
+}
 .images-product-container {
   width: 600px;
   display: grid;

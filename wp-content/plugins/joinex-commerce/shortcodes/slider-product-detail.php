@@ -122,7 +122,7 @@ function slider_joinex_product_detail_shortcode() {
 
                                                     <div class="product-joinex-divider"></div>
 
-                                                    <div class="product-price-add-to-cart">
+                                                    <div class="product-price-add-to-cart-slider-joinex">
                             
                                                         <div class="price-min-real-price">
                             

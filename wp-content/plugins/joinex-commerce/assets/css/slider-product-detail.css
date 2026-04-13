@@ -104,6 +104,12 @@
   height: 50px;
 }
 
+.product-price-add-to-cart-slider-joinex {
+  display: flex;
+  justify-content: space-between; /* phần tử đầu nằm bên trái, phần tử cuối nằm bên phải */
+  align-items: center; /* căn giữa theo chiều dọc (nếu muốn) */
+  padding-top: 10px;
+}
 .product-slider-item-joinex-title h3 {
   font-family: "Be Vietnam Pro", sans-serif;
   color: #000000;

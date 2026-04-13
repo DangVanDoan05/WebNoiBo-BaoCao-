@@ -1,5 +1,5 @@
 /* Khối cha: grid 4 cột, giới hạn 1140px */
-.product-list {
+.product-list-joinex {
   display: grid !important;
   grid-template-columns: repeat(4, 1fr) !important;
   gap: 20px !important;
@@ -10,32 +10,18 @@
 
 /* Bảo đảm item không bị ép width:100% từ theme */
 
-.product-list .product-item {
-  width: auto !important;
-  max-width: 100% !important;
-  height: 440px !important;
-  /*flex: 0 0 auto !important;*/
+.product-list-joinex .product-item-joinex {
+  width: 270.75px;
+  max-width: 100%;
+  height: 418px;
   box-sizing: border-box !important;
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  display: inline;
+  gap: 0px;
 }
 
-/* Nếu Elementor bọc shortcode trong widget, tăng specificity */
-.elementor-widget-shortcode .product-list,
-.elementor-widget .product-list {
-  display: grid !important;
-  grid-template-columns: repeat(4, 1fr) !important;
-}
-
-/* Override rule phổ biến của theme/elementor */
-.elementor-widget .product-item,
-.elementor-column .product-item,
-.widget .product-item {
-  width: auto !important;
-  flex-basis: auto !important;
-}
-
-/* Responsive */
+/*#region Responsive */
 @media (max-width: 992px) {
   .product-list {
     grid-template-columns: repeat(2, 1fr) !important;
@@ -43,6 +29,7 @@
     padding: 0 16px;
   }
 }
+
 @media (max-width: 576px) {
   .product-list {
     grid-template-columns: 1fr !important;
@@ -52,15 +39,16 @@
 .product-item:hover {
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
+/*#endregion Responsive */
 
 /* KHỐI CHỨA HÌNH ẢNH */
 /* Khối chứa ảnh: bo góc trên, căn giữa cả ngang và dọc */
-.product-item-image {
+.product-item-joinex-image {
   display: flex; /* bắt buộc để justify/align có hiệu lực */
   justify-content: center; /* căn giữa ngang */
   align-items: center; /* căn giữa dọc */
   background-color: #f5f5f5;
-  height: 285px;
+  height: 270.75px;
   border-radius: 20px 20px 0 0;
   overflow: hidden; /* cắt ảnh theo bo góc */
   box-sizing: border-box;
@@ -68,7 +56,7 @@
 }
 
 /* Ảnh bên trong: giữ tỉ lệ, không chiếm 100% chiều ngang nếu muốn */
-.product-item-image img {
+.product-item-joinex-image img {
   display: block; /* tránh inline spacing */
   max-width: 100%;
   max-height: 100%;
@@ -79,62 +67,33 @@
 }
 
 /* KHÓI TIÊU ĐỀ SẢN PHẨM */
-.product-item-title {
-  display: flex; /* bắt buộc để justify/align có hiệu lực */
-  justify-content: center; /* căn giữa ngang */
-  align-items: center; /* căn giữa dọc */
-  padding: 10px; /* nếu muốn khoảng cách xung quanh nội dung.*/
-  padding-bottom: 0; /* không còn khoảng trống dưới */
+.product-joinex-title-card-a {
 }
 
-.product-item-title-detail {
-  display: block; /* tránh inline spacing */
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain; /* giữ tỉ lệ và căn giữa bên trong khung */
-  margin: 0 auto;
+.product-item-joinex-title {
+  display: grid; /* bắt buộc để justify/align có hiệu lực */
+  justify-content: left; /* căn giữa ngang */
+  align-items: left; /* căn giữa dọc */
+  display: flex;
+  flex-direction: column;
+  gap: 0px;
+  height: 147.25px !important; /* Chưa ưng lắm */
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
-.product-item-title-detail h3 {
-  font-family: "Be Vietnam";
+.product-item-joinex-title-detail {
+  /*padding-top: 10px;*/
+  width: 240.75px;
+  height: 60px;
+  border-bottom: 1px solid #cbcbcb;
+}
+
+.product-item-joinex-title-detail h3 {
+  font-family: "Be Vietnam", sans-serif;
   color: #000000;
   font-size: 16px;
   font-weight: 600;
-}
-
-/* Rule chung cho hr trong product card */
-.product-item hr {
-  display: block; /* đảm bảo block */
-  height: 1px; /* chiều cao đường */
-  margin: 12px 0; /* khoảng cách trên/dưới */
-  border: 0; /* bỏ border mặc định */
-  background-color: #706f6f !important; /* màu đường */
-  width: 100%; /* chiếm toàn chiều ngang của card */
-  box-sizing: border-box;
-}
-
-/* Nếu theme ghi đè mạnh, tăng specificity */
-.elementor .product-list .product-item hr,
-.product-list .product-item hr {
-  display: block !important;
-  height: 1px !important;
-  background-color: #e6e6e6 !important;
-  border: 0 !important;
-}
-
-/* Nếu muốn đường mảnh hơn hoặc shadow */
-.product-item hr.thin {
-  height: 1px;
-  background: linear-gradient(90deg, rgba(0, 0, 0, 0.06), rgba(0, 0, 0, 0.02));
-}
-
-.product-divider {
-  height: 1px;
-  background-color: #807e7e;
-  margin: 12px 0;
-  width: 100%;
 }
 
 .product-item h3 {
@@ -142,7 +101,7 @@
   color: #000000;
   font-size: 16px;
   font-weight: 600;
-  margin: 10px 0;
+
   color: #333;
 }
 
@@ -168,7 +127,9 @@
   background: #457b9d;
 }
 
-.product-price-add-to-cart {
+.product-joinex-price-add-to-cart {
+  padding-top: 5px;
+  width: 240.75px;
   display: flex;
   justify-content: space-between; /* đẩy khối con ra hai đầu */
   align-items: center; /* căn giữa theo chiều dọc (nếu cần) */
@@ -181,6 +142,7 @@
   font-weight: 600;
   margin-bottom: 10px;
 }
+
 .HomePage_Regular_Price_Sale {
   font-family: "Be Vietnam", sans-serif;
   color: #000000;
@@ -215,11 +177,13 @@
   margin: 0; /* bỏ khoảng cách mặc định của thẻ <p> */
   padding: 0; /* bỏ padding mặc định của thẻ <p> */
 }
-.product-item-image {
+
+/*#region khung tham chiếu cho nhãn */
+.product-item-joinex-image {
   position: relative; /* khung tham chiếu cho nhãn */
   display: inline-block;
 }
-.discount-label {
+#discount-label-homepageJoinex {
   position: absolute; /* nhãn nằm đè lên ảnh */
   top: 10px; /* cách mép trên 10px */
   left: 10px; /* cách mép phải 10px */
@@ -231,6 +195,7 @@
   padding: 4px 8px;
   border-radius: 4px;
 }
+/*#endregion khung tham chiếu cho nhãn */
 .no-products {
   font-family: "BeVietnam Pro", sans-serif; /* đổi font */
   font-size: 30px; /* cỡ chữ */
@@ -239,6 +204,8 @@
   /* text-align: center;*/ /* căn giữa */
   margin-top: 20px; /* khoảng cách trên */
 }
+
+/*#region KHỐI SẮP XẾP SẢN PHẨM */
 
 .cc-product-sort {
   display: flex;
@@ -286,3 +253,5 @@
 .cc-product-sort form button + button {
   border-left: 1px solid #ccc; /* đường kẻ màu xám nhạt */
 }
+
+/*#endregion*/
