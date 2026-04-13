@@ -17,11 +17,10 @@
   box-sizing: border-box !important;
   border-radius: 20px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  display: inline;
+  gap: 0px;
 }
 
-.product-item-joinex #joinex-a {
-  display: block;
-}
 /*#region Responsive */
 @media (max-width: 992px) {
   .product-list {
@@ -68,28 +67,30 @@
 }
 
 /* KHÓI TIÊU ĐỀ SẢN PHẨM */
+.product-joinex-title-card-a {
+}
 
 .product-item-joinex-title {
-  /* display: grid; bắt buộc để justify/align có hiệu lực */
-  /* justify-content: left; căn giữa ngang */
-  /* align-items: left; căn giữa dọc */
+  display: grid; /* bắt buộc để justify/align có hiệu lực */
+  justify-content: left; /* căn giữa ngang */
+  align-items: left; /* căn giữa dọc */
   display: flex;
   flex-direction: column;
   gap: 0px;
   height: 147.25px !important; /* Chưa ưng lắm */
-  /* padding: 15px; nếu muốn khoảng cách xung quanh nội dung. */
-  background-color: greenyellow;
+  padding-left: 15px;
+  padding-right: 15px;
 }
 
 .product-item-joinex-title-detail {
+  padding-top: 10px;
   width: 240.75px;
-  height: 80px;
-  margin: 0 auto;
-  border: 2px solid #db4444;
+  height: 60px;
+  border-bottom: 1px solid #cbcbcb;
 }
 
-.product-item-title-detail h3 {
-  font-family: "Be Vietnam";
+.product-item-joinex-title-detail h3 {
+  font-family: "Be Vietnam", sans-serif;
   color: #000000;
   font-size: 16px;
   font-weight: 600;
@@ -127,8 +128,8 @@
 }
 
 .product-joinex-price-add-to-cart {
+  padding-top: 5px;
   width: 240.75px;
-  border: 2px solid #1d3557;
   display: flex;
   justify-content: space-between; /* đẩy khối con ra hai đầu */
   align-items: center; /* căn giữa theo chiều dọc (nếu cần) */
@@ -182,10 +183,10 @@
   position: relative; /* khung tham chiếu cho nhãn */
   display: inline-block;
 }
-.discount-label {
+#discount-label-homepageJoinex {
   position: absolute; /* nhãn nằm đè lên ảnh */
-  top: 0px; /* cách mép trên 10px */
-  left: 0px; /* cách mép phải 10px */
+  top: 10px; /* cách mép trên 10px */
+  left: 10px; /* cách mép phải 10px */
   background-color: #db4444;
   font-family: "Be Vietnam", sans-serif;
   color: #ffffff;

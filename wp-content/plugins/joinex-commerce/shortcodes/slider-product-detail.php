@@ -116,7 +116,7 @@ function slider_joinex_product_detail_shortcode() {
                                             <!--KHỐI TIÊU ĐỀ SẢN PHẨM-->                                                                                 
                                             <div class="product-slider-item-title">
 
-                                                    <div class="product-item-joinex-title">
+                                                    <div class="product-slider-item-joinex-title">
                                                         <h3><?php echo esc_html( get_the_title() ); ?></h3>
                                                     </div>  
 

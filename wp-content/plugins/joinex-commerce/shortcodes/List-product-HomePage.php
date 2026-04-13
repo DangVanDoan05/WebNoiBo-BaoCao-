@@ -103,18 +103,22 @@ $loop = new WP_Query($args);
                 ?>
         
                 <div class="product-item-joinex">
-                    <a id="joinex-a" style=" border: 2px solid #000;" href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
+
+                    <a class="product-joinex-img-card-a" href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
                         <!-- KHỐI HÌNH ẢNH -->
                         <div class="product-item-joinex-image">
                             <?php
                                 echo $product->get_image();
         
                                 if ( $discount_percent ) {
-                                    echo '<p class="discount-label">- ' . $discount_percent . '%</p>';
+                                    //-- ĐÂY RỒI DISCOUNT LAYBAL Ở ĐÂY NÀY
+                                    echo '<p id="discount-label-homepageJoinex">- ' . $discount_percent . '%</p>';
                                 }
                             ?>
                         </div>
-                        
+                    </a>
+
+                    <a class="product-joinex-title-card-a" href="<?php echo esc_url( site_url('/chi-tiet-san-pham') . '?product_id=' . $product->get_id() ); ?>">
                         <!-- KHỐI TIÊU ĐỀ  -->
                         <div class="product-item-joinex-title">
 
@@ -122,8 +126,7 @@ $loop = new WP_Query($args);
                                     <h3 class="joinex"><?php echo esc_html( get_the_title() ); ?></h3> 
                                 </div>
 
-                            
-
+                        
                                 <div class="product-joinex-price-add-to-cart">
         
                                     <div class="price-min-real-price">
@@ -160,8 +163,8 @@ $loop = new WP_Query($args);
                                 </div>  
 
                         </div>
-
                     </a>
+
                 </div>
                 <?php
             }
