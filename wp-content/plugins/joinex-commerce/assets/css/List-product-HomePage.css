@@ -78,11 +78,19 @@
   display: flex;
   flex-direction: column;
   gap: 0px;
-  height: 147.25px !important; /* Chưa ưng lắm */
+  height: 147.25px !important;
   padding-left: 15px;
   padding-right: 15px;
-
   margin-top: -20px;
+}
+
+/* THUỘC TÍNH CHỈ ÁP DỤNG CHO CHROME, CỐC CỐC, CÂU LỆNH ĐẶC BIỆT */
+
+/* HACK RIÊNG THẰNG FIRE-FORCE THÔI */
+@-moz-document url-prefix() {
+  .product-item-joinex-title {
+    margin-top: 0px; /* chỉ Firefox */
+  }
 }
 
 .product-item-joinex-title-detail {
